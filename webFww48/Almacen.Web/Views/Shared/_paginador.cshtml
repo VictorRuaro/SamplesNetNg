@@ -1,0 +1,80 @@
+﻿@model Almacen.Web.ViewModels.PaginadorViewModels
+
+@{
+    var cantidadPaginas = (int)Math.Ceiling((double)Model.TotalRegistros / Model.RegistrosPorPagina);
+}
+
+<!--Funcionalidad: Anterior y siguiente-->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="">
+            <ul class="pagination pagination-sm mt-sm">
+                @if (Model.PaginaActual == 1)
+            {
+                Model.ValoresQueryString["pagina"] = 1;
+                    <li class="disabled"><span>Anterior</span></li>
+                }
+                else
+                {
+                    Model.ValoresQueryString["pagina"] = Model.PaginaActual - 1;
+                    <li>@Html.ActionLink("Anterior", null, Model.ValoresQueryString)</li>
+                }
+
+                @if (Model.PaginaActual == cantidadPaginas || cantidadPaginas <= 0)
+            {
+                Model.ValoresQueryString["pagina"] = cantidadPaginas;
+                    <li class="disabled"><span>Siguiente</span></li>
+                }
+                else
+                {
+                    Model.ValoresQueryString["pagina"] = Model.PaginaActual + 1;
+                    <li>@Html.ActionLink("Siguiente", null, Model.ValoresQueryString)</li>
+                }
+            </ul>
+
+            <!--Funcionalidad: Páginas-->
+
+            @{
+                int Inicial = 1;
+                var radio = 3;
+                var cantidadMaximaDePaginas = radio * 2 + 1;
+                int Final = (cantidadPaginas > cantidadMaximaDePaginas) ? cantidadMaximaDePaginas : cantidadPaginas;
+                if (Model.PaginaActual > radio + 1)
+                {
+                    Inicial = Model.PaginaActual - radio;
+                    if (cantidadPaginas > Model.PaginaActual + radio)
+                    {
+                        Final = Model.PaginaActual + radio;
+                    }
+                    else
+                    {
+                        Final = cantidadPaginas;
+                    }
+                }
+            }
+
+
+            <ul class="pagination pagination-sm mt-sm">
+
+                @{Model.ValoresQueryString["pagina"] = 1; }
+                <li class="@(cantidadPaginas > 0 ? "" : "disabled")">@Html.ActionLink("Primera", null, Model.ValoresQueryString)</li>
+                @for (int i = Inicial; i <= Final; i++)
+            {
+                Model.ValoresQueryString["pagina"] = i;
+                if (i == Model.PaginaActual)
+                {
+                        <li class="active">@Html.ActionLink(i.ToString(), null, Model.ValoresQueryString)</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink(i.ToString(), null, Model.ValoresQueryString)</li>
+                    }
+                }
+                @{Model.ValoresQueryString["pagina"] = cantidadPaginas; }
+                <li class="@(cantidadPaginas > 0 ? "": "disabled")">@Html.ActionLink("Ultima", null, Model.ValoresQueryString)</li>
+            </ul>
+            <div class="mt mr-lg pull-right"><label class="">Total de registros: <strong>@Model.TotalRegistros</strong></label></div>
+            <div class="mb-lg visible-xs"></div>
+        </div>
+    </div>
+</div>

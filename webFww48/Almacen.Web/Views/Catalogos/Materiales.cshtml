@@ -1,0 +1,75 @@
+﻿<h3>Catálogos para Materiales</h3>
+<ul class="nav">
+    <!-- END user info-->
+    <!-- Iterates over all sidebar items-->
+    <li class="nav-heading">
+        <span class="h2">
+            <em class="icon-grid"></em>
+        </span>
+        <span>Catálogos</span>
+    </li>
+    <li class="nav-divider">
+        <span class="">
+
+        </span>
+
+    </li>
+    <li class="@Html.isActive(controller: "CatMateriales")">
+        <a href="@Url.Action("Index", "CatMateriales")" title="Materiales" data-tool="link-load">
+            <span class="h3">
+                <em class="icon-drawer"></em>
+            </span>
+            <span>Materiales</span>
+        </a>
+    </li>
+    <li class="nav-divider">
+        <span class="">
+
+        </span>
+
+    </li>
+    <li class="@Html.isActive(controller: "CatGrado")">
+        <a href="@Url.Action("Index", "CatGrado")" title="Grado" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Grado</span>
+        </a>
+    </li>
+
+    <li class="@Html.isActive(controller: "CatMarca")">
+        <a href="@Url.Action("Index", "CatMarca")" title="Marca" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Marca</span>
+        </a>
+    </li>
+    <li class="@Html.isActive(controller: "CatPresentacion")">
+        <a href="@Url.Action("Index", "CatPresentacion")" title="Presentación" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Presentación</span>
+        </a>
+    </li>
+    <li class="@Html.isActive(controller: "CatCondicionesAlmacenaje")">
+        <a href="@Url.Action("Index", "CatCondicionesAlmacenaje")" title="Condiciones de Almacenaje" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Condiciones de Almacenaje</span>
+        </a>
+    </li>
+    
+    <li class="@Html.isActive(controller: "CatProveedor")">
+        <a href="@Url.Action("Index", "CatProveedor")" title="Proveedor" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span >Proveedor</span>
+        </a>
+    </li>
+
+
+
+</ul>
+
+
+@*Catálogos para Materiales
+    Condiciones de Almacenaje
+    Marca
+    Grado
+    Proveedor
+*@
+

@@ -1,0 +1,156 @@
+﻿@model IEnumerable<Almacen.Web.Models.UsuarioViewModel>
+
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<h3>Usuarios</h3>
+@using (Html.BeginForm())
+{
+<div class="form-group mb-xl">
+    <input type="text" name="textobuscar" required="required" data-val-required="El campo Usuario es obligatorio." data-val="true" data-val-minlength-min="5" data-val-minlength="Ingrese mínimo 5 caracteres" data-val-length-max="256" data-val-length="El campo Usuario debe ser una cadena con una longitud máxima de 256." placeholder="Ingrese el usuario a buscar" class="form-control mb">
+    <span class="field-validation-valid text-danger" data-valmsg-replace="true" data-valmsg-for="textobuscar"></span>
+    
+    <div class="clearfix">
+        <div class="form-group">
+            <div class="col-6">
+                <button type="submit" class="pull-left btn btn-default">Buscar</button>
+            </div>
+            @if (@ViewBag.textobuscar != null)
+            {
+                <div class="pull-right col-6">
+                    <div class="alert bg-green">
+                        <a href="@Url.Action("Index", "Usuarios")" aria-label="Close" class="close" title="Quitar busqueda">
+                            Quitar busqueda <span aria-hidden="true">×</span>
+                        </a>
+                        Se encontraron @Model.Count() resultados con [@ViewBag.textobuscar]
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+    
+</div>
+}
+<div class="form-group mb-lg">
+    <a href="@Url.Action("Create", "Usuarios")" class="btn btn-primary" title="Agregar Usuario">
+        <i class="fa fa-plus"></i> Agregar
+    </a>
+</div>
+
+<div class="clearfix btn-toolbar"></div>
+    <div class="panel panel-default">
+        @*<div class="panel-heading">
+                <span class="h4">Usuarios</span>
+                <div class="clearfix"></div>
+            </div>*@
+
+        <table id="table" class="table table-hover table-condensed table-responsive">
+            <thead data-background-color="primary">
+                <tr>
+                    <th class="visible-xs">Listado de Usuarios</th>
+                    <th class="hidden-xs">@Html.DisplayNameFor(model => model.NombreCompleto)</th>
+                    <th class="hidden-xs">@Html.DisplayNameFor(model => model.UserName)</th>
+                    <th class="hidden-xs">@Html.DisplayNameFor(model => model.Email)</th>
+                    <th class="hidden-xs">@Html.DisplayNameFor(model => model.RolesList)</th>
+                    <th class="hidden-xs"></th>
+                </tr>
+            </thead>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="visible-xs">
+                        <div class="panel frame-shadow">
+                            <table class="table table-condensed table-responsive">
+                                <tr>
+                                    <td class="text-muted" data-th="@Html.DisplayNameFor(model => model.UserName)">
+                                        <div class="font-gray-2">
+                                            @Html.DisplayFor(modelItem => item.UserName)
+                                        </div>
+                                    </td>
+                                    <td class="text-muted">
+                                        <div class="actions right">
+
+                                            <div class="btn-group-xs">
+                                                <a href="@Url.Action("Details",new {id=item.Id })" class="btn btn-sm btn-default" title="Detalles">
+                                                    <i class="fa fa-search-plus"></i>
+                                                </a>
+                                                <a href="@Url.Action("Edit",new {id=item.Id })" class="btn btn-sm btn-warning" title="Editar">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="@Url.Action("Delete",new {id=item.Id })" class="btn btn-sm btn-danger" title="Eliminar">
+                                                    <i class="fa fa-remove"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </div>
+
+                    </td>
+                    <td class="hidden-xs" data-th="@Html.DisplayNameFor(model => model.NombreCompleto)">
+                        <small class="small">@Html.DisplayFor(modelItem => item.NombreCompleto)</small>
+
+                    </td>
+                    <td class="hidden-xs" data-th="@Html.DisplayNameFor(model => model.UserName)">
+                        <div class="">
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </div>
+                    </td>
+                    <td class="hidden-xs" data-th="@Html.DisplayNameFor(model => model.Email)">
+                        <small class="small">@Html.DisplayFor(modelItem => item.Email)</small>
+
+                    </td>
+                    <td class="hidden-xs" data-th="@Html.DisplayNameFor(model => model.RolesList)">
+                        <small class="small">@item.RolesList.Select(s => s.Text).Aggregate((workingSentence, next) => next + ", " + workingSentence)</small>
+                    </td>
+                    @*<td class="hidden-xs actions" data-th="">
+                            <div class="btn-group-sm">
+                                <a href="@Url.Action("Details",new {id=item.Id })" class="btn btn-sm btn-default" title="Detalles">
+                                    <i class="fa fa-search-plus"></i>
+                                </a>
+                                <a href="@Url.Action("Edit",new {id=item.Id })" class="btn btn-sm btn-warning" title="Editar">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a href="@Url.Action("Delete",new {id=item.Id })" class="btn btn-sm btn-danger" title="Eliminar">
+                                    <i class="fa fa-remove"></i>
+                                </a>
+                            </div>
+                        </td>*@
+                    <td class="hidden-xs td-actions text-right">
+
+                        <a href="@Url.Action("Details",new {id=item.Id })" class="btn btn-link" data-original-title="Detalle" title="">
+                            <i class="fa fa-search-plus"></i>
+                        </a>
+                        <a href="@Url.Action("Edit",new {id=item.Id })" class="btn btn-link" data-original-title="Editar" title="">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="@Url.Action("Delete",new {id=item.Id })" class="btn btn-link" data-original-title="Eliminar" title="">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+
+            }
+
+
+
+        </table>
+        @if (Model.Any())
+            {
+
+            }
+            else
+            {
+            <div class="card-content form-horizontal">
+                <div class="alert alert-info">No se encontraron datos</div>
+            </div>
+        }
+
+    </div>
+

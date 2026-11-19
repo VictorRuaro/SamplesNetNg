@@ -1,0 +1,40 @@
+﻿@model Almacen.Web.ViewModels.Catalogos.GrupoFarmacologicoVM
+<h3>Detalle</h3>
+<div>
+
+    <dl class="dl-horizontal p-xl">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrupoFarmacologico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GrupoFarmacologico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.colorHtml)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colorHtml)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+    <a href="@Url.Action("Edit",new { id = Model.idGrupoFarmacologico})" class="btn btn-warning" title="Editar">
+        <i class="fa fa-edit"></i> Editar
+    </a>
+</div>

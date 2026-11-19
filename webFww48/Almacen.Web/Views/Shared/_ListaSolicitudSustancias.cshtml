@@ -1,0 +1,119 @@
+﻿@using Almacen.Web.ViewModels
+
+@model IEnumerable<SolicitudDetalleVM>
+@{
+    int idEstatusSolicitud = ViewBag.idEstatusSolicitud;
+}
+<div class="panel b">
+    <div class="table-responsive">
+
+        <table class="table table-hover table-condensed ">
+            <thead class="">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descripcion)
+                        
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idPresentacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadSolicitada)
+                    </th>
+                    
+                        
+                        @switch (idEstatusSolicitud)
+                        {
+                            case 0:
+                                <th>
+
+                                </th>
+                                break;
+                            case 1:
+                                <th>
+                                    
+                                </th>
+                                break;
+                            case 2:
+                                if (ViewBag.ModuloAutorizar != null)
+                                {
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadAutorizada)
+                                </th>
+                                }
+                                <th>
+                                    
+                                </th>
+                                break;
+                            case 3:
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadAutorizada)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadSurtida)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadDevolver)
+                                </th>
+                                break;
+                            case 4:
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadAutorizada)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadSurtida)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadDevolver)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadDevuelta)
+                                </th>
+                                break;
+                            case 5:
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadAutorizada)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadSurtida)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadDevolver)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CantidadDevuelta)
+                                </th>
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                    <th>
+                       
+                    </th>
+
+                </tr>
+            </thead>
+
+            <tbody class="h6">
+                @if (Model != null)
+                {
+                    int i = 0;
+                    foreach (var item in Model)
+                    {
+
+                        item.index = i++;
+                        item.idEstatusSolicitud = idEstatusSolicitud;
+                        @Html.DisplayFor(modelItem => item)
+                    }
+
+                }
+                   
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

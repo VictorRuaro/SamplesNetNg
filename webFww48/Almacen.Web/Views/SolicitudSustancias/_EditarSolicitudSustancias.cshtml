@@ -1,0 +1,190 @@
+﻿@using Almacen.Web.ViewModels
+
+@model IEnumerable<SolicitudDetalleVM>
+@*@{
+    int idEstatusSolicitud = ViewBag.idEstatusSolicitud;
+}*@
+<div class="panel panel-default">
+    <div class="table-responsive">
+
+        <table id="tablaListado" class="table table-hover table-condensed ">
+            <thead class="">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idPresentacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadSolicitada)
+                    </th>
+                    
+                    <th>
+                       
+                    </th>
+
+                </tr>
+            </thead>
+
+            <tbody class="h6">
+                @if (Model != null)
+                {
+                    int i = 0;
+                    foreach (var item in Model)
+                    {
+
+                        item.index = i++;
+                        //item.idEstatusSolicitud = idEstatusSolicitud;
+                        @Html.EditorFor(modelItem => item)
+                    }
+
+                }
+                   
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(".btnEliminarSustancia").click(
+        function () {
+
+            var idEstatusSolicitud = $('input[name="idEstatusSolicitud"').val();
+
+            var listasustancias = [];
+            var url = $(this).attr('data-actionurl');
+            var index = $(this).attr('data-id');
+
+            var tabla = $("#tablaListado");
+            
+
+            if (listasustancias.length == 0) {
+                $(tabla).find("tr").each(function (key, value) {
+                    //debugger
+                    //if (index != key) {
+
+                        var sustanciam = FindModel(value, key)
+                        if (sustanciam != null) {
+                            listasustancias.push(sustanciam);
+
+                        }
+                    //}
+                })
+            }
+            else{
+                $.each( listasustancias, function( key, value ){
+                    SetModel(value, key)
+                });
+
+            }
+
+
+            if (url.length > 0) {
+
+                $('#loading').toggleClass('sk-loading');
+
+                $.post(url, { index: index, sustancias: listasustancias, idEstatusSolicitud: idEstatusSolicitud })
+                    .success(
+                        function (result) {
+
+                            if (result !== null) {
+
+                                $('div[id="ListaSolicitud"]').html(result);
+
+                            }
+                            else {
+
+                                $("#lblInformacionModal").html("");
+                            }
+                            $('form').data('validator', null);
+                            $.validator.unobtrusive.parse($('form'));
+
+                            $('#loading').toggleClass('sk-loading');
+
+                        }
+                    )
+                    //.fail(function () {
+                    //    debugger
+                    //    //$("#lblInformacionModal").html("Error al conectarse");
+                    //    $('.ibox-content').toggleClass('sk-loading');
+                    //});
+                .error(function (jqXHR, textStatus, errorThrown) {
+                    $('#loading').toggleClass('sk-loading');
+                    //debugger
+                });
+
+
+            } else {
+                $("#lblInformacionModal").html("Complete todos los campos");
+            }
+
+        });
+
+    $(".btnSeleccionaPresentacion").click(
+            function () {
+                var msg = $("#msgModalPresentacion");
+                msgModalInit(msg);
+
+                var url = $(this).attr('data-actionurl');
+                var id = $(this).attr('data-id');
+                
+                var urlSustancia = '@Url.Action("Sustancia", "DatosAplicacion")';
+
+                $('div[id="resultadoPresentaciones"]').toggleClass('sk-loading');
+                //debugger
+                $.get(urlSustancia, { idSustanciaMaterial: id })
+                        .success(
+                            function (result) {
+
+                                if (result !== null) {
+
+                                    $('div[id="datosItem"]').html(result);
+
+                                }
+                                else {
+
+                                    $("#lblInformacionModal").html("");
+                                }
+
+                            }
+                        )
+                    .error(function (jqXHR, textStatus, errorThrown) {
+                        $('div[id="resultadoPresentaciones"]').toggleClass('sk-loading');
+                        //debugger;
+                    }).complete(function () {
+                        
+                        if (url.length > 0) {
+
+                            $.get(url, { idSustanciaMaterial: id })
+                                .success(
+                                    function (result) {
+
+                                        if (result !== null) {
+
+                                            $('div[id="resultadoPresentaciones"]').html(result);
+
+                                        }
+                                        else {
+
+                                            $("#lblInformacionModal").html("");
+                                        }
+                                    }
+                                )
+                            .error(function (jqXHR, textStatus, errorThrown) {
+                                $('div[id="resultadoPresentaciones"]').toggleClass('sk-loading');
+                                //debugger;
+                            }).complete(function () {
+                                $('div[id="resultadoPresentaciones"]').toggleClass('sk-loading');
+                            });
+
+                        }
+
+                    });
+            });
+
+
+
+</script>

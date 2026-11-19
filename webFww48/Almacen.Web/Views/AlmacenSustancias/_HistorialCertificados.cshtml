@@ -1,0 +1,79 @@
+﻿@using Almacen.Web.ViewModels
+
+@model IEnumerable<AlmacenCertificadoVM>
+
+<div class="panel panel-default">
+    <div class="table-responsive">
+
+        <table class="table table-hover table-condensed " id="table">
+            <thead class="">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NombreArchivo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FG)
+                    </th>
+                    <th class=""></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="8">
+                            <div class="alert alert-warning"><i class="fa fa-warning mr"></i><strong>No se han ingresado datos</strong></div>
+                        </td>
+                    </tr>
+
+                }
+                else if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="8">
+                            <div class="alert alert-info"><i class="fa fa-warning mr"></i><strong>No hay certificados</strong></div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    bool primerRenglon=false;
+                    foreach (var item in Model)
+                    {
+                        string clas = "";
+                        if(!primerRenglon)
+                        {
+                            clas = "text-success text-bold";
+                        }
+                        <tr>
+                            <td class="@clas">
+                                @Html.DisplayFor(modelItem => item.NombreArchivo)
+                            </td>
+                            <td class="@clas">
+                                @Html.DisplayFor(modelItem => item.FG)
+                            </td>
+
+                            <td class="td-actions text-right">
+
+                                @*<a title="" class="btn  btn-link" href="@Url.Action("VerCertificado","AlmacenSustancias",new {idAlmacenCertificado=item.idAlmacenCertificado })" data-original-title="Ver Certificado" target="_blank">
+                                    Ver
+                                </a>*@
+                                <a title="" class="btn  btn-link" href="@Url.Action("DescargarCertificado","AlmacenSustancias",new {idAlmacenCertificado=item.idAlmacenCertificado })" data-original-title="Descargar Certificado">
+                                    Descargar
+                                </a>
+                                <a title="" class="btn  btn-link" href="@Url.Action("BorrarCertificado","AlmacenSustancias",new {idAlmacen=item.idAlmacen,idAlmacenCertificado= item.idAlmacenCertificado })" data-original-title="Eliminar">
+                                    Eliminar
+                                </a>
+                            </td>
+                            
+                        </tr>
+                        primerRenglon = true;
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

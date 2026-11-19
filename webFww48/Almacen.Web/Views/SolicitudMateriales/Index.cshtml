@@ -1,0 +1,32 @@
+﻿@using Almacen.Web.ViewModels
+@using Almacen.Web.ViewModels.Catalogos
+
+@model BaseListaCatalogosVM<SolicitudVM>
+
+<h3>Solicitudes de Materiales</h3>
+@using (Html.BeginForm())
+{
+    Html.RenderPartial("_buscadorSolicitud", ViewBag.SolicitudFiltros as SolicitudFiltrosVM);
+
+
+    <div class="form-group mb-lg">
+        <a title="Agregar" class="btn btn-primary" href="@Url.Action("Create")">
+            <i class="fa fa-plus"></i> Agregar
+        </a>
+    </div>
+    if (Model.SinDatosListado)
+    {
+        <tr>
+            <td colspan="8">
+                <div class="alert alert-warning"><i class="fa fa-warning mr"></i><strong>No se han ingresado solicitudes</strong></div>
+            </td>
+        </tr>
+    }
+    else
+    {
+        Html.RenderPartial("_ListaSolicitudes", Model.Paginacion.Lista);
+
+
+        Html.RenderPartial("_paginador", Model.Paginador);
+    }
+}

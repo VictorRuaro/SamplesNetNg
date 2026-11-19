@@ -1,0 +1,30 @@
+﻿@model Almacen.Web.ViewModels.Catalogos.MaterialVM
+<div >
+    <dl class="dl-horizontal p">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cGrado.Grado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cGrado.Grado)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.NumeroParte)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumeroParte)
+        </dd>*@
+
+    </dl>
+</div>

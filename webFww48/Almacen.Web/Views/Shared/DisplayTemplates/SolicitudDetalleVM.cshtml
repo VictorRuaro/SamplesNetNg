@@ -1,0 +1,203 @@
+﻿@using Almacen.Web.Aplicacion
+@model Almacen.Web.ViewModels.SolicitudDetalleVM
+
+<tr>
+
+    <td>
+
+        @*@Html.DisplayFor(modelItem => modelItem.Descripcion)*@
+        <div class="">
+            @if (Model.idCategoria ==(int)EnumCategoria.Sustancias)
+            {
+                @Html.Action("DatosSustancia", "DatosAplicacion", new { idSustanciaMaterial = Model.idSustanciaMaterial })
+            }
+            else
+            {
+                @Html.Action("DatosMaterial", "DatosAplicacion", new { idSustanciaMaterial = Model.idSustanciaMaterial })
+            }
+        </div>
+    </td>
+    <td>
+
+        <div class="">
+            @if (Model.idCategoria == (int)EnumCategoria.Sustancias)
+            {
+                @Html.Action("DatosPresentacionSustancia", "DatosAplicacion",
+                               new
+                               {
+                                   idAlmacen = Model.idAlmacen
+                               })
+            }
+            else
+            {
+                @Html.Action("DatosPresentacionMaterial", "DatosAplicacion",
+                               new
+                               {
+                                   idAlmacen = Model.idAlmacen
+                               })
+            }
+        </div>
+    </td>
+
+    @{
+        switch (Model.idEstatusSolicitud)
+        {
+            case 0:
+                
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadSolicitada)
+
+
+                </td>
+                <td class=""></td>
+                break;
+            case 1:
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadSolicitada)
+
+                    
+                </td>
+                <td class="">
+                    
+                </td>
+                break;
+            case 2:
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadSolicitada)
+                </td>
+                if(ViewBag.ModuloAutorizar != null)
+                {
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadAutorizada)
+                    
+                </td>
+                }
+                <td class="">
+                    
+                </td>
+                break;
+            case 3:
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadSolicitada)
+                </td>
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadAutorizada)
+                </td>
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadSurtida)
+                    
+                </td>
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadDevolver)
+                   
+                </td>
+                <td class="">
+                    
+                </td>
+                break;
+            case 4:
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadSolicitada)
+                </td>
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadAutorizada)
+                </td>
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadSurtida)
+                </td>
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadDevolver)
+                </td>
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadDevuelta)
+                    
+                </td>
+                break;
+            case 5:
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadSolicitada)
+                </td>
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadAutorizada)
+                </td>
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadSurtida)
+                </td>
+
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadDevolver)
+                </td>
+                <td class="">
+                    @Html.DisplayFor(modelItem => modelItem.CantidadDevuelta)
+
+                </td>
+                break;
+            default:
+                break;
+        }
+    }
+
+</tr>
+@{
+    int nlotes = Model.tSolicitudDetalleLote.Count();
+
+    for (int i = 0; i < nlotes; i++)
+    {
+        //Model.tSolicitudDetalleLote[i] = i;
+        int idAlmacen = Model.tSolicitudDetalleLote[i].idAlmacen;
+        <tr class="">
+
+            @if (i == 0)
+            {
+                <td colspan="3" rowspan="@(nlotes)">
+                    <div class="text-muted text-right">Lotes a surtir</div>
+                </td>
+            }
+            <td>
+                <div class="">
+                    @if (idAlmacen > 0)
+                    {
+                        @Html.Action("DetalleLote", "DatosAplicacion", new { idCategoria = Model.idCategoria, idAlmacen = idAlmacen })
+                    }
+                </div>
+            </td>
+            <td>
+                <div class="">
+                    @Html.DisplayFor(modelItem => Model.tSolicitudDetalleLote[i].CantidadSurtida)
+                </div>
+            </td>
+
+            <td>
+                <div class="">
+                    @Html.DisplayFor(modelItem => Model.tSolicitudDetalleLote[i].CantidadDevolver)
+                </div>
+            </td>
+@if (Model.idEstatusSolicitud > 4)
+{
+            <td>
+
+                <div class="">
+                    @Html.DisplayFor(modelItem => Model.tSolicitudDetalleLote[i].CantidadDevuelta)
+                </div>
+
+            </td>
+}
+            <td>
+                
+            </td>
+        </tr>
+
+    }
+}

@@ -1,0 +1,86 @@
+﻿@model Almacen.Web.ViewModels.AlmacenMaterialVM
+
+<div class="form-horizontal">
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.NumParte, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.NumParte)
+
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.NumCatalago, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.NumCatalago)
+
+        </div>
+    </div>
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.idMarca, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.cMarca.Marca)
+        </div>
+    </div>
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.idPresentacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.cPresentacion.Presentacion)
+
+        </div>
+    </div>
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.idCondicionesAlmacenaje, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.cCondicionesAlmacenaje.CondicionesAlmacenaje)
+
+        </div>
+    </div>
+
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.FechaRecepcion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.FechaRecepcion)
+
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.FechaCaducidad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.FechaCaducidad)
+
+        </div>
+    </div>
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.LoteProveedor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.LoteProveedor)
+
+        </div>
+    </div>
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.idProveedor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.cProveedor.Proveedor)
+
+        </div>
+    </div>
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Observaciones)
+
+        </div>
+    </div>
+
+
+
+</div>
+

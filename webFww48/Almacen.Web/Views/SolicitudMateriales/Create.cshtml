@@ -1,0 +1,585 @@
+﻿@using Almacen.Web.ViewModels
+@using Almacen.Web.ViewModels.Catalogos
+@model SolicitudVM
+<h3>Agregar</h3>
+<link href="~/Content/modal.min.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idEstatusSolicitud)
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="panel-heading">
+                    <div class="media-box bb">
+                        <div class="pull-left">
+                            <span class="fa-stack">
+                                <em class="fa fa-circle fa-stack-2x text-gray"></em>
+                                <em class="fa fa-file-text fa-stack-1x fa-inverse"></em>
+                            </span>
+                        </div>
+                        <div class="media-box-body clearfix">
+
+                            <label class="pull-right ml text-purple">Estatus: <span class="label label-warning text-sm">Borrador</span></label>
+
+                            <div class="media-box-heading">
+                                <label class="text-muted">
+                                    Solicitud
+
+                                </label>
+                            </div>
+                            <div class="m0">
+                                <span>
+                                    <span class="text-muted">Folio: </span>
+                                    <span class="text-purple">Nuevo</span>
+
+                                </span>
+                                <span class="pull-right ml text-muted">Fecha: Hoy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="">
+                        @Html.LabelFor(model => model.Materiales, "Materiales", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                        <div class="col-md-10">
+
+                            <div class="clearfix mb">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-labeled btn-oval btn-info" data-toggle="modal" data-target="#modalPoll">
+                                        <span class="btn-label btn-circle">
+                                            <i class="fa fa-plus"></i>
+                                        </span>
+                                        Agregar material
+                                    </button>
+
+                                </div>
+                            </div>
+                            <div id="ListaSolicitud" class="">
+                                @if (Model.Materiales != null)
+                            {
+                                Html.RenderPartial("_EditarSolicitudMateriales", Model.Materiales);
+                            }
+                            else
+                            {
+                                    <div class="well bg-gray-lighter"><i class="fa fa-warning mr text-warning"></i><span class="text-purple">No se han agregado materiales</span></div>
+                            }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DescripcionUso, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.DescripcionUso, 5, 1, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DescripcionUso, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input class="btn btn-primary" type="submit" value="Guardar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+</div>
+
+@section BodyArea {
+
+
+<!-- Modal: modalPoll -->
+<div class="modal fade right" id="modalPoll" tabindex="-1" role="dialog" aria-labelledby="modalPollLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-lg modal-right modal-notify modal-info" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <label id="modalPollLabel" class="modal-title h4 text-white">Materiales</label>
+
+                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">×</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                
+                    @{
+                        Html.RenderPartial("_buscadorMaterial", new MaterialFiltrosVM());
+                    }
+                <div class="table-responsive">
+                    <div id="resultadosBusqueda" class="ibox-content">
+                        <div class="sk-spinner sk-spinner-fading-circle">
+                            <div class="sk-circle1 sk-circle"></div>
+                            <div class="sk-circle2 sk-circle"></div>
+                            <div class="sk-circle3 sk-circle"></div>
+                            <div class="sk-circle4 sk-circle"></div>
+                            <div class="sk-circle5 sk-circle"></div>
+                            <div class="sk-circle6 sk-circle"></div>
+                            <div class="sk-circle7 sk-circle"></div>
+                            <div class="sk-circle8 sk-circle"></div>
+                            <div class="sk-circle9 sk-circle"></div>
+                            <div class="sk-circle10 sk-circle"></div>
+                            <div class="sk-circle11 sk-circle"></div>
+                            <div class="sk-circle12 sk-circle"></div>
+                            <div class="sk-circle13 sk-circle"></div>
+                        </div>
+                        <div class="well bg-gray-lighter"><i class="fa fa-info mr text-info"></i><strong class="text-purple">Ingrese filtros para la busqueda</strong></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer">
+                <div class="text-left">
+                    <button type="button" id="btnSelecionarMateriales" class="btn btn-labeled btn-primary shadow-z1" 
+                            data-actionurl="@Url.Action("ListaSolicitudMateriales", "SolicitudMateriales",null)" 
+                            data-dismiss="modal">
+                        <span class="btn-label">
+                            <i class="fa fa-check"></i>
+                        </span>Listo
+                    </button>
+                    <button class="btn btn-default shadow-z1" data-dismiss="modal">Cancelar</button>
+                    <span class="bg-gray-light">
+                        <span id="msgModal" class="text-bold"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade right" id="myModalPresentacion" tabindex="-1" role="dialog" aria-labelledby="modalPollLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-lg modal-right modal-notify modal-info" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <label id="modalPollLabel" class="modal-title h4 text-white">Presentaciones de Material</label>
+
+                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">×</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <div id="datosItem" class="bb">
+
+                </div>
+
+                <div class="clearfix m"></div>
+                <div class="table-responsive">
+                    <div id="resultadoPresentaciones" class="ibox-content">
+                        <div class="sk-spinner sk-spinner-fading-circle">
+                            <div class="sk-circle1 sk-circle"></div>
+                            <div class="sk-circle2 sk-circle"></div>
+                            <div class="sk-circle3 sk-circle"></div>
+                            <div class="sk-circle4 sk-circle"></div>
+                            <div class="sk-circle5 sk-circle"></div>
+                            <div class="sk-circle6 sk-circle"></div>
+                            <div class="sk-circle7 sk-circle"></div>
+                            <div class="sk-circle8 sk-circle"></div>
+                            <div class="sk-circle9 sk-circle"></div>
+                            <div class="sk-circle10 sk-circle"></div>
+                            <div class="sk-circle11 sk-circle"></div>
+                            <div class="sk-circle12 sk-circle"></div>
+                            <div class="sk-circle13 sk-circle"></div>
+                        </div>
+                        <div class="well bg-gray-lighter"><i class="fa fa-info mr text-info"></i><strong class="text-purple">Actualizando presentaciones...</strong></div>
+                        @*<div class="well bg-gray-lighter"><i class="fa fa-info mr text-info"></i><strong class="text-purple">De click en el boton 'Mostrar existencias'</strong></div>*@
+                    </div>
+                </div>
+
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer">
+                <div class="text-left">
+                    <button type="button" id="btnModalSelecionaPresentacion" class="btn btn-labeled btn-primary shadow-z1"
+                            data-actionurl="@Url.Action("ListaPresentacionMateriales", "SolicitudMateriales",null)"
+                            data-dismiss="modal">
+                        <span class="btn-label">
+                            <i class="fa fa-check"></i>
+                        </span>Listo
+                    </button>
+                    <button class="btn btn-default shadow-z1" data-dismiss="modal">Cancelar</button>
+                    <span class="bg-gray-light">
+                        <span id="msgModalPresentacion" class="text-bold"></span>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@section Styles {
+    @*@Styles.Render("~/bundles/datatablesCss")*@
+}
+@section Scripts {
+    @*@Scripts.Render("~/bundles/datatables")*@
+
+
+<script type="text/javascript">
+
+    $().ready(function () {
+        $("#btnModalBuscarMaterial").click(
+            function () {
+
+                var msg=$("#msgModal");
+                msgModalInit(msg);
+
+                var Codigo = $('input[id="Codigo"]').val();
+                var Descripcion = $('input[id="DescripcionBuscar"]').val();
+                var idGrado = $('select[id="idGrado"]').val();
+
+
+                var url = $(this).attr('data-actionurl');
+
+                if (url.length > 0) {
+
+                    $('div[id="resultadosBusqueda"]').toggleClass('sk-loading');
+
+                    $.get(url, { Codigo: Codigo, Descripcion: Descripcion, idGrado: idGrado})
+                        .success(
+                            function (result) {
+
+                                if (result !== null) {
+
+                                    $('div[id="resultadosBusqueda"]').html(result);
+
+                                }
+                                else {
+
+                                    $("#lblInformacionModal").html("");
+                                }
+
+                                $('div[id="resultadosBusqueda"]').toggleClass('sk-loading');
+
+                            }
+                        )
+                        //.fail(function () {
+                        //    debugger
+                        //    //$("#lblInformacionModal").html("Error al conectarse");
+                        //    $('.ibox-content').toggleClass('sk-loading');
+                        //});
+                    .error(function (jqXHR, textStatus, errorThrown) {
+                        $('div[id="resultadosBusqueda"]').toggleClass('sk-loading');
+                        //debugger
+                    });
+
+
+                } else {
+                    $("#lblInformacionModal").html("Complete todos los campos");
+                }
+
+                return false;
+
+            });
+
+        //Seleccionar materiales
+
+        $("#btnSelecionarMateriales").click(
+            function () {
+
+                var idEstatusSolicitud = $('input[name="idEstatusSolicitud"').val();
+                var idCategoria = $('input[name="idCategoria"').val();
+
+                var selected = [];
+                $('input[name="Selecciona"').each(function () {
+                    if ($(this).is(":checked")) {
+                        selected.push($(this).val());
+                    }
+                });
+
+
+                //valida que solo se seleccione un elemento
+                var msg=$("#msgModal");
+                msgModalInit(msg);
+
+
+                if(selected.length==0)
+                {
+
+                    $(msg).html('Seleccione uno o mas materiales');
+                    $(msg).addClass('text-danger');
+                    return false;
+                }
+
+                var listamateriales = [];
+
+                var tabla = $("#tablaListado");
+
+
+                if($(tabla).length > 0)
+                {
+                    if (listamateriales.length == 0) {
+                        $(tabla).find("tr").each(function (key, value) {
+                            //debugger
+                            var materialm = FindModel(value, key)
+                            if (materialm != null) {
+                                listamateriales.push(materialm);
+
+                            }
+                        })
+                    }
+                    else {
+                        $.each(listamateriales, function (key, value) {
+                            SetModel(value, key)
+                        });
+
+                    }
+                }
+
+
+                var url = $(this).attr('data-actionurl');
+
+                if (url.length > 0) {
+
+                    $('#loading').toggleClass('sk-loading');
+
+                    $.post(url, { selecionados: selected, materiales: listamateriales, idEstatusSolicitud: idEstatusSolicitud })
+                        .success(
+                            function (result) {
+
+                                if (result !== null) {
+
+                                    $('div[id="ListaSolicitud"]').html(result);
+
+                                }
+                                else {
+
+                                    $("#lblInformacionModal").html("");
+                                }
+                                $('form').data('validator', null);
+                                $.validator.unobtrusive.parse($('form'));
+
+                                $('#loading').toggleClass('sk-loading');
+
+                            }
+                        )
+                        //.fail(function () {
+                        //    debugger
+                        //    //$("#lblInformacionModal").html("Error al conectarse");
+                        //    $('.ibox-content').toggleClass('sk-loading');
+                        //});
+                    .error(function (jqXHR, textStatus, errorThrown) {
+                        $('#loading').toggleClass('sk-loading');
+                        //debugger
+                    });
+
+
+                } else {
+                    $("#lblInformacionModal").html("Complete todos los campos");
+                }
+
+            });
+
+        $("#btnModalSelecionaPresentacion").click(
+                function () {
+                    //var idEstatusSolicitud = $('input[name="idEstatusSolicitud"').val();
+                   
+                    var selected = [];
+                    $('input[name="Presentacion"').each(function () {
+                        if ($(this).is(":checked")) {
+                            
+                            var existencia = Presentacion(this);
+                            selected.push(existencia);
+                        }
+                    });
+
+                    //valida que solo se seleccione un lote del almacen
+                    var msg=$("#msgModalPresentacion");
+                    msgModalInit(msg);
+
+
+                    if(selected.length==0)
+                    {
+                        
+                        $(msg).html('Seleccione una presentacion');
+                        $(msg).addClass('text-danger');
+                        return false;
+                    }
+
+                    if(selected.length>1)
+                    {
+                        
+                        $(msg).html('Solamente se puede seleccionar una presentacion');
+                        $(msg).addClass('text-danger');
+                        return false;
+                    }
+
+                    var listamateriales = [];
+
+                    var tabla = $("#tablaListado");
+
+
+                    if ($(tabla).length > 0) {
+                        if (listamateriales.length == 0) {
+                            $(tabla).find("tr").each(function (key, value) {
+                                //debugger
+                                var material = FindModel(value, key)
+                                if (material != null) {
+                                    listamateriales.push(material);
+
+                                }
+                            })
+                        }
+                        else {
+                            $.each(listamateriales, function (key, value) {
+                                SetModel(value, key)
+                            });
+
+                        }
+                    }
+
+
+                    var url = $(this).attr('data-actionurl');
+
+                    if (url.length > 0) {
+
+                        $('#loading').toggleClass('sk-loading');
+
+                        $.post(url, { selecionados: selected, materiales: listamateriales,idEstatusSolicitud:0 })
+                            .success(
+                                function (result) {
+
+                                    if (result !== null) {
+
+                                        $('div[id="ListaSolicitud"]').html(result);
+
+                                    }
+                                    else {
+
+                                        $("#lblInformacionModal").html("");
+                                    }
+
+                                    var form=$('div[id="ListaSolicitud"]').closest("form");
+
+                                    $(form).data('validator', null);
+                                    $.validator.unobtrusive.parse($(form));
+
+                                    $('#loading').toggleClass('sk-loading');
+
+                                }
+                            )
+                            //.fail(function () {
+                            //    debugger
+                            //    //$("#lblInformacionModal").html("Error al conectarse");
+                            //    $('.ibox-content').toggleClass('sk-loading');
+                            //});
+                        .error(function (jqXHR, textStatus, errorThrown) {
+                            $('#loading').toggleClass('sk-loading');
+                            debugger
+                        });
+
+
+                    } else {
+                        $("#lblInformacionModal").html("Complete todos los campos");
+                    }
+                })
+        
+
+    });
+
+    function FindModel(object, row) {
+
+        var result = null;
+
+        var material=@Html.Raw(Json.Encode(new SolicitudDetalleVM()));
+
+        var input = $('input[name="Materiales[' + row + '].idSustanciaMaterial"]');
+
+        if ($(input).length > 0) {
+
+
+            material.idSolicitudDetalle= $('input[name="Materiales[' + row + '].idSolicitudDetalle"]').val();
+            material.idSustanciaMaterial= $('input[name="Materiales[' + row + '].idSustanciaMaterial"]').val();
+            material.Descripcion= $('input[name="Materiales[' + row + '].Descripcion"]').val();
+            material.CantidadSolicitada= $('input[name="Materiales[' + row + '].CantidadSolicitada"]').val();
+            material.CantidadAutorizada= $('input[name="Materiales[' + row + '].CantidadAutorizada"]').val();
+            material.CantidadSurtida= $('input[name="Materiales[' + row + '].CantidadSurtida"]').val();
+            material.CantidadDevolver= $('input[name="Materiales[' + row + '].CantidadDevolver"]').val();
+            material.CantidadDevuelta= $('input[name="Materiales[' + row + '].CantidadDevuelta"]').val();
+            material.idSolicitudEstatus= $('input[name="Materiales[' + row + '].idSolicitudEstatus"]').val();
+            material.idTipoEnvase= $('input[name="Materiales[' + row + '].idTipoEnvase"]').val();
+            material.idPresentacion= $('input[name="Materiales[' + row + '].idPresentacion"]').val();
+            material.idUnidadMedida= $('input[name="Materiales[' + row + '].idUnidadMedida"]').val();
+            material.idCategoria= $('input[name="Materiales[' + row + '].idCategoria"]').val();
+            material.idAlmacen= $('input[name="Materiales[' + row + '].idAlmacen"]').val();
+
+            material.index= $('input[name="Materiales[' + row + '].index"]').val();
+
+            if(!$.isNumeric(material.CantidadSolicitada))material.CantidadSolicitada=0;
+            if(!$.isNumeric(material.CantidadAutorizada))material.CantidadAutorizada=0;
+            if(!$.isNumeric(material.CantidadSurtida))material.CantidadSurtida=0;
+            if(!$.isNumeric(material.CantidadDevolver))material.CantidadDevolver=0;
+            if(!$.isNumeric(material.CantidadDevuelta))material.CantidadDevuelta=0;
+
+
+            result = material;
+        }
+
+
+
+        return result;
+    }
+
+    function Presentacion(object) {
+
+        var result = null;
+
+        var almacen = @Html.Raw(Json.Encode(new PresentacionMaterialVM()));
+
+
+        if ($(object).length > 0) {
+
+            almacen.idAlmacen = $(object).val();
+            almacen.idSustanciaMaterial = $(object).attr('data-idSustanciaMaterial');
+            almacen.idTipoEnvase = $(object).attr('data-idTipoEnvase');
+            almacen.idPresentacion = $(object).attr('data-idPresentacion');
+            almacen.Existencia = $(object).attr('data-Existencia');
+
+            //almacen.idCategoria = $(this).attr('data-idSustanciaMaterial');
+
+            if (!$.isNumeric(almacen.Existencia)) almacen.Existencia = 0;
+
+            result = almacen;
+        }
+
+        return result;
+    }
+
+    function msgModalInit(msg){
+        $(msg).html('');
+        $(msg).removeClass('text-danger');
+    }
+
+
+    </script>
+}

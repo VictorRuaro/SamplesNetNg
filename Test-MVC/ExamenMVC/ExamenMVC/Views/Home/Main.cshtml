@@ -1,0 +1,124 @@
+﻿@model ExamenMVC.Models.ModelMain
+@{
+    ViewBag.Title = "Principal";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h1>@ViewBag.Title</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-xl-10 col-lg-10">
+            @using (Html.BeginForm("Main", "Home", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+            {
+                @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.ActionLink("Ramo", "Ramo", null, new { @class = "control-label col-sm-1" })
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.ramoId, new { @class = "form-control", @placeholder = "Ramo", @style = "margin-left: 30px;", @onchange = "searchRamo(this);" })
+                </div>
+                <div id="ramodescripcion" class="col-sm-6" style="margin-top: 7px; margin-left: 15px">
+                    @Html.DisplayFor(model => model.ramoDescripcion)
+                </div>
+            </div>
+            <div class="form-group" style="margin-bottom: 30px">
+                <button id="Link" type="button" class="btn btn-link control-label col-sm-1">Producto</button>
+                @*@Html.ActionLink("Producto", "Producto", new { ramoid = Model.ramoId }, new { @class = "control-label col-sm-1" })*@
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.productoId, new { @class = "form-control", @placeholder = "Producto", @style = "margin-left: 30px;", @onchange = "searchProducto(this);" })
+                </div>
+                <div id="productodescripcion" class="col-sm-6" style="margin-top: 7px; margin-left: 15px">
+                    @Html.DisplayFor(model => model.productoDescripcion)
+                </div>
+            </div>
+
+                if (ViewBag.Msg != null)
+                {
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong> @ViewBag.Msg
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(function () {
+            $("#Link").click(function () {
+                var inputRamoId = document.getElementById("ramoId");
+                var idramo = inputRamoId.value.toUpperCase();
+                var urllocation = '@Url.Action("Producto", "Home")' + '?ramoid=' + idramo;
+                console.log(urllocation);
+                window.location.href = urllocation;
+            });
+        })
+
+
+        function searchRamo(input) {
+            // variables
+            var url = '@Url.Action("SearchRamoId", "Home")';
+            var inputRamo, filter;
+            filter = input.value.toUpperCase();
+
+            //debugger;
+            $.ajax({
+               url: url,
+               type: 'POST',
+               dataType: 'json',
+               cache: false,
+                data: { 'ramoid': filter },
+                success: function (results) {
+
+                    inputRamo = document.getElementById("ramodescripcion");
+
+                    console.log(results)
+                    inputRamo.innerHTML = results.ramoDescripcion;
+                    //console.log(inputId)
+
+               },
+               error: function () {
+                    alert('Error occured');
+               }
+            });
+        }
+
+        function searchProducto(input) {
+            // variables
+            var url = '@Url.Action("SearchProductoId", "Home")';
+            var inputRamoId, inputRamo, inputProducto, filter;
+
+            inputRamoId = document.getElementById("ramoId");
+            inputRamo = document.getElementById("ramodescripcion");
+            inputProducto = document.getElementById("productodescripcion");
+
+            idramo = inputRamoId.value.toUpperCase();
+            filter = input.value.toUpperCase();
+
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: { 'ramoid': idramo, 'id': filter },
+                success: function (results) {
+
+                    console.log(results)
+                    inputRamoId.value = results.ramoid;
+                    inputRamo.innerHTML = results.ramoDescripcion;
+                    inputProducto.innerHTML = results.productoDescripcion;
+
+                },
+                error: function () {
+                    alert('Error occured');
+                }
+            });
+        }
+
+    </script>
+
+}

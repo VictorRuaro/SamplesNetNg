@@ -1,0 +1,271 @@
+﻿@using RedWillow.MvcToastrFlash
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Almacen</title>
+    <!-- =============== VENDOR STYLES ===============-->
+
+    <link href="@Styles.Url("~/Vendor/simple-line-icons/css/simple-line-icons.css")" rel="stylesheet" type="text/css" />
+    <link href="@Styles.Url("~/Vendor/fontawesome/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Styles.Url("~/Vendor/loaders.css/loaders.css")" rel="stylesheet" type="text/css" />
+    <link href="@Styles.Url("~/Vendor/animate.css/animate.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Styles.Url("~/Vendor/whirl/dist/whirl.css")" rel="stylesheet" type="text/css" />
+    <link href="@Styles.Url("~/Vendor/spinkit/css/spinkit.css")" rel="stylesheet" type="text/css" />
+    <link href="@Styles.Url("~/Vendor/chosen_v1.8.5/chosen.css")" rel="stylesheet" type="text/css" />
+    <!-- =============== PAGE VENDOR STYLES =============== -->
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+    <!-- =============== APP STYLES ===============-->
+    
+    <link href="@Styles.Url("~/Content/app/css/bootstrap.css")" rel="stylesheet" type="text/css" id="bscss" />
+    <!-- =============== APP STYLES ===============-->
+    <link href="@Styles.Url("~/Content/app/css/app.css")" rel="stylesheet" type="text/css" id="maincss" />
+    <link href="@Styles.Url("~/Content/toastr.css")" rel="stylesheet" type="text/css" />
+    <link href="@Styles.Url("~/Content/pace/minimal.css")" rel="stylesheet" type="text/css" />
+    
+    <!-- =============== VENDOR SCRIPTS ===============-->
+    @*<script data-pace-options='{ "ajax": false }' src="~/Content/pace/Pace.js"></script>*@
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/storage")
+    @Scripts.Render("~/bundles/localize")
+    
+    <link href="@Scripts.Url("~/Vendor/chosen_v1.2.0/chosen.jquery.min.js")" rel="stylesheet" type="text/javascript" />
+
+    @Scripts.Render("~/bundles/animo")
+
+    @Scripts.Render("~/bundles/toastr")
+
+    @Scripts.Render("~/Scripts/app/existenciasValidator.js")
+
+    @Html.ToastrNotifications()
+    <style>
+        .progreso-main {
+            background-color: white;
+            opacity: .5;
+        }
+
+        .progreso {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            height: 6em;
+            padding-top: 2.3em;
+            z-index: 1;
+            /* The following properties are the ones most likely to change */
+            width: 20em;
+            /* Set 'margin-left' to a negative number that is 1/2 of 'width' */
+            margin-left: -10em;
+            padding-left: 2.1em;
+        }
+
+        /* Changing style for spinner */
+        .progreso {
+            padding-top: 2em;
+            width: 23em;
+            margin-left: -11.5em; /* Set to a negative number that is 1/2 of the width */
+        }
+
+            .progreso i {
+                margin-right: 0.5em;
+            }
+    </style>
+    <script>
+
+        var panelSelector = '[data-tool="link-load"]';
+        var saveSelector = '[data-tool="save-load"]';
+
+        // catch clicks to toggle panel refresh
+        $(document).on('click', panelSelector, function () {
+            // Trigger the event and send the panel object
+            onLoad();
+
+        });
+
+
+
+        function DisplayProgress(ctl, msg) {
+            // Turn off the "Save" button and change text
+            $(ctl).prop("disabled", true).text(msg);
+            
+            
+
+            // Gray out background on page
+            
+            $('#loading').toggleClass('sk-loading');
+            // Wrap in setTimeout so the UI can update the spinners
+            //setTimeout(function () {
+            //$(".progreso").removeClass("hidden");
+            //}, 1);
+
+            return true;
+        }
+        
+        //onLoad();
+        var time = 10;
+        var chkReadyState = setInterval(function () {
+            if (document.readyState == "complete") {
+                // clear the interval
+                complete();
+                clearInterval(chkReadyState);
+                // finally your page is loaded.
+            }
+        }, time);
+
+        function onLoad() {
+            var ctl = $("loading");
+            DisplayProgress(ctl, "hola");
+
+            console.log('The page is loading');
+        };
+        function complete() {
+
+            setTimeout(function () {
+                $('#loading').toggleClass('sk-loading');
+                
+                //$(".progreso").addClass("hidden");
+            }, 10);
+
+            console.log('The page is loaded');
+        };
+
+    </script>
+    <script type="text/javascript">
+    //mensaje de alerta para eliminar registro se realiza atravez de los botones que tienen class="eliminaregistro"
+
+        $(document).on("click", ".eliminaregistro", function (event) {
+            var $form = $(this).closest('form');
+            //event.preventDefault();
+            if (!confirm('Esta seguro de eliminar este registro?')) {
+
+                return false;
+            }
+
+            //modalconfirm(function (result) {
+            //    if (result === true) {
+            //        respuesta = result;
+            //    }
+            //});
+
+                //$('#main_confirmation')
+                //    .modal({ backdrop: 'static', keyboard: false })
+                //    .one('click', '#borrar', function (e) {
+                //        //delete function
+                //        //$form.submit();
+                //        //return true;
+            //    });
+
+            
+            
+        });
+
+        function modalconfirm(callback) {
+            
+            $('#main_confirmation')
+                    .modal({ backdrop: 'static', keyboard: false })
+                    .one('click', '#borrar', function (e) {
+                        //delete function
+                        callback(true);
+                        //return true;
+                    });
+
+
+        }
+
+    </script>
+</head>
+<body class="layout-fixed">
+    <div class="wrapper">
+        <!-- top navbar-->
+        <header class="topnavbar-wrapper">
+            @Html.Partial("_TopNavbar")
+        </header>
+        <!-- sidebar-->
+        @if (Request.IsAuthenticated)
+        {
+            <aside class="aside">
+                @Html.Partial("_Sidebar")
+            </aside>
+            <aside class="offsidebar shadow shadow-z3 hide">
+                @Html.Partial("_Offsidebar")
+            </aside>
+            
+        }
+        <!-- Main section-->
+        <section>
+            <!-- Page content-->
+           
+                <div id="loading" class="ibox-content sk-loading">
+
+                    <div class="sk-spinner sk-spinner-fading-circle">
+                        <div class="sk-circle1 sk-circle"></div>
+                        <div class="sk-circle2 sk-circle"></div>
+                        <div class="sk-circle3 sk-circle"></div>
+                        <div class="sk-circle4 sk-circle"></div>
+                        <div class="sk-circle5 sk-circle"></div>
+                        <div class="sk-circle6 sk-circle"></div>
+                        <div class="sk-circle7 sk-circle"></div>
+                        <div class="sk-circle8 sk-circle"></div>
+                        <div class="sk-circle9 sk-circle"></div>
+                        <div class="sk-circle10 sk-circle"></div>
+                        <div class="sk-circle11 sk-circle"></div>
+                        <div class="sk-circle12 sk-circle"></div>
+                        <div class="sk-circle13 sk-circle"></div>
+                    </div>
+                    <!-- ** BEGIN POP-UP MESSAGE AREA ** -->
+                    @*<div class="progreso text-primary hidden">
+                        <i class="fa fa-2x fa-spinner fa-spin"></i>
+                        <label>Cargando...</label>
+                    </div>*@
+                    <!-- ** END POP-UP MESSAGE AREA ** -->
+                    <div class="content-wrapper">
+                        @RenderBody()
+                    </div>
+            </div>
+        </section>
+        <!-- Page footer-->
+        <footer>
+            @Html.Partial("_Footer")
+        </footer>
+    </div>
+
+
+    @if (IsSectionDefined("BodyArea"))
+    {@RenderSection("BodyArea", required: false)}
+
+    <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+
+    @RenderSection("scripts", required: false)
+
+    <!-- =============== APP SCRIPTS ===============-->
+    @Scripts.Render("~/bundles/Angle")
+
+    
+
+
+        <div id="main_confirmation" tabindex="-1" role="dialog" aria-labelledby="ModalLabeli" aria-hidden="true" class="modal fade" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 id="ModalLabeli" class="modal-title">Eliminar</h4>
+                    </div>
+                    <div class="modal-body">
+                        Estas seguro de eliminar esto?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-warning" id="borrar">Eliminar</button>
+                        <button type="button" data-dismiss="modal" class="btn">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>

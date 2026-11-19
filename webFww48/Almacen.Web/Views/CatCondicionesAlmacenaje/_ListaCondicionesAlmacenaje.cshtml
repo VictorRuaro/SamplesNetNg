@@ -1,0 +1,65 @@
+﻿@using Almacen.Web.ViewModels.Catalogos
+
+@model IEnumerable<CondicionesAlmacenajeVM>
+
+<div class="panel panel-default">
+    <div class="table-responsive">
+
+        <table class="table table-hover table-condensed " id="table">
+            <thead class="">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CondicionesAlmacenaje)
+                    </th>
+                    <th class=""></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="2">
+                            <div class="alert alert-warning"><i class="fa fa-warning mr"></i><strong>No se han ingresado datos</strong></div>
+                        </td>
+                    </tr>
+
+                }
+                else if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="2">
+                            <div class="alert alert-warning"><i class="fa fa-warning mr"></i><strong>No se han ingresado datos</strong></div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.CondicionesAlmacenaje)
+                            </td>
+
+                            <td class="td-actions text-right">
+
+                                <a title="" class="btn  btn-link" href="@Url.Action("Details", null, new { id = item.idCondicionesAlmacenaje })" data-original-title="Detalle">
+                                    Detalle
+                                </a>
+                                <a title="" class="btn  btn-link" href="@Url.Action("Edit", null, new { id = item.idCondicionesAlmacenaje })" data-original-title="Editar">
+                                    Editar
+                                </a>
+                                <a title="" class="btn  btn-link" href="@Url.Action("Delete", null, new { id = item.idCondicionesAlmacenaje })" data-original-title="Eliminar">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

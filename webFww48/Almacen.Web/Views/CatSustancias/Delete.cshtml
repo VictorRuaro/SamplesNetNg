@@ -1,0 +1,96 @@
+﻿@model Almacen.Web.ViewModels.Catalogos.SustanciaVM
+<h3>Eliminar</h3>
+<div>
+
+    <dl class="dl-horizontal p-xl">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cGrupoFarmacologico.colorHtml)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cGrupoFarmacologico.colorHtml)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cGrupoFarmacologico.GrupoFarmacologico)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cGrupoFarmacologico.GrupoFarmacologico)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sinonimos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sinonimos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CAS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CAS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PMCompuesto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PMCompuesto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FormulaMolecular)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FormulaMolecular)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EsSustanciaControlada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EsSustanciaControlada)
+            @*<div class="checkbox c-checkbox mt0 pt0">
+                <label>
+                    <input name="EsSustanciaControlada" id="EsSustanciaControlada" type="checkbox" value="true" @(Model.EsSustanciaControlada ? "checked" : "")>
+                    <span class="fa fa-check bg-white"></span>
+                </label>
+            </div>*@
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+                <i class="fa fa-arrow-left"></i> Regresar
+            </a> 
+            @if (ViewBag.visiblebtnEliminar != null)
+            {
+            <span>|</span>
+            <button type="submit" class="btn btn-danger eliminaregistro">
+                <i class="fa fa-remove"></i> Eliminar
+            </button>
+            }
+            else
+            {
+                <span class="well bg-gray-lighter"><i class="fa fa-warning mr text-warning"></i><strong class="text-purple">No se puede eliminar ya que cuenta con existencias en el almacen</strong></span>
+            }
+        </div>
+    }
+</div>
+

@@ -1,0 +1,44 @@
+﻿@model Almacen.Web.ViewModels.Alerta
+<h3>Eliminar</h3>
+<h4>Quieres eliminar esto?</h4>
+<div>
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tAlertaUnidad.AlertaUnidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tAlertaUnidad.AlertaUnidad)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-actions no-color">
+            <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+                <i class="fa fa-arrow-left"></i> Regresar
+            </a> |
+            <button type="submit" class="btn btn-danger eliminaregistro">
+                <i class="fa fa-remove"></i> Eliminar
+            </button>
+        </div>
+    }
+</div>

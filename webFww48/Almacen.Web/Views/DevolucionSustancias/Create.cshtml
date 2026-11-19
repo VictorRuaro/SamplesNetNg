@@ -1,0 +1,318 @@
+﻿@using Almacen.Web.ViewModels
+@model DevolucionSustanciaVM
+<h3>Agregar</h3>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @if (Model == null)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.idSustanciaMaterial, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.idSustanciaMaterial, null, new { @class = "form-control chosen-select ", data_placeholder = "--Seleccione una opcion--" })
+                    @Html.ValidationMessageFor(model => model.idSustanciaMaterial, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.Codigo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="Codigo" class="bb">&nbsp;</div>
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.CAS, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="CAS" class="bb">&nbsp;</div>
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.PMCompuesto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="PMCompuesto" class="bb">&nbsp;</div>
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.FormulaMolecular, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="FormulaMolecular" class="bb">&nbsp;</div>
+                </div>
+            </div>
+            <div class="form-group  mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.cGrupoFarmacologico.GrupoFarmacologico, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="GrupoFarmacologico" class="bb">&nbsp;</div>
+                </div>
+            </div>
+            <div class="form-group mt0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.cGrupoFarmacologico.color, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="colorHtml" class="bb">
+                        <span class="fa fa-stop fa-2x" style="color:transparent"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.EsSustanciaControlada, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="EsSustanciaControlada" class="bb">&nbsp;</div>
+                </div>
+            </div>
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.LoteInterno, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div id="LoteInterno" class="bb">&nbsp;</div>
+                    </div>
+                </div>*@
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.idSustanciaMaterial)
+            <div class="form-group">
+                @Html.LabelFor(model => model.tSustanciaMaterial.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="Descripcion" class="bb">
+                        @Html.DisplayFor(model => model.tSustanciaMaterial.Descripcion)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.Codigo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="Codigo" class="bb">
+                        @Html.DisplayFor(model => model.tSustanciaMaterial.Codigo)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.CAS, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="CAS" class="bb">
+                        @Html.DisplayFor(model => model.tSustanciaMaterial.CAS)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.PMCompuesto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="PMCompuesto" class="bb">
+                        @Html.DisplayFor(model => model.tSustanciaMaterial.PMCompuesto)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.FormulaMolecular, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="FormulaMolecular" class="bb">
+                        @Html.DisplayFor(model => model.tSustanciaMaterial.FormulaMolecular)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.cGrupoFarmacologico.GrupoFarmacologico, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="GrupoFarmacologico" class="bb">
+                        @Html.DisplayFor(model => model.tSustanciaMaterial.cGrupoFarmacologico.GrupoFarmacologico)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.cGrupoFarmacologico.color, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div id="colorHtml" class="bb">
+                        @Html.DisplayFor(model => model.tSustanciaMaterial.cGrupoFarmacologico.colorHtml)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt0 mb0">
+                @Html.LabelFor(model => model.tSustanciaMaterial.EsSustanciaControlada, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    <div id="LoteInterno" class="bb">
+                        @Html.DisplayFor(model => model.tSustanciaMaterial.EsSustanciaControlada)
+                    </div>
+                </div>
+            </div>
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.LoteInterno, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        <div id="LoteInterno" class="bb">
+                            @Html.DisplayFor(model => model.LoteInterno)
+                        </div>
+                    </div>
+                </div>*@
+
+        }
+
+
+    </div>
+    <div class="form-horizontal mt">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idAlmacen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.idAlmacen, null, new { @class = "form-control", data_placeholder = "--Seleccione un lote--" })
+                @Html.ValidationMessageFor(model => model.idAlmacen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @if (Model != null)
+        {
+            <div id="DatosLote">
+                @if (Model.idAlmacen > 0)
+                {
+                    Html.RenderPartial("_LoteDevolucion", ViewBag.Lote as AlmacenSustanciaVM);
+                }
+            </div>
+
+        }
+        else
+        {
+            <div id="DatosLote">
+               
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Existencia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Existencia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Existencia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.IntegrarAlmacen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IntegrarAlmacen)
+                @Html.ValidationMessageFor(model => model.IntegrarAlmacen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input class="btn btn-primary" type="submit" value="Guardar">
+            </div>
+        </div>
+    </div>
+                                    }
+
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+    @if (Model != null)
+    {
+        <a href="@Url.Action("Existencias", new { idSustanciaMaterial = Model.idSustanciaMaterial })" class="btn btn-default text-primary" title="Ir a Existencias">
+            Ir a Existencias
+        </a>
+    }
+</div>
+
+@section Styles {
+
+
+    <link href="@Styles.Url("~/Content/bootstrap-datetimepicker.css")" rel="stylesheet" type="text/css" />
+}
+@section Scripts {
+
+    @Scripts.Render("~/bundles/chosen")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/datetimepicker")
+
+    <script type="text/javascript">
+
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                return this.optional(element) || moment(value, 'DD/MM/YYYY', true).isValid();
+            };
+        });
+
+        $(".chosen-select").chosen({ no_results_text: "Resultados no encontrados para:" });
+        $("#idSustanciaMaterial").change(function () {
+
+            var value = $(this).val();
+            var url = "@Url.Action("DatosSustancia", "DevolucionSustancias")";
+            $.get(url, { idSustancia: value })
+                .success(
+                    function (data) {
+
+                        if (data.informacion == null) {
+
+                            //debugger;
+                            $('div[id="Codigo"]').html(data.Codigo);
+                            $('div[id="CAS"]').html(data.CAS);
+                            $('div[id="PMCompuesto"]').html(data.PMCompuesto);
+                            $('div[id="FormulaMolecular"]').html(data.FormulaMolecular);
+                            $('div[id="GrupoFarmacologico"]').html(data.GrupoFarmacologico);
+                            $('div[id="colorHtml"] > span').attr('style', 'color:' + data.colorHtml);
+                            $('div[id="EsSustanciaControlada"]').html(data.EsSustanciaControlada);
+                            
+
+                            var Lotes = data.Lotes;
+                            $('div[id="DatosLote"]').empty();
+                            LoadDDLField('#idAlmacen', Lotes);
+                        }
+                        else {
+
+                            $("#lblInformacion").html(data.informacion);
+                        }
+
+                        //$('.ibox-content').toggleClass('sk-loading');
+
+                    }
+                ).fail(function (jqXHR, textStatus, errorThrown) {
+
+                    //$('.ibox-content').toggleClass('sk-loading');
+                });
+
+        });
+
+        $("#idAlmacen").change(function () {
+
+            $('div[id="DatosLote"]').empty();
+            var idAlmacen = $(this).val();
+            if (idAlmacen > 0) {
+
+                $('.ibox-content').toggleClass('sk-loading');
+
+                //$('input[name="idAlmacen"]').val(idAlmacen);
+
+                var url = "@Url.Action("DatosLoteSustancia", "DevolucionSustancias")";
+                $.post(url, { idAlmacen: idAlmacen })
+                    .success(
+                        function (result) {
+                            
+                            if (result != null) {
+                                $('div[id="DatosLote"]').html(result);
+                            }
+                            else {
+
+                                $("#lblInformacion").html("");
+                            }
+                        }
+                    ).fail(function (jqXHR, textStatus, errorThrown) {
+
+                        $('.ibox-content').toggleClass('sk-loading');
+                    }).complete(function () {
+                        $('.ibox-content').toggleClass('sk-loading');
+                    })
+            }
+        });
+
+        function LoadDDLField(DDLListId, FieldJSONList) {
+            $(DDLListId).empty();
+            $(DDLListId).append($('<option />', {
+                value: "",
+                text: "--Seleccione una opcion--"
+            }));
+            $.each(FieldJSONList, function (i, item) {
+                $(DDLListId).append($('<option />', {
+                    value: item.value,
+                    text: item.text
+                }));
+            });
+        }
+    </script>
+}

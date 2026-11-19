@@ -1,0 +1,154 @@
+﻿@using Almacen.Web.Aplicacion
+@model Almacen.Web.ViewModels.SolicitudDetalleVM
+
+<tr>
+
+    <td class="">
+        @Html.HiddenFor(modelItem => modelItem.index, new
+   {
+       @Name = string.Format("Materiales[{0}].index", Model.index),
+       @id = string.Format("Materiales_{0}__index", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idCategoria, new
+   {
+       @Name = string.Format("Materiales[{0}].idCategoria", Model.index),
+       @id = string.Format("Materiales_{0}__idCategoria", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idSolicitudDetalle, new
+   {
+       @Name = string.Format("Materiales[{0}].idSolicitudDetalle", Model.index),
+       @id = string.Format("Materiales_{0}__idSolicitudDetalle", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idSustanciaMaterial, new
+   {
+       @Name = string.Format("Materiales[{0}].idSustanciaMaterial", Model.index),
+       @id = string.Format("Materiales_{0}__idSustanciaMaterial", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.Descripcion, new
+   {
+       @Name = string.Format("Materiales[{0}].Descripcion", Model.index),
+       @id = string.Format("Materiales_{0}__Descripcion", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idEstatusSolicitud, new
+   {
+       @Name = string.Format("Materiales[{0}].idEstatusSolicitud", Model.index),
+       @id = string.Format("Materiales_{0}__idEstatusSolicitud", Model.index)
+   })
+
+
+        @*@Html.DisplayFor(modelItem => modelItem.Descripcion)*@
+        <div class="">
+            @if (Model.idCategoria == (int)EnumCategoria.Sustancias)
+            {
+                @Html.Action("DatosSustancia", "DatosAplicacion", new { idSustanciaMaterial = Model.idSustanciaMaterial })
+            }
+            else
+            {
+                @Html.Action("DatosMaterial", "DatosAplicacion", new { idSustanciaMaterial = Model.idSustanciaMaterial })
+            }
+        </div>
+    </td>
+    <td class="">
+        @*Mostrar un apartado para seleccionar tipo de envase y la presentacion en caso de haber mas de una*@
+
+        @if (Model.idPresentacion != null)
+            {
+            <div class="">
+                <span class="pull-left mt-sm">
+                    @Html.Action("DatosPresentacionMaterial", "DatosAplicacion",
+                       new{idAlmacen = Model.idAlmacen})
+                    @*@Html.Action("DatosTipoEnvase", "DatosAplicacion", new { idCategoria = Model.idCategoria, idTipoEnvase = Model.idTipoEnvase })*@
+                </span>
+                <span class="pull-right">
+                    <button type="button" class="btn btn-sm btnSeleccionaPresentacion"
+                            data-toggle="modal"
+                            data-target="#myModalPresentacion"
+                            data-actionurl="@Url.Action("PresentacionesMaterial", "SolicitudMateriales", null)"
+                            data-id="@Model.idSustanciaMaterial">
+                        <em class="fa fa-plus"></em>
+                        Seleccionar Presentación
+                    </button>
+                </span>
+            </div>
+        }
+        else
+        {
+            <button type="button" class="btn btn-sm btn-warning btnSeleccionaPresentacion"
+                    data-toggle="modal"
+                    data-target="#myModalPresentacion"
+                    data-actionurl="@Url.Action("PresentacionesMaterial", "SolicitudMateriales", null)"
+                    data-id="@Model.idSustanciaMaterial">
+                <em class="fa fa-plus"></em>
+                Seleccionar Presentación
+            </button>
+        }
+
+
+        <span class="input-valid-hide">
+
+            @Html.HiddenFor(modelItem => modelItem.idAlmacen, new
+       {
+           @Name = string.Format("Materiales[{0}].idAlmacen", Model.index),
+           @id = string.Format("Materiales_{0}__idAlmacen", Model.index)
+       })
+
+            @Html.EditorFor(modelItem => modelItem.idTipoEnvase, "", new
+       {
+           htmlAttributes = new
+           {
+               @Name = string.Format("Materiales[{0}].idTipoEnvase", Model.index),
+               @id = string.Format("Materiales_{0}__idTipoEnvase", Model.index),
+               @class = "form-control",
+           }
+       })
+            @Html.EditorFor(modelItem => modelItem.idPresentacion, "", new
+       {
+           htmlAttributes = new
+           {
+               @Name = string.Format("Materiales[{0}].idPresentacion", Model.index),
+               @id = string.Format("Materiales_{0}__idPresentacion", Model.index),
+               @class = "form-control",
+           }
+       })
+        </span>
+
+        <div>
+            @Html.ValidationMessageFor(modelItem => modelItem.idTipoEnvase, "", new
+       {
+           @class = "text-danger",
+           @data_valmsg_for = string.Format("Materiales[{0}].idTipoEnvase", Model.index)
+       })
+
+            @Html.ValidationMessageFor(modelItem => modelItem.idPresentacion, "", new
+               {
+                   @class = "text-danger",
+                   @data_valmsg_for = string.Format("Materiales[{0}].idPresentacion", Model.index)
+               })
+        </div>
+
+    </td>
+    <td class="">
+        @Html.EditorFor(modelItem => modelItem.CantidadSolicitada, "", new
+   {
+       htmlAttributes = new
+       {
+           @Name = string.Format("Materiales[{0}].CantidadSolicitada", Model.index),
+           @id = string.Format("Materiales_{0}__CantidadSolicitada", Model.index),
+           @class = "form-control",
+       }
+   })
+
+        @Html.ValidationMessageFor(modelItem => modelItem.CantidadSolicitada, "", new
+   {
+       @class = "text-danger",
+       @data_valmsg_for = string.Format("Materiales[{0}].CantidadSolicitada", Model.index)
+   })
+    </td>
+
+    <td class="">
+        <input class="btn btn-link btnEliminarMaterial" type="button" value="Eliminar"
+               data-actionurl="@Url.Action("ListaEliminarElemento", "SolicitudSustancias")"
+               data-id="@Model.index">
+    </td>
+
+</tr>

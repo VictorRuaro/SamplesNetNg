@@ -1,0 +1,145 @@
+﻿@using Almacen.Data
+
+@model IEnumerable<sp_Rpt_Caducos_Sustancias_Result>
+
+<div class="panel panel-default">
+    <div class="table-responsive h6">
+
+        <table class="table table-hover table-condensed " id="table">
+            <thead>
+                <tr class="tableizer-firstrow">
+                    <th>Código</th>
+                    <th>Color</th>
+                    <th>Sustancia</th>
+                    <th>Sinónimos</th>
+                    <th>Grupo Farmacológico</th>
+                    <th>CAS</th>
+                    <th>PM Compuesto</th>
+                    <th>Formula Molecular</th>
+                    <th>No. Lote Interno</th>
+                    <th>Tipo de Sal</th>
+                    <th>Fabricante</th>
+                    <th>Referencia</th>
+                    <th>Lote del Proveedor</th>
+                    <th>Fecha de Recepción</th>
+                    <th>Fecha de Caducidad</th>
+                    <th>Conservación</th>
+                    <th>Ubicación</th>
+                    <th>Fecha de Baja</th>
+                    <th>Tipo de Envase</th>
+                    <th>No. de Envases/</th>
+                    <th>Cantidad por Envase</th>
+                    <th>Concentración</th>
+                    <th>Disolvente</th>
+                    <th>Observaciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="23">
+                            <div class="alert alert-warning"><i class="fa fa-warning mr"></i><strong>No se han ingresado datos</strong></div>
+                        </td>
+                    </tr>
+
+                }
+                else if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr class="@(item.EsSustanciaControlada? "text-bold text-primary" : "")">
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Codigo)
+                            </td>
+                            <td class="">
+                                <span class="fa fa-stop fa-2x" style="color:@item.Color"></span>
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Sustancia)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Sinonimos)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Grupo_Farmacologico)
+                            </td>
+                            
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.CAS)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.PMCompuesto)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.FormulaMolecular)
+                            </td>
+
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Lote_Interno)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Tipo_Sal)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Fabricante)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Referencia)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Lote_Proveedor)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Fecha_Recepcion)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Fecha_Caducidad)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Conservacion)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Ubicacion)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Fecha_Baja)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Tipo_Envase)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.No__de_Envases)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Cantidad_Envase) @Html.DisplayFor(modelItem => item.UMCantidadEnvase)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Concentracion) @Html.DisplayFor(modelItem => item.UMConcentracion)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Disolvente)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Observaciones)
+                            </td>
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="23">
+                            <div class="alert alert-info"><i class="fa fa-warning mr"></i><strong>No se encontraron datos con los filtros ingresados</strong></div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+

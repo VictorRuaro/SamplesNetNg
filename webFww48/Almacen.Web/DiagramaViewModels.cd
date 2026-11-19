@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Almacen.Web.ViewModels.AlertaDestinatarioVM">
+    <Position X="13" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgABAAAAAAAAAIAAAAAAAAAgAAAAAAIAAAAAA=</HashCode>
+      <FileName>ViewModels\AlertaDestinatarioVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.AlertasVM">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\AlertasVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Alerta">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgEAAAAACAAAAAgAAEAAAAAABgAAAACAAAAAA=</HashCode>
+      <FileName>ViewModels\AlertasVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.DevolucionVM">
+    <Position X="5.25" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIEAACAEAABMABAQABAAAAAAAAgAAQA=</HashCode>
+      <FileName>ViewModels\DevolucionVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.MaterialDetalleMateria">
+    <Position X="5.25" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIgAAAIAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\MaterialDetalleMateria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.MaterialDetalleSustancia">
+    <Position X="7.5" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\MaterialDetalleSustancia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.SolicitudDetalleVM">
+    <Position X="2.75" Y="6" Width="2" />
+    <Members>
+      <Property Name="idUnidadMedida" Hidden="true" />
+      <Property Name="Material" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>5MAgAAAEABAAAAEgAAAEAABFAAAAECAEBAAAAAABAgE=</HashCode>
+      <FileName>ViewModels\SolicitudDetalleVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.SolicitudVM">
+    <Position X="0.5" Y="6" Width="1.75" />
+    <Members>
+      <Property Name="Materiales" Hidden="true" />
+      <Property Name="Model" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IQAAIIAEEBAIAAAgBCAAQAIFAAAAACAABAwgCAAAATA=</HashCode>
+      <FileName>ViewModels\SolicitudVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.AlmacenajeVM">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAIAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\AlmacenajeVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.CategoriaVM">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\CategoriaVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.CondicionesAlmacenajeVM">
+    <Position X="9.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\CondicionesAlmacenajeVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.ConservacionVM">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\ConservacionVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.DisolventeVM">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\DisolventeVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.FabricanteVM">
+    <Position X="5.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\FabricanteVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.GradoVM">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\GradoVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.MarcaVM">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\MarcaVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.ProveedorVM">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\ProveedorVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.TipoEnvaseVM">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\TipoEnvaseVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.TipoSalVM">
+    <Position X="2.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\TipoSalVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.UbicacionVM">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\UbicacionVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.UMCantidadEnvaseVM">
+    <Position X="2.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\UMCantidadEnvaseVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.UMConcentracionVM">
+    <Position X="5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>ViewModels\Catalogos\UMConcentracionVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.ViewModels.Catalogos.GrupoFarmacologicoVM">
+    <Position X="7.25" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAQAAAAAAAAAAAAAACAQAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Catalogos\GrupoFarmacologicoVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.Applicacion.AlertasServicio&lt;TModel, TEntity&gt;" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIJAQCCRAAEiAAAAAAAgAAABCAAAAEAAAEAAQgAA=</HashCode>
+      <FileName>Aplicacion\AlertasServicio.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Almacen.Web.Applicacion.CatalogosServicio&lt;TModel, TEntity&gt;" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAIJAQACQAAEiAAAAAAAAAAABCAAAAAAAAAAAQgAA=</HashCode>
+      <FileName>Aplicacion\CatalogosServicio.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Almacen.Web.Applicacion.DevolucionMaterialesServicio" BaseTypeListCollapsed="true">
+    <Position X="4" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIJAQADQAAEiAgAAAAAAAAABCAAABAAAAAAAQgAA=</HashCode>
+      <FileName>Aplicacion\DevolucionMaterialesServicio.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Almacen.Web.Applicacion.DevolucionSustanciasServicio" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIJAQADQAAEiAgAAAAAAAAABCAAABAAAAAAAQgAA=</HashCode>
+      <FileName>Aplicacion\DevolucionSustanciasServicio.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Almacen.Web.Applicacion.LeerCatalogosServicio&lt;TModel, Tentity&gt;" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAQBAAACAMAEiAAAAAAAAAAABCAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Aplicacion\LeerCatalogosServicio.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Almacen.Web.Applicacion.GenericsHelper&lt;TSource, TDestination&gt;">
+    <Position X="0.5" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Aplicacion\LeerCatalogosServicio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.Applicacion.MaterialesServicio" BaseTypeListCollapsed="true">
+    <Position X="4" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIJAQADQAAEiAgAAAAAAAAABCAAABAAAAAAAQgAA=</HashCode>
+      <FileName>Aplicacion\MaterialesServicio.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Almacen.Web.Applicacion.SolicitudMaterialesServicio">
+    <Position X="5.75" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAIJAQACQAAEiAgAIAAgAAAABCAAABAJAAAAAQgAA=</HashCode>
+      <FileName>Aplicacion\SolicitudMaterialesServicio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.Applicacion.SolicitudSustanciasServicio">
+    <Position X="8" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAIJAQACQAAEiAgAIAAgAAAABCAAABAJAAAAAQgAA=</HashCode>
+      <FileName>Aplicacion\SolicitudSustanciasServicio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.Applicacion.SustanciasServicio" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIJAQADQAAEiCgAACgAAAAABCAAABAAAAAAAQgAA=</HashCode>
+      <FileName>Aplicacion\SustanciasServicio.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Almacen.Web.Aplicacion.AutoMapperGenericsHelper&lt;TSource, TDestination&gt;">
+    <Position X="8.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Aplicacion\AutoMapperGenericsHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.Aplicacion.CorreoServicio">
+    <Position X="10.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Aplicacion\CorreoServicio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.Aplicacion.DatosCorreo">
+    <Position X="12.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAACAAQAAAABAAAAAAACAAAA=</HashCode>
+      <FileName>Aplicacion\CorreoServicio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.Aplicacion.ResultCorreo">
+    <Position X="12" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Aplicacion\CorreoServicio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.Aplicacion.EnumRol">
+    <Position X="14" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAABAAAAAAAAAAAAAAAAAAEAIAAAAAAABAQA=</HashCode>
+      <FileName>Aplicacion\EnumsAplication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.Aplicacion.LogicaAplicacion">
+    <Position X="8" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAQAAAAAAAgCIAAQQAAAAAAACAAAA=</HashCode>
+      <FileName>Aplicacion\LogicaAplicacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.Aplicacion.ExistenciaAlmacen">
+    <Position X="16" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAEAAAAEAABAABAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Aplicacion\LogicaAplicacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Almacen.Web.Aplicacion.RespuestaFlujo">
+    <Position X="10.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAECgAAASAAIAACAAAAAAAAADAAAAAAIAAAAAA=</HashCode>
+      <FileName>Aplicacion\RespuestaFlujo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Almacen.Web.Applicacion.ICatalogosServicio&lt;TModel, TEntity&gt;">
+    <Position X="8" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAJAQAAQAAEiAAAAAAAAAAAACAAAAAAAAAAAQgAA=</HashCode>
+      <FileName>Aplicacion\ICatalogosServicio.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Almacen.Web.Applicacion.ILeerCatalogosServicio&lt;TModel, TEntity&gt;">
+    <Position X="9.75" Y="18.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAEiAAAAAAAAAAAACAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Aplicacion\ILeerCatalogosServicio.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Almacen.Web.Aplicacion.EnumCategoria">
+    <Position X="17.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Aplicacion\EnumsAplication.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Almacen.Web.Aplicacion.EnumEstatus">
+    <Position X="17.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAQAAAAAAwAAAAAAgAAAAAAAAAQA=</HashCode>
+      <FileName>Aplicacion\EnumsAplication.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Almacen.Web.Aplicacion.EnumDetalleEstatus">
+    <Position X="14" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAIAAAABAAAAA=</HashCode>
+      <FileName>Aplicacion\EnumsAplication.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Almacen.Web.Aplicacion.EnumAlmacenMovimiento">
+    <Position X="15.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Aplicacion\EnumsAplication.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Almacen.Web.Aplicacion.EnumAlertaUnidad">
+    <Position X="14" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Aplicacion\EnumsAplication.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Almacen.Web.Aplicacion.ValorRespuesta">
+    <Position X="15.75" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAA=</HashCode>
+      <FileName>Aplicacion\RespuestaFlujo.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

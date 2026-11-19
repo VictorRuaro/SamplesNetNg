@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{061D62E2-8921-4A36-AA5E-EB69B9C537DC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Almacen.Data</RootNamespace>
+    <AssemblyName>Almacen.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlmacenModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlmacenModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlmacenModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlmacenModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlmacenModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRoles.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUsers.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cAlmacenTipoMovimiento.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cCategoria.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cCondicionesAlmacenaje.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cConservacion.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cDisolvente.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cEstatusSolicitud.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cGrado.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cGrupoFarmacologico.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cMarca.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cPresentacion.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cProveedor.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cTipoEnvase.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cTipoSal.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cUbicacion.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cUMCantidadEnvase.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cUMConcentracion.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sp_Rpt_Caducos_Materiales_Result.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Rpt_Caducos_Sustancias_Result.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Rpt_Devoluciones_Materiales_Result.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Rpt_Devoluciones_Sustancias_Result.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Rpt_Inventario_Materiales_Result.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Rpt_Inventario_Sustancias_Result.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Rpt_SinExistencia_Materiales_Result.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Rpt_SinExistencia_Sustancias_Result.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tAlerta.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tAlertaDestinatario.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tAlertaUnidad.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tAlertaXSustanciaMaterial.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tAlmacen.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tAlmacenCertificado.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tAlmacenMaterial.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tAlmacenMovimiento.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tAlmacenSustancia.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tDetalleMaterial.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tDetalleSustacia.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tDevolucion.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tDevolucionMaterial.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tDevolucionSustancia.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tSolicitud.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tSolicitudDetalle.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tSolicitudDetalleLote.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tSustanciaMaterial.cs">
+      <DependentUpon>AlmacenModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="AlmacenModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AlmacenModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AlmacenModel.edmx.diagram">
+      <DependentUpon>AlmacenModel.edmx</DependentUpon>
+    </None>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AlmacenModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AlmacenModel.edmx</DependentUpon>
+      <LastGenOutput>AlmacenModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AlmacenModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AlmacenModel.edmx</DependentUpon>
+      <LastGenOutput>AlmacenModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Instrucciones para Actualizar Modelo.html" />
+    <Content Include="Instrucciones para Actualizar Modelo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

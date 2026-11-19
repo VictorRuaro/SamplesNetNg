@@ -1,0 +1,122 @@
+﻿@using Almacen.Web.Aplicacion
+@using Almacen.Web.Tools
+@model Almacen.Web.ViewModels.AlertasVM
+<h3>Listado de Alertas</h3>
+
+
+@** Este catalogo solo sera manipulado por el desarrollador ya que esta enlazado con EnumAlertaUnidad **@
+@*<div class="form-group mb-lg">
+<div class="h4 text-danger">Este catalogo solo sera manipulado por el desarrollador ya que esta enlazado con EnumAlertaUnidad</div>
+
+    <a title="Agregar" class="btn btn-primary" href="@Url.Action("Create")">
+        <i class="fa fa-plus"></i> Agregar
+    </a>
+</div>*@
+
+    <div class="">
+        @foreach (var item in Model.Lista)
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+
+                            <div class="">
+                                <div class="pull-left text-center text-info">
+                                    <em class="fa fa-bell"></em>
+                                </div>
+                                <div class="ml-xl">
+                                    <span class="h4 text-bold mt0 mb0">@Html.DisplayFor(model => item.Nombre)</span>
+                                </div>
+                            </div>
+
+                            <div class=""></div>
+                        </div>
+                        <div class="panel-body bt">
+                            
+                            <div class="ml-lg">
+
+                                <div class="btn-toolbar pull-left">
+                                    <div class="btn-group">
+                                        @{
+                                            switch (item.idAlertaUnidad)
+                                            {
+                                                case (int)EnumAlertaUnidad.Porcentaje:
+                                                    <span class="radial-bar radial-bar-sm radial-bar-@CustomExtension.ToMultiple(item.Valor,5) radial-bar-danger m0"></span>
+                                                    break;
+                                                case (int)EnumAlertaUnidad.Dias:
+                                                    <span class="m-xl"></span>
+                                                    <div class="progress progress-striped progress-xs">
+                                                        <div role="progressbar" aria-valuenow="@CustomExtension.ToMultiple(item.Valor,10)" aria-valuemin="0" aria-valuemax="100"
+                                                             class="progress-bar progress-bar-info progress-@CustomExtension.ToMultiple(item.Valor,10)">
+                                                            <span class="sr-only">@item.Valor</span>
+                                                        </div>
+                                                    </div>
+
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+
+
+                                    </div>
+                                    <div class="btn-group mt-lg">
+                                        <span class="h4 ml">@Html.DisplayFor(model => item.Valor)</span>
+
+                                        <span class="h4 text-alpha-inverse">@Html.DisplayFor(model => item.tAlertaUnidad.AlertaUnidad)</span>
+                                        <span class="h4 text-alpha-inverse">@Html.DisplayFor(model => item.Valor100referencia)</span>
+                                        <span class="h6 text-alpha-inverse ml">General para todo el almacen</span>
+
+                                    </div>
+                                </div>
+                                <div class="btn-toolbar pull-right">
+                                    <div class="btn-group">
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.idAlerta }, new { @class = "btn btn-link" })
+                                    </div>
+                                    <div class="btn-group ml-lg">
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.idAlerta }, new { @class = "btn btn-link" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="panel-footer">
+                            
+                            <div class="mb-lg">Especificar Alerta para una Sustancia o Material</div>
+
+                            @*<div class="form-group">
+
+                                <a title="Agregar" class="btn btn-info btn-sm btn-oval" href="@Url.Action("EspecificarCreate")">
+                                    <i class="fa fa-plus"></i> Agregar
+                                </a>
+                            </div>*@
+                            <ul class="list-unstyled">
+                                <li class="">
+                                    <div class="">
+                                        @Html.ActionLink("Sustancias", "EspecificarSustancias", new { id = item.idAlerta, idCategoria = (int)EnumCategoria.Sustancias }, new { @class = "btn btn-link" })
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <div class="">
+                                        @Html.ActionLink("Materiales", "EspecificarMateriales", new { id = item.idAlerta, idCategoria = (int)EnumCategoria.Materiales }, new { @class = "btn btn-link" })
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="col-md-6">
+                    
+                </div>
+            </div>
+        }
+
+
+
+            </div>
+

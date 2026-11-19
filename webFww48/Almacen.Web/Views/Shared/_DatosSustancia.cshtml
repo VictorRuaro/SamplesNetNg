@@ -1,0 +1,118 @@
+﻿@model Almacen.Web.ViewModels.Catalogos.SustanciaVM
+<div>
+    <div class="popover__wrapper">
+        <div class="popover__title btn-link">
+            @Html.DisplayFor(model => model.Descripcion)
+        </div>
+        <dl class="dl-horizontal p push popover__content shadow-z4">
+            <dt>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.cGrupoFarmacologico.color)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cGrupoFarmacologico.colorHtml)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cGrupoFarmacologico.GrupoFarmacologico)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cGrupoFarmacologico.GrupoFarmacologico)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Sinonimos)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Sinonimos)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CAS)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CAS)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PMCompuesto)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PMCompuesto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FormulaMolecular)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FormulaMolecular)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EsSustanciaControlada)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EsSustanciaControlada)
+                @*<div class="checkbox c-checkbox">
+                    <label>
+                        <input name="EsSustanciaControlada" id="EsSustanciaControlada" type="checkbox" value="true" @(Model.EsSustanciaControlada ? "checked" : "")>
+                        <span class="fa fa-check bg-white"></span>
+                    </label>
+                </div>*@
+            </dd>
+
+        </dl>
+    </div>
+    
+</div>
+<style type="text/css">
+/* Popover styling */
+
+a {
+  text-decoration: none;
+}
+
+.popover__title {
+
+}
+
+.popover__wrapper {
+    display: inline-block;
+}
+
+.popover__content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    transform: translate(0,10px);
+    width: auto;
+    background-color:white;
+}
+
+.popover__content:before {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    right: calc(50% - 10px);
+    top: -8px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #BFBFBF transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+
+}
+.popover__wrapper:hover .popover__content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0,2px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+.popover__message {
+  text-align: center;
+}
+</style>

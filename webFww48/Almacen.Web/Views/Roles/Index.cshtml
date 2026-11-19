@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Almacen.Web.Models.RolViewModel>
+
+@{
+    ViewBag.Title = "Roles";
+}
+
+<h3>Roles</h3>
+
+@*<div class="form-group mb-lg">
+        <a href="@Url.Action("Create","Roles")" class="btn btn-primary" title="Agregar Usuario">
+            <i class="fa fa-plus"></i> Agregar
+        </a>
+</div>*@
+<div class="panel panel-default">
+    @*<div class="panel-heading">
+       
+        <div class="clearfix"></div>
+       
+    </div>*@
+    <div class="table-responsive">
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Rol)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rol)
+                    </td>
+
+                    <td>
+                        @*@Html.ActionLink("Detalle", "Details", new { id = item.Id }, new { @class = "btn btn-link" })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class= "btn btn-link" }) 
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-link" })*@
+                    </td>
+                </tr>
+        }
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,383 @@
+﻿@model Almacen.Web.ViewModels.CertificadoVM
+<h3>Almacen de Sustancias - Certificados</h3>
+
+
+
+
+<div class="form-horizontal">
+
+
+    @Html.HiddenFor(model => model.Sustancia.idSustanciaMaterial)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sustancia.tSustanciaMaterial.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div id="Descripcion" class="bb">
+                @Html.DisplayFor(model => model.Sustancia.tSustanciaMaterial.Descripcion)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.tSustanciaMaterial.Codigo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div id="Codigo" class="bb">
+                @Html.DisplayFor(model => model.Sustancia.tSustanciaMaterial.Codigo)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.tSustanciaMaterial.CAS, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div id="CAS" class="bb">
+                @Html.DisplayFor(model => model.Sustancia.tSustanciaMaterial.CAS)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.tSustanciaMaterial.PMCompuesto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div id="PMCompuesto" class="bb">
+                @Html.DisplayFor(model => model.Sustancia.tSustanciaMaterial.PMCompuesto)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.tSustanciaMaterial.FormulaMolecular, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div id="FormulaMolecular" class="bb">
+                @Html.DisplayFor(model => model.Sustancia.tSustanciaMaterial.FormulaMolecular)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.tSustanciaMaterial.cGrupoFarmacologico.GrupoFarmacologico, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div id="GrupoFarmacologico" class="bb">
+                @Html.DisplayFor(model => model.Sustancia.tSustanciaMaterial.cGrupoFarmacologico.GrupoFarmacologico)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.tSustanciaMaterial.cGrupoFarmacologico.color, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div id="colorHtml" class="bb">
+                @Html.DisplayFor(model => model.Sustancia.tSustanciaMaterial.cGrupoFarmacologico.colorHtml)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.tSustanciaMaterial.EsSustanciaControlada, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div id="EsSustanciaControlada" class="bb">
+                @Html.DisplayFor(model => model.Sustancia.tSustanciaMaterial.EsSustanciaControlada)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.LoteInterno, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            <div id="LoteInterno" class="bb">
+                @Html.DisplayFor(model => model.Sustancia.LoteInterno)
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="form-horizontal">
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.cTipoSal.TipoSal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Sustancia.cTipoSal.TipoSal)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.Referencia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.Raw(Model.Sustancia.Referencia ?? "&nbsp;")
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.cTipoEnvase.TipoEnvase, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Sustancia.cTipoEnvase.TipoEnvase)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.Existencia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Sustancia.Existencia)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.CantidadPorEnvase, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Sustancia.CantidadPorEnvase) @Html.DisplayFor(model => model.Sustancia.cUMCantidadEnvase.UMCantidadEnvase)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.cUbicacion.Ubicacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Sustancia.cUbicacion.Ubicacion)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.Concentracion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Sustancia.Concentracion) @Html.DisplayFor(model => model.Sustancia.cUMConcentracion.UMConcentracion)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.cDisolvente.Disolvente, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Sustancia.cDisolvente.Disolvente)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.cConservacion.Conservacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Sustancia.cConservacion.Conservacion)
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.FechaRecepcion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Sustancia.FechaRecepcion)
+            </div>
+        </div>
+    </div>
+    @*<div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.FechaCaducidad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Sustancia.FechaCaducidad)
+            </div>
+        </div>
+    </div>*@
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.LoteProveedor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.Raw(Model.Sustancia.LoteProveedor ?? "&nbsp;")
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Sustancia.cProveedor.Proveedor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Sustancia.cProveedor.Proveedor)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt0">
+        @Html.LabelFor(model => model.Sustancia.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.Raw(Model.Sustancia.Observaciones ?? "&nbsp;")
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr />
+@using (Html.BeginForm("Certificado", "AlmacenSustancias", FormMethod.Post, new { enctype = "multipart/form-data", id = "rform" }))
+{
+    @Html.Hidden("idAlmacen", Model.Sustancia.idAlmacen)
+    @Html.HiddenFor(model => model.Sustancia.idAlmacen)
+    @Html.HiddenFor(model => model.Sustancia.idCategoria)
+    @Html.HiddenFor(model => model.Sustancia.idSustanciaMaterial)
+<div class="form-horizontal">
+    
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Certificado.Upload, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+
+            @Html.TextBoxFor(model => model.Certificado.Upload, new { @class = "form-control filestyle", type = "file", accept = "application/pdf, image/*", data_max_size = "5000", data_classbutton = "btn btn-default", data_classinput = "form-control inline", data_buttonText = "Seleccionar Archivo" })
+            @Html.ValidationMessageFor(model => model.Certificado.Upload, "", new { @class = "text-danger" })
+
+            @*<input type="file" accept= "application/pdf, image/*" name="Archivo" data-classbutton="btn btn-default" data-classinput="form-control inline" data-buttonText="Seleccionar Archivo" class="form-control filestyle" data-val-required="El Certificado es requerido"  data-val="true" data-max-size="51200"/>
+            <span class="field-validation-valid text-danger" data-valmsg-replace="true" data-valmsg-for="Archivo"></span>*@
+
+            <div class="text-danger filevalid"></div>
+            <span class="help-block m-b-none">Unicamente archivos PDF (máximo 5 MB)</span>
+        </div>
+        
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sustancia.FechaCaducidad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            <div id="readFechaCaducidad" class="">
+                <input id="FechaCaducidad" class="form-control text-box single-line" type="text" value="@Html.DisplayFor(model => model.Sustancia.FechaCaducidad)" disabled="disabled">
+            </div>
+        </div>
+    </div>
+    <div id="writeFechaCaducidad" class="hidden">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Certificado.FechaCaducidad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+
+                @Html.EditorFor(model => model.Certificado.FechaCaducidad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Certificado.FechaCaducidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input class="btn btn-primary" type="submit" value="Subir Certificado" data-tool="save-load">
+        </div>
+    </div>
+
+</div>
+}
+    <hr />
+    <h4>Historial de Certificados</h4>
+
+    @{Html.RenderPartial("_HistorialCertificados", Model.Historial); }
+
+
+
+<hr />
+
+    <div>
+        <a href="@Url.Action("Existencias",new { idSustanciaMaterial=Model.Sustancia.idSustanciaMaterial})" class="btn btn-default text-primary" title="Regresar">
+            <i class="fa fa-arrow-left"></i> Regresar
+        </a>
+    </div>
+
+@section Styles {
+
+    @Styles.Render("~/bundles/datetimepickerCss")
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/filestyle")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/datetimepicker")
+
+<script type="text/javascript">
+
+    $().ready(function () {
+        $("#Certificado_FechaCaducidad").addClass("validaFechaFinal");
+        DefineValidationRules();
+    })
+
+
+    function DefineValidationRules() {
+        $.validator.addMethod("greaterStart", function (value, element, params) {
+
+    
+            //var startDate = $(params).val();//toma el valor de la fecha de caducidad anterior
+
+            //var fi_valida = moment(startDate, 'DD/MM/YYYY', true).isValid();
+            //var ff_valida = moment(value, 'DD/MM/YYYY', true).isValid();
+
+            //if (fi_valida && ff_valida) {
+                
+            //    var fi = moment(startDate, 'DD/MM/YYYY', true).toDate();
+            //    var ff = moment(value, 'DD/MM/YYYY', true).toDate();
+
+            //}
+            //else {
+            //    return false;
+            //}
+
+            
+            var ff_valida = moment(value, 'DD/MM/YYYY', true).isValid();
+
+            if (ff_valida) {
+
+                var fi = moment().toDate();
+                var ff = moment(value, 'DD/MM/YYYY', true).toDate();
+
+            }
+            else {
+                return false;
+            }
+
+            //console.log(moment(startDate, 'DD/MM/YYYY').toDate() + '<=' + moment(value, 'DD/MM/YYYY').toDate())
+
+            return fi <= ff || value == "";
+        }, "La Nueva Fecha de Caducidad debe ser mayor a la Fecha Actual");
+
+
+        jQuery.validator.addClassRules({
+            validaFechaFinal: {
+                required: true,
+                greaterStart: "#FechaCaducidad"
+            }
+        });
+    }
+
+    $(function () {
+        $.validator.methods.date = function (value, element) {
+            return this.optional(element) || moment(value, 'DD/MM/YYYY', true).isValid();
+        };
+    });
+
+    $(document).on('change', ':file', function () {
+        //debugger
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        var maxSize = input.data('max-size')*1024;
+
+        var msgval=$('.filevalid');
+        $(msgval).html('');
+
+        var existClass = $('div[id^="writeFechaCaducidad"]').hasClass('hidden');
+
+        if (existClass != true) {
+
+            $('div[id^="writeFechaCaducidad"]').addClass('hidden');
+        }
+
+        if (input.get(0).files.length) {
+            var fileSize = input.get(0).files[0].size; // in bytes
+
+            if (fileSize > maxSize) {
+                $(msgval).html('El tamaño maximo del archivo es de ' + (maxSize/1024) + ' KB');
+                input.val('');
+
+            } else {
+                
+                $('div[id^="writeFechaCaducidad"]').removeClass('hidden');
+            }
+
+        } else {
+            $(msgval).html('Seleccione un archivo con un tamaño maximo de ' + (maxSize / 1024) + ' KB');
+
+        }
+        
+    });
+
+</script>
+
+}

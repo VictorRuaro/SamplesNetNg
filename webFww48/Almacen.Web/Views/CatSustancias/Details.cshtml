@@ -1,0 +1,83 @@
+﻿@model Almacen.Web.ViewModels.Catalogos.SustanciaVM
+<h3>Detalle</h3>
+<div>
+
+    <dl class="dl-horizontal p-xl">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cGrupoFarmacologico.colorHtml)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cGrupoFarmacologico.colorHtml)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cGrupoFarmacologico.GrupoFarmacologico)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cGrupoFarmacologico.GrupoFarmacologico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sinonimos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sinonimos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CAS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CAS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PMCompuesto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PMCompuesto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FormulaMolecular)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FormulaMolecular)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsSustanciaControlada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EsSustanciaControlada)
+            @*<div class="checkbox c-checkbox">
+                <label>
+                    <input name="EsSustanciaControlada" id="EsSustanciaControlada" type="checkbox" value="true" @(Model.EsSustanciaControlada ? "checked" : "")>
+                    <span class="fa fa-check bg-white"></span>
+                </label>
+            </div>*@
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+    <a href="@Url.Action("Edit",new { id = Model.idSustanciaMaterial})" class="btn btn-warning" title="Editar">
+        <i class="fa fa-edit"></i> Editar
+    </a>
+</div>

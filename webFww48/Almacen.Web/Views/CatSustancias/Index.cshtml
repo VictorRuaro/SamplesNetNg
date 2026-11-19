@@ -1,0 +1,20 @@
+﻿@using Almacen.Web.ViewModels
+@using Almacen.Web.ViewModels.Catalogos
+
+@model BaseListaCatalogosVM<SustanciaVM>
+
+<h3>@Html.DisplayFor(model => model.Titulo)</h3>
+
+@using (Html.BeginForm())
+{
+
+    Html.RenderPartial("_buscadorSustancia", ViewBag.SustanciaFiltros as SustanciaFiltrosVM);
+    <div class="form-group mb-lg">
+        <a title="Agregar" class="btn  btn-primary" href="@Url.Action("Create")">
+            <i class="fa fa-plus"></i> Agregar
+        </a>
+    </div>
+    Html.RenderPartial("_ListaSustancias", Model.Paginacion.Lista);
+
+    Html.RenderPartial("_paginador", Model.Paginador);
+}

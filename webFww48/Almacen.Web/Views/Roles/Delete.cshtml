@@ -1,0 +1,32 @@
+﻿@model Almacen.Web.Models.RolViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Eliminar</h3>
+
+<h3>¿Estás seguro que quieres eliminar esto?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rol)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            <a href="@Url.Action("Index")" class="btn btn-default" title="Regresar">
+                <i class="fa fa-arrow-left"></i> Regresar
+            </a>
+        </div>
+    }
+</div>

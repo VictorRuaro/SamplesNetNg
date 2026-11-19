@@ -1,0 +1,47 @@
+﻿@model ExamenMVC.Models.ModelUser
+
+@{
+    ViewBag.Title = "Inicio";
+}
+
+
+<div class="container">
+    <div class="page-header">
+        <h1>@ViewBag.Title</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-7 col-xl-7 col-lg-7">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+            {
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName, "Usuario", new { @class = "control-label col-sm-1" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Usuario", @style = "margin-left: 30px;" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Pws, "Password", new { @class = "control-label col-sm-1" })
+                    <div class="col-sm-4" style="margin-bottom: 30px">
+                        @Html.PasswordFor(model => model.Pws, new { @class = "form-control", @placeholder = "Password", @style = "margin-left: 30px;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Entrar</button>
+                    </div>
+                </div>
+                if (ViewBag.Msg != null)
+                {
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong> @ViewBag.Msg
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+

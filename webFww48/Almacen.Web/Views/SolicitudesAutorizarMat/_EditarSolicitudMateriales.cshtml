@@ -1,0 +1,135 @@
+﻿@using Almacen.Web.ViewModels
+@using Almacen.Web.Aplicacion
+@model IEnumerable<SolicitudDetalleVM>
+@{
+    int idEstatusSolicitud = ViewBag.idEstatusSolicitud;
+}
+<div class="panel panel-default">
+    <div class="table-responsive">
+
+        <table id="tablaListado" class="table table-hover table-condensed ">
+            <thead class="">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idPresentacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadSolicitada)
+                    </th>
+                    
+                        @if (User.IsInRole(EnumRol.Administrador) || User.IsInRole(EnumRol.Autorizador_Material) || User.IsInRole(EnumRol.Autorizador_Sustancias))
+                        {
+                        <th>
+                            @Html.DisplayNameFor(model => model.CantidadAutorizada)
+                        </th>
+                        }
+                        <th>
+                                    
+                        </th>
+
+                </tr>
+            </thead>
+
+            <tbody class="h6">
+                @if (Model != null)
+                {
+                    int i = 0;
+                    foreach (var item in Model)
+                    {
+
+                        item.index = i++;
+                        item.idEstatusSolicitud = idEstatusSolicitud;
+                        @Html.EditorFor(modelItem => item)
+                    }
+
+                }
+                   
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    
+
+    $(".btnEliminarSustancia").click(
+        function () {
+
+            var idEstatusSolicitud = $('input[name="idEstatusSolicitud"').val();
+
+            var listasustancias = [];
+            //var listasustancias = @Html.Raw(Json.Encode(Model));
+
+            var tabla = $("#tablaListado");
+
+
+            if (listasustancias.length == 0) {
+                $(tabla).find("tr").each(function (key, value) {
+                    //debugger
+                    var sustanciam = FindModel(value, key)
+                    if (sustanciam != null) {
+                        listasustancias.push(sustanciam);
+
+                    }
+                })
+            }
+            else{
+                $.each( listasustancias, function( key, value ){
+                    SetModel(value, key)
+                });
+
+            }
+
+
+            var url = $(this).attr('data-actionurl');
+            var index =$(this).attr('data-id');
+
+            if (url.length > 0) {
+
+                $('#loading').toggleClass('sk-loading');
+
+                $.post(url, { index: index, sustancias: listasustancias, idEstatusSolicitud: idEstatusSolicitud })
+                    .success(
+                        function (result) {
+
+                            if (result !== null) {
+
+                                $('div[id="ListaSolicitud"]').html(result);
+
+                            }
+                            else {
+
+                                $("#lblInformacionModal").html("");
+                            }
+                            //$('form').data('validator', null);
+                            //$.validator.unobtrusive.parse($('form'));
+
+                            $('#loading').toggleClass('sk-loading');
+
+                        }
+                    )
+                    //.fail(function () {
+                    //    debugger
+                    //    //$("#lblInformacionModal").html("Error al conectarse");
+                    //    $('.ibox-content').toggleClass('sk-loading');
+                    //});
+                .error(function (jqXHR, textStatus, errorThrown) {
+                    $('#loading').toggleClass('sk-loading');
+                    //debugger
+                });
+
+
+            } else {
+                $("#lblInformacionModal").html("Complete todos los campos");
+            }
+
+        });
+
+    
+
+</script>

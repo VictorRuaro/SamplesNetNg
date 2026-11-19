@@ -1,0 +1,27 @@
+﻿
+@model Nullable<bool>
+<select id="@Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty)" 
+       name="@Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)" 
+       class="form-control input-sm">
+    @if(Model.HasValue)
+    {
+        <option value="">Todos</option>
+        if (Model.Value==true)
+        {
+            <option value="true" selected="selected">Si</option>
+            <option value="false">No</option>
+        }
+        else
+        {
+            <option value="true">Si</option>
+            <option value="false" selected="selected">No</option>
+        }
+
+    }
+    else
+    {
+        <option value="" selected="selected" )>Todos</option>
+        <option value="true">Si</option>
+        <option value="false">No</option>
+    }
+</select>

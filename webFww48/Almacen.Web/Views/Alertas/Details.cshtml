@@ -1,0 +1,38 @@
+﻿@model Almacen.Web.ViewModels.Alerta
+<h3>Detalle</h3>
+<div>
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tAlertaUnidad.AlertaUnidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tAlertaUnidad.AlertaUnidad)
+        </dd>
+
+
+    </dl>
+</div>
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+    <a href="@Url.Action("Edit",new { id = Model.idAlerta})" class="btn btn-warning" title="Editar">
+        <i class="fa fa-edit"></i> Editar
+    </a>
+</div>

@@ -1,0 +1,110 @@
+﻿@using Almacen.Web.ViewModels
+@using Almacen.Web.ViewModels.Catalogos
+@model SolicitudVM
+<h3>Detalle</h3>
+
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="media-box bb">
+                    <div class="pull-left">
+                        <span class="fa-stack">
+                            <em class="fa fa-circle fa-stack-2x text-gray"></em>
+                            <em class="fa fa-file-text fa-stack-1x fa-inverse"></em>
+                        </span>
+                    </div>
+                    <div class="media-box-body clearfix">
+                        
+                        <label class="pull-right ml text-purple">Estatus: <span class="label label-warning text-sm">@Model.cEstatusSolicitud.EstatusSolicitud</span></label>
+                        
+                        <div class="media-box-heading">
+                            <label class="text-muted">
+                                Solicitud
+                                
+                            </label>
+                        </div>
+                        <div class="m0">
+
+                            <span class="text-bold text-purple">Folio: @Model.Folio</span>
+                            <span class="pull-right text-muted">Fecha de Elaboración: @Model.FG.ToShortDateString()</span>
+                        </div>
+                        <div class="clearfix">
+                            <span class="pull-right text-bold">Fecha de Envio: @Model.FechaEnvio</span>
+                            <span class="text-bold">Solicitante: @Html.Action("DatosUsuario", "DatosAplicacion", new { IdUsuario = Model.UG })</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="bb p-sm">
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="">
+                        @Html.LabelFor(model => model.Materiales, "Sustancias", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                        <div class="col-md-10">
+                            <div id="ListaSolicitud" class="">
+                                @if (Model.Materiales != null)
+                            {
+                                Html.RenderPartial("_ListaSolicitudSustancias", Model.Materiales);
+                            }
+                            else
+                            {
+                                    <div class="well bg-gray-lighter"><i class="fa fa-warning mr text-warning"></i><span class="text-purple">No se han agregado materiales</span></div>
+                            }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DescripcionUso, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+
+                        <div class="bb p-sm">
+                            @Html.Raw(Model.DescripcionUso ?? "&nbsp;")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="">
+
+
+                    
+
+                </div>
+                <div>
+                    
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+@if (Model.ValidaFlujo.visibleBtnEditar)
+{
+    <a href="@Url.Action("Edit", new { id = Model.idSolicitud })" class="btn btn-warning" title="Editar">
+        <i class="fa fa-edit"></i> Editar
+    </a>
+}
+</div>
+

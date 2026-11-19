@@ -1,0 +1,103 @@
+﻿<h3>Catálogos para Sustancias</h3>
+<ul class="nav">
+    <!-- END user info-->
+    <!-- Iterates over all sidebar items-->
+    <li class="nav-heading">
+        <span class="h2">
+            <em class="icon-grid"></em>
+        </span>
+        <span>Catálogos</span>
+    </li>
+    <li class="nav-divider">
+        <span class="">
+
+        </span>
+
+    </li>
+    <li class="@Html.isActive(controller: "CatSustancias")">
+        <a href="@Url.Action("Index", "CatSustancias")" title="Sustancias" data-tool="link-load">
+            <span class="h3">
+                <em class="icon-chemistry"></em>
+            </span>
+            <span>Sustancias</span>
+        </a>
+    </li>
+    <li class="nav-divider">
+        <span class="">
+            
+        </span>
+
+    </li>
+    <li class="@Html.isActive(controller: "CatGrupoFarmacologico")">
+        <a href="@Url.Action("Index", "CatGrupoFarmacologico")" title="Grupo Farmacológico" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Grupo Farmacológico</span>
+        </a>
+    </li>
+    <li class="@Html.isActive(controller: "CatTipoSal")">
+        <a href="@Url.Action("Index", "CatTipoSal")" title="Tipo de Sal" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Tipo de Sal</span>
+        </a>
+    </li>
+    <li class="@Html.isActive(controller: "CatConservacion")">
+        <a href="@Url.Action("Index", "CatConservacion")" title="Conservación" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Conservación</span>
+        </a>
+    </li>
+    <li class="@Html.isActive(controller: "CatUbicacion")">
+        <a href="@Url.Action("Index", "CatUbicacion")" title="Ubicación" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span >Ubicación</span>
+        </a>
+    </li>
+
+    <li class="@Html.isActive(controller: "CatTipoEnvase")">
+        <a href="@Url.Action("Index", "CatTipoEnvase")" title="Tipo de envase" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Tipo de Envase</span>
+        </a>
+    </li>
+    <li class="@Html.isActive(controller: "CatDisolvente")">
+        <a href="@Url.Action("Index", "CatDisolvente")" title="Disolvente" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Disolvente</span>
+        </a>
+    </li>
+    <li class="@Html.isActive(controller: "CatUMCantidadEnvase")">
+        <a href="@Url.Action("Index", "CatUMCantidadEnvase")" title="Unidad de medida - Cantidad por Envase" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Unidad de Medida - Cantidad por Envase</span>
+        </a>
+    </li>
+    <li class="@Html.isActive(controller: "CatUMConcentracion")">
+        <a href="@Url.Action("Index", "CatUMConcentracion")" title="Unidad de medida - Concentración" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Unidad de Medida - Concentración</span>
+        </a>
+    </li>
+    
+    <li class="@Html.isActive(controller: "CatFabricante")">
+        <a href="@Url.Action("Index", "CatFabricante")" title="Fabricante" data-tool="link-load">
+            <em class="fa fa-table"></em>
+            <span>Fabricante</span>
+        </a>
+    </li>
+
+</ul>
+
+
+
+@*Catálogos para Sustacias
+    Tipo de sal
+    Conservación
+    Tipo de sal
+    Ubicación
+    Tipo de envase
+    Disolvente
+    Unidad de medida - Cantidad por envase
+    Unidad de medida - Concentración
+    Grupo Farmacológico
+    Fabricante
+*@

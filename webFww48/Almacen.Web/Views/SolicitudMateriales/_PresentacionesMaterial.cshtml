@@ -1,0 +1,88 @@
+﻿@using Almacen.Web.ViewModels
+
+@model IEnumerable<PresentacionMaterialVM>
+
+<div class="panel panel-default">
+    <div class="table-responsive mt">
+
+        <table id="datatableselect" class="table table-hover table-condensed ">
+            <thead class="h6">
+                <tr>
+                    <th>
+                        <span class="text-purple">Selecciona</span>
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.cTipoEnvase.TipoEnvase)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadPorEnvase)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.cPresentacion.Presentacion)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.Existencia)
+                    </th>*@
+                </tr>
+            </thead>
+
+            <tbody class="h6">
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="8">
+                            <div class="alert alert-warning"><i class="fa fa-warning mr"></i><strong>No se han ingresado datos</strong></div>
+                        </td>
+                    </tr>
+
+                }
+                else if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="8">
+                            <div class="alert alert-info"><i class="fa fa-warning mr"></i><strong>No se encontraron datos con los filtros ingresados</strong></div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="td-actions text-center">
+
+                                <div class="checkbox c-checkbox">
+                                    <label>
+                                        <input name="Presentacion" id="Presentacion" type="checkbox" 
+                                               value="@item.idAlmacen" 
+                                               data-idSustanciaMaterial="@item.idSustanciaMaterial" 
+                                               data-idTipoEnvase="@item.idTipoEnvase" 
+                                               data-idPresentacion="@item.idPresentacion"  
+                                               data-Existencia="@item.Existencia">
+                                        <span class="fa fa-check bg-white"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            @*<td class="">
+                                @Html.DisplayFor(modelItem => item.cTipoEnvase.TipoEnvase)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.CantidadPorEnvase)
+                            </td>*@
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.cPresentacion.Presentacion)
+                            </td>
+                            @*<td class="">
+                                @Html.DisplayFor(modelItem => item.Existencia)
+                            </td>*@
+                            
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+

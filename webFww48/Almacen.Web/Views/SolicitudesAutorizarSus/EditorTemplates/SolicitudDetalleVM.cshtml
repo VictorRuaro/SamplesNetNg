@@ -1,0 +1,115 @@
+﻿@using Almacen.Web.Aplicacion
+@model Almacen.Web.ViewModels.SolicitudDetalleVM
+
+<tr>
+
+    <td class="">
+        @Html.HiddenFor(modelItem => modelItem.index, new
+   {
+       @Name = string.Format("Materiales[{0}].index", Model.index),
+       @id = string.Format("Materiales_{0}__index", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idCategoria, new
+   {
+       @Name = string.Format("Materiales[{0}].idCategoria", Model.index),
+       @id = string.Format("Materiales_{0}__idCategoria", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idSolicitudDetalle, new
+   {
+       @Name = string.Format("Materiales[{0}].idSolicitudDetalle", Model.index),
+       @id = string.Format("Materiales_{0}__idSolicitudDetalle", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idSustanciaMaterial, new
+   {
+       @Name = string.Format("Materiales[{0}].idSustanciaMaterial", Model.index),
+       @id = string.Format("Materiales_{0}__idSustanciaMaterial", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.Descripcion, new
+   {
+       @Name = string.Format("Materiales[{0}].Descripcion", Model.index),
+       @id = string.Format("Materiales_{0}__Descripcion", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idEstatusSolicitud, new
+   {
+       @Name = string.Format("Materiales[{0}].idEstatusSolicitud", Model.index),
+       @id = string.Format("Materiales_{0}__idEstatusSolicitud", Model.index)
+   })
+
+
+        @*@Html.DisplayFor(modelItem => modelItem.Descripcion)*@
+        <div class="">
+            @if(Model.idCategoria == (int)EnumCategoria.Sustancias)
+            {
+                @Html.Action("DatosSustancia", "DatosAplicacion", new { idSustanciaMaterial = Model.idSustanciaMaterial })
+            }
+            else
+            {
+                @Html.Action("DatosMaterial", "DatosAplicacion", new { idSustanciaMaterial = Model.idSustanciaMaterial })
+            }
+        </div>
+    </td>
+    <td>
+
+        <div class="">
+            @Html.HiddenFor(modelItem => modelItem.idTipoEnvase, new
+       {
+           @Name = string.Format("Materiales[{0}].idTipoEnvase", Model.index),
+           @id = string.Format("Materiales_{0}__idTipoEnvase", Model.index)
+       })
+            @Html.HiddenFor(modelItem => modelItem.idPresentacion, new
+       {
+           @Name = string.Format("Materiales[{0}].idPresentacion", Model.index),
+           @id = string.Format("Materiales_{0}__idPresentacion", Model.index)
+       })
+            @if (Model.idCategoria == (int)EnumCategoria.Sustancias)
+            {
+                @Html.Action("DatosPresentacionSustancia", "DatosAplicacion",
+                               new
+                               {
+                                   idAlmacen = Model.idAlmacen
+                               })
+            }
+            else
+            {
+                @Html.Action("DatosPresentacionMaterial", "DatosAplicacion",
+                               new
+                               {
+                                   idAlmacen = Model.idAlmacen
+                               })
+            }
+        </div>
+    </td>
+    <td class="">
+        @Html.HiddenFor(modelItem => modelItem.CantidadSolicitada, new
+               {
+                   @Name = string.Format("Materiales[{0}].CantidadSolicitada", Model.index),
+                   @id = string.Format("Materiales_{0}__CantidadSolicitada", Model.index)
+               })
+        @Html.DisplayFor(modelItem => modelItem.CantidadSolicitada)
+    </td>
+    <td class="">
+        @Html.EditorFor(modelItem => modelItem.CantidadAutorizada, "", new
+    {
+        htmlAttributes = new
+        {
+            @Name = string.Format("Materiales[{0}].CantidadAutorizada", Model.index),
+            @id = string.Format("Materiales_{0}__CantidadAutorizada", Model.index),
+            @class = "form-control",
+        }
+    })
+                    
+        @Html.ValidationMessageFor(modelItem => modelItem.CantidadAutorizada, "", new
+    {
+        @class = "text-danger",
+        @data_valmsg_for = string.Format("Materiales[{0}].CantidadAutorizada", Model.index)
+    })
+    </td>
+
+    <td class="">
+        @*<input class="btn btn-link btnEliminarSustancia" type="button" value="Eliminar"
+                data-actionurl="@Url.Action("ListaEliminarElemento", "SolicitudSustancias")"
+                data-id="@Model.index">*@
+    </td>
+                
+
+</tr>

@@ -1,0 +1,22 @@
+﻿
+    <div class="block-center">
+        <!-- START panel-->
+        <div class="text-center mb-xl">
+            <div class="text-lg mb-lg text-info">400</div>
+            <p class="lead m0">Solicitud incorrecta..</p>
+            <p class="text-primary">La solicitud presenta parametros incorrectos.</p>
+        </div>
+        <ul class="list-inline text-center text-sm mb-xl">
+@*@if (User.Identity.IsAuthenticated)
+            {
+                var UrlReferrer = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() :Url.Action("Index");
+        <li>
+            <a href="" class="text-muted">Regresar</a>
+        </li>
+    }
+                <li class="text-muted">|</li>*@
+            <li>
+                <a href="@Url.Action("Index","Home")" class="text-muted">Ir a la aplicación</a>
+            </li>
+        </ul>
+    </div>

@@ -1,0 +1,45 @@
+﻿<h3>Reportes</h3>
+
+<ul class="nav">
+    <!-- END user info-->
+    <!-- Iterates over all sidebar items-->
+    <li class="nav-heading">
+        <span class="h3">
+            <em class="icon-chemistry"></em>
+        </span>
+        <span class="h4">Sustancias</span>
+    </li>
+    <li class="nav-divider"></li>
+    <li class="@Html.isActive("Reportes","RSInventario")">
+        <a href="@Url.Action("RSInventario", "Reportes")" title="Inventario">
+            <em class="fa fa-table"></em>
+            <span>Inventario</span>
+        </a>
+    </li>
+
+    <li class="@Html.isActive("Reportes","RSCaducos")">
+        <a href="@Url.Action("RSCaducos", "Reportes")" title="Caducos">
+            <em class="fa fa-table"></em>
+            <span>Caducos</span>
+        </a>
+    </li>
+
+    <li class="@Html.isActive("Reportes","RSSinExistencia")">
+        <a href="@Url.Action("RSSinExistencia", "Reportes")" title="Sin Existencia">
+            <em class="fa fa-table"></em>
+            <span>Sin Existencia</span>
+        </a>
+    </li>
+
+    <li class="@Html.isActive("Reportes","RSDevoluciones")">
+        <a href="@Url.Action("RSDevoluciones", "Reportes")" title="Devoluciones">
+            <em class="fa fa-table"></em>
+            <span>Devoluciones</span>
+        </a>
+    </li>
+
+</ul>
+
+
+
+

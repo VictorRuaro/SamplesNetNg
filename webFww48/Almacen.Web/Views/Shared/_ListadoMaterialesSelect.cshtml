@@ -1,0 +1,113 @@
+﻿@using Almacen.Web.ViewModels.Catalogos
+
+@model IEnumerable<MaterialVM>
+
+<div class="panel panel-default">
+    <div class="table-responsive mt">
+
+        <table id="datatableselect" class="table table-hover table-condensed ">
+            <thead class="h6">
+                <tr>
+                    <th >
+                    <span class="text-purple">Selecciona</span> 
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Codigo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cGrado.Grado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NumeroParte)
+                    </th>
+                    
+                    
+                </tr>
+            </thead>
+
+            <tbody class="h6">
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="8">
+                            <div class="alert alert-warning"><i class="fa fa-warning mr"></i><strong>No se han ingresado datos</strong></div>
+                        </td>
+                    </tr>
+
+                }
+                else if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="8">
+                            <div class="alert alert-info"><i class="fa fa-warning mr"></i><strong>No se encontraron datos con los filtros ingresados</strong></div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="td-actions text-center">
+
+                                <div class="checkbox c-checkbox">
+                                    <label>
+                                        <input name="Selecciona" id="Selecciona" type="checkbox" value="@item.idSustanciaMaterial">
+                                        <span class="fa fa-check bg-white"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Codigo)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.cGrado.Grado)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.NumeroParte)
+                            </td>
+                            
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+    @*<script>
+
+        $('#datatableselect').dataTable({
+            'paging': true,  // Table pagination
+            'ordering': true,  // Column ordering
+            'info': true,  // Bottom left status text
+            // Text translation options
+            // Note the required keywords between underscores (e.g _MENU_)
+            oLanguage: {
+                sSearch: 'Buscar en todas las Columnas:',
+                sLengthMenu: '_MENU_ Registros por pagina',
+                sInfo: 'Pagina _PAGE_ de _PAGES_',
+                sZeroRecords: 'No Encontrado',
+                sInfoEmpty: 'No hay registros disponibles',
+                sInfoFiltered: '(Filtrar de _MAX_ total registros)',
+                oPaginate: {
+                    sFirst: "Primero",
+                    sLast: "Ultimo",
+                    sNext: "Siguiente",
+                    sPrevious: "Anterior"
+                }
+            },
+           
+        });
+
+    </script>*@
+

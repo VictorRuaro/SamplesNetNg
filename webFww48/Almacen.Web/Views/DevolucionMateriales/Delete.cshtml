@@ -1,0 +1,190 @@
+﻿@model Almacen.Web.ViewModels.DevolucionMaterialVM
+<h3>Eliminar</h3>
+
+<div class="form-horizontal">
+
+
+    <div class="form-group mb-lg">
+        @Html.LabelFor(model => model.IntegrarAlmacen, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div id="IntegrarAlmacen" class="bb">
+                @Html.DisplayFor(model => model.IntegrarAlmacen)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.tSustanciaMaterial.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.tSustanciaMaterial.Descripcion)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.tSustanciaMaterial.Codigo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.tSustanciaMaterial.Codigo)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.tSustanciaMaterial.cGrado.Grado, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.tSustanciaMaterial.cGrado.Grado)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.LoteInterno, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.LoteInterno)
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="form-horizontal">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumParte, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.Raw(Model.NumParte ?? "&nbsp;")
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumCatalago, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.Raw(Model.NumCatalago ?? "&nbsp;")
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.idMarca, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.cMarca.Marca)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.cPresentacion.Presentacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.cPresentacion.Presentacion)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Existencia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Existencia)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaRecepcion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.FechaRecepcion)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaCaducidad, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.FechaCaducidad)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.cCondicionesAlmacenaje.CondicionesAlmacenaje, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.cCondicionesAlmacenaje.CondicionesAlmacenaje)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LoteProveedor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.Raw(Model.LoteProveedor ?? "&nbsp;")
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cProveedor.Proveedor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.cProveedor.Proveedor)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.Raw(Model.Observaciones ?? "&nbsp;")
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        if (Model.IntegrarAlmacen == false)
+        {
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-danger eliminaregistro">
+                        <i class="fa fa-remove"></i> Eliminar
+                    </button>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <span class="well bg-gray-lighter"><i class="fa fa-warning mr text-warning"></i><strong class="text-purple">No se puede eliminar ya que esta integrado en el almacen</strong></span>
+                </div>
+            </div>
+        }
+
+
+    }
+
+</div>
+
+
+
+
+
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+    <a href="@Url.Action("Existencias", new { idSustanciaMaterial = Model.idSustanciaMaterial })" class="btn btn-default text-primary" title="Ir a Existencias">
+        Ir a Existencias
+    </a>
+</div>
+
+
+
+
+

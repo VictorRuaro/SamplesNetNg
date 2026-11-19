@@ -1,0 +1,114 @@
+﻿@using Almacen.Web.ViewModels
+
+@model IEnumerable<AlmacenSustanciaVM>
+
+<div class="panel panel-default">
+    <div class="table-responsive">
+
+        <table class="table table-hover table-condensed " id="table">
+            <thead class="">
+                <tr>
+                    <th class="">@Html.DisplayNameFor(model => model.LoteInterno)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.cTipoSal.TipoSal)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.cProveedor.Proveedor)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.Referencia)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.LoteProveedor)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.FechaRecepcion)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.FechaCaducidad)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.cConservacion.Conservacion)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.cUbicacion.Ubicacion)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.cTipoEnvase.TipoEnvase)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.Existencia)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.CantidadPorEnvase)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.Concentracion)</th>
+                    <th class="">@Html.DisplayNameFor(model => model.cDisolvente.Disolvente)</th>
+                    <th class=""></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model == null)
+                {
+                    <tr>
+                        <td colspan="8">
+                            <div class="alert alert-warning"><i class="fa fa-warning mr"></i><strong>No se han ingresado datos</strong></div>
+                        </td>
+                    </tr>
+
+                }
+                else if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="8">
+                            <div class="alert alert-info"><i class="fa fa-warning mr"></i><strong>No se encontraron datos con los filtros ingresados</strong></div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.LoteInterno)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.cTipoSal.TipoSal)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.cProveedor.Proveedor)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Referencia)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.LoteProveedor)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.FechaRecepcion)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.FechaCaducidad)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.cConservacion.Conservacion)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.cUbicacion.Ubicacion)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.cTipoEnvase.TipoEnvase)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Existencia)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.CantidadPorEnvase) @Html.DisplayFor(modelItem => item.cUMCantidadEnvase.UMCantidadEnvase)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.Concentracion) @Html.DisplayFor(modelItem => item.cUMConcentracion.UMConcentracion)
+                            </td>
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.cDisolvente.Disolvente)
+                            </td>
+                            <td class="td-actions text-right">
+
+                                <a title="" class="btn  btn-warning btn-sm" href="@Url.Action("Certificado","AlmacenSustancias",new {id=item.idAlmacen })" data-original-title="Certificado">
+                                    Certificado
+                                </a>
+                                <a title="" class="btn  btn-link" href="@Url.Action("Edit","AlmacenSustancias",new {id= item.idAlmacen})" data-original-title="Editar">
+                                    Editar
+                                </a>
+                                <a title="" class="btn  btn-link" href="@Url.Action("Delete","AlmacenSustancias",new {id= item.idAlmacen })" data-original-title="Eliminar">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

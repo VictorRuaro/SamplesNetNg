@@ -1,0 +1,40 @@
+﻿@using Almacen.Data
+@using Almacen.Web.ViewModels
+@using Almacen.Web.ViewModels.Reportes
+
+@model BaseListaReportesVM<sp_Rpt_SinExistencia_Materiales_Result>
+
+<h3>Sin Existencia</h3>
+
+@using (Html.BeginForm())
+{
+
+    Html.RenderPartial("_filtrosMaterial", ViewBag.Filtros as Rpt_Material_FiltrosVM);
+
+    if (Model.SinDatosListado)
+    {
+        <tr>
+            <td colspan="23">
+                <div class="alert alert-warning"><i class="fa fa-warning mr"></i><strong>No se han ingresado entradas al almacen</strong></div>
+            </td>
+        </tr>
+    }
+    else
+    {
+        Html.RenderPartial("_ListaSinExistenciaMateriales", Model.Paginacion.Lista);
+
+
+        Html.RenderPartial("_paginador", Model.Paginador);
+    }
+}
+<div>
+    <a href="@Url.Action("Materiales")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/datetimepicker")
+}

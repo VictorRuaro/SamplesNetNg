@@ -1,0 +1,122 @@
+﻿@using Almacen.Web.ViewModels
+@using Almacen.Web.Aplicacion
+@model IEnumerable<SolicitudDetalleVM>
+@*@{
+    int idEstatusSolicitud = ViewBag.idEstatusSolicitud;
+}*@
+<div class="panel panel-default">
+    <div class="table-responsive">
+
+        <table id="tablaListado" class="table table-hover table-condensed ">
+            <thead class="">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idPresentacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadSolicitada)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadAutorizada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadSurtida)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CantidadDevolver)
+                    </th>
+                    <th>
+                                    
+                    </th>   
+
+
+                </tr>
+            </thead>
+
+            <tbody class="h6">
+                @if (Model != null)
+                {
+                    int i = 0;
+                    foreach (var item in Model)
+                    {
+
+                        item.index = i++;
+                        @Html.EditorFor(modelItem => item)
+                    }
+
+                }
+                   
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    //Selecciona Lote en partial _EditarSolicitud
+    $(".btnSeleccionaLote").click(
+                    function () {
+
+
+                        var url = $(this).attr('data-actionurl');
+                        var id = $(this).attr('data-id');
+
+                        var urlMaterial = '@Url.Action("Material", "DatosAplicacion")';
+
+                        $('div[id="resultadoExistencias"]').toggleClass('sk-loading');
+
+                        $.get(urlMaterial, { idSustanciaMaterial: id })
+                                .success(
+                                    function (result) {
+
+                                        if (result !== null) {
+
+                                            $('div[id="datosItem"]').html(result);
+
+                                        }
+                                        else {
+
+                                            $("#lblInformacionModal").html("");
+                                        }
+
+                                    }
+                                )
+                            .error(function (jqXHR, textStatus, errorThrown) {
+                                $('div[id="resultadoExistencias"]').toggleClass('sk-loading');
+                                //debugger;
+                            }).complete(function () {
+
+                                if (url.length > 0) {
+
+                                    $.get(url, { idSustanciaMaterial: id })
+                                        .success(
+                                            function (result) {
+
+                                                if (result !== null) {
+
+                                                    $('div[id="resultadoExistencias"]').html(result);
+
+                                                }
+                                                else {
+
+                                                    $("#lblInformacionModal").html("");
+                                                }
+                                            }
+                                        )
+                                    .error(function (jqXHR, textStatus, errorThrown) {
+                                        $('div[id="resultadoExistencias"]').toggleClass('sk-loading');
+                                        //debugger;
+                                    }).complete(function () {
+                                        $('div[id="resultadoExistencias"]').toggleClass('sk-loading');
+                                    });
+
+                                }
+
+                            });
+                    })
+</script>

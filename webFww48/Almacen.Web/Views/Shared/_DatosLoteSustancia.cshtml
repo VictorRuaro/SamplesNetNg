@@ -1,0 +1,138 @@
+﻿@model Almacen.Web.ViewModels.AlmacenSustanciaVM
+<div>
+    <div class="popover__wrapper">
+        <div class="popover__title btn-link">
+            @Html.DisplayFor(model => model.LoteInterno)
+        </div>
+        <dl class="dl-horizontal p push popover__content shadow-z4">
+            <dt>
+                @Html.DisplayNameFor(model => model.cTipoEnvase.TipoEnvase)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cTipoEnvase.TipoEnvase)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CantidadPorEnvase) 
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CantidadPorEnvase) @Html.DisplayFor(model => model.cUMCantidadEnvase.UMCantidadEnvase)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Concentracion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Concentracion) @Html.DisplayFor(model => model.cUMConcentracion.UMConcentracion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Existencia)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Existencia)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaRecepcion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FechaRecepcion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaCaducidad)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FechaCaducidad)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.cTipoSal.TipoSal)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cTipoSal.TipoSal)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.cProveedor.Proveedor)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cProveedor.Proveedor)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LoteProveedor)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LoteProveedor)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Referencia)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Referencia)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.cUbicacion.Ubicacion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cUbicacion.Ubicacion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.cConservacion.Conservacion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cConservacion.Conservacion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.cDisolvente.Disolvente)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cDisolvente.Disolvente)
+            </dd>
+        </dl>
+    </div>
+    
+</div>
+<style type="text/css">
+/* Popover styling */
+
+a {
+  text-decoration: none;
+}
+
+.popover__title {
+
+}
+
+.popover__wrapper {
+    display: inline-block;
+}
+
+.popover__content_rigth {
+    opacity: 0;
+    right: calc(5% - 10px);
+    visibility: hidden;
+    position: absolute;
+    transform: translate(0,10px);
+    width: auto;
+    background-color:white;
+}
+
+.popover__content_rigth:before {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    right: calc(5% - 10px);
+    top: -8px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #BFBFBF transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+
+}
+.popover__wrapper:hover .popover__content_rigth {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0,2px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+.popover__message {
+  text-align: center;
+}
+</style>

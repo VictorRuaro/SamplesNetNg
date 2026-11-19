@@ -1,0 +1,57 @@
+﻿@using Almacen.Web.ViewModels
+@using Almacen.Web.ViewModels.Catalogos
+
+@model MaterialFiltrosVM
+<div class="panel panel-transparent">
+    <div class="">
+
+        <div class="row">
+            <div class="col-lg-8">
+                @Html.HiddenFor(model => model.idCategoria)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                        @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.idGrado, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.idGrado, null, new { @class = "form-control input-sm" })
+                        @Html.ValidationMessageFor(model => model.idGrado, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NumeroParte, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.NumeroParte, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                        @Html.ValidationMessageFor(model => model.NumeroParte, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group mt-lg">
+                    <div class="col-md-offset-4 col-md-8">
+                        <button id="btnModalBuscarMaterial" class="pull-left btn btn-default shadow-z1" type="submit"
+                                data-actionurl="@Url.Action("ListadoMaterialesSelect", "SolicitudMateriales",null)">
+                            Buscar
+                            <i class="fa fa-search ml"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            
+
+            </div>
+    </div>
+</div>
+

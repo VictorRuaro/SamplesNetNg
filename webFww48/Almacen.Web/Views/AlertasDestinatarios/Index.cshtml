@@ -1,0 +1,16 @@
+﻿@using Almacen.Web.ViewModels
+@using Almacen.Web.ViewModels.Catalogos
+
+@model BaseListaCatalogosVM<AlertaDestinatarioVM>
+
+<h3>Listado de Destinatarios de Alertas</h3>
+
+@using (Html.BeginForm())
+{
+
+    Html.RenderPartial("_buscadorCatalogos");
+
+    Html.RenderPartial("_ListaDestinatarios", Model.Paginacion.Lista);
+
+    Html.RenderPartial("_paginador", Model.Paginador);
+}

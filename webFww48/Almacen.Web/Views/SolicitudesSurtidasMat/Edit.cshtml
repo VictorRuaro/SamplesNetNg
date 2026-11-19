@@ -1,0 +1,316 @@
+﻿
+@model Almacen.Web.ViewModels.SolicitudVM
+<h3>Surtir</h3>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Descripcion)
+
+            </div>
+        </div>
+
+        <div class="clearfix mb-lg"></div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.Materiales, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading hidden-xs hidden-sm">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.Model.Material, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-1">
+                            @Html.LabelFor(model => model.Model.CantidadSolicitada, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-1">
+                            @Html.LabelFor(model => model.Model.CantidadAutorizada, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-1">
+                            @Html.LabelFor(model => model.Model.CantidadSurtida, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-1">
+                            @Html.LabelFor(model => model.Model.CantidadDevolver, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.Model.CantidadDevuelta, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        @*<div class="col-md-2">
+                            @Html.LabelFor(model => model.Model.UnidadMedida, htmlAttributes: new { @class = "control-label" })
+                        </div>*@
+                        <div class="col-md-2"></div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <hr class="hidden-xs hidden-sm" />
+                    <div class="panel-body">
+                        @foreach (var item in Model.Materiales)
+                        {
+                            @Html.EditorFor(model => item)
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="clearfix mb-lg"></div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescripcionUso, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.DescripcionUso)
+            </div>
+        </div>
+        <div class="clearfix mb-lg"></div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccionCorrectiva, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AccionCorrectiva, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        @*<div class="form-group">
+            <label class="control-label col-md-2">Firma del solicitante</label>
+            <div class="col-md-10">
+                <div class="mb-compose-button">
+
+                    <button type="button" class="btn btn-green" data-toggle="modal" data-target="#myModalFirma">
+                        <em class="fa fa-plus"></em>
+                        Firma
+                    </button>
+                </div>
+
+            </div>
+        </div>*@
+
+        
+        <div class="clearfix mb-lg"></div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-12 col-md-offset-2">
+                <input type="submit" value="Generar salida de Almacen" class="btn btn-primary">
+            </div>
+        </div>
+
+
+    </div>
+}
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+</div>
+
+@section BodyArea {
+    <div id="myModalLote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 id="myModalLabel" class="modal-title">Sustancias</h4>
+                </div>
+                <div class="modal-body">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            ID
+                        </dt>
+
+                        <dd>
+                            A001CL
+                        </dd>
+
+                        <dt>
+                            Nombre
+                        </dt>
+
+                        <dd>
+                            Ácido acético (99.7%)
+                        </dd>
+
+                        <dt>
+                            Grado
+                        </dt>
+                        <dd>
+                            HPLC
+                        </dd>
+
+                    </dl>
+
+                    <div class="panel panel-default">
+                        <div class="table-responsive h6">
+                            <table class="table table-hover table-condensed" id="table">
+                                <thead class="">
+                                    <tr>
+                                        <th class="">No. de Lote Interno</th>
+                                        <th class="">No. de Parte</th>
+                                        <th class="">No. de Catalogo</th>
+                                        <th class="">Marca</th>
+                                        <th class="">Presentación</th>
+                                        <th class="">Unidades Recibidas</th>
+                                        <th class="">Fecha Recepción</th>
+                                        <th class="">Fecha Caducidad</th>
+                                        <th class="">Condiciones de Almacenaje</th>
+                                        <th class="">Lote del Proveedor</th>
+                                        <th class="">Proveedor</th>
+                                        <th class=""></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td class="">
+                                            <div>
+                                                001
+                                            </div>
+                                        </td>
+                                        <td class=""></td>
+                                        <td class="">
+                                            19-9515-03
+                                        </td>
+                                        <td class="">
+                                            JT Baker
+                                        </td>
+                                        <td class="">
+                                            2.5 L
+                                        </td>
+                                        <td class="">
+                                            1
+                                        </td>
+                                        <td class="">
+                                            04/08/2018
+                                        </td>
+                                        <td class="">
+                                            17/08/2017
+                                        </td>
+                                        <td class="">
+                                            Lugar seco
+                                        </td>
+                                        <td class="">
+                                            0000013917
+                                        </td>
+                                        <td class=""></td>
+                                        <td class="td-actions text-right">
+
+                                            <a title="" class="btn  btn-link" href="#" data-original-title="Seleccionar" data-dismiss="modal">
+                                                Seleccionar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="">
+                                            <div>
+                                                002
+                                            </div>
+                                        </td>
+                                        <td class=""></td>
+                                        <td class="">
+                                            19-9515-03
+                                        </td>
+                                        <td class="">
+                                            JT Baker
+                                        </td>
+                                        <td class="">
+                                            2.5 L
+                                        </td>
+                                        <td class="">
+                                            3
+                                        </td>
+                                        <td class="">
+                                            04/12/2013
+                                        </td>
+                                        <td class="">
+                                            17/08/2017
+                                        </td>
+                                        <td class="">
+                                            Lugar seco
+                                        </td>
+                                        <td class="">
+                                            0000059109
+                                        </td>
+                                        <td class=""></td>
+                                        <td class="td-actions text-right">
+
+                                            <a title="" class="btn  btn-link" href="#" data-original-title="Seleccionar" data-dismiss="modal">
+                                                Seleccionar
+                                            </a>
+                                        </td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModalFirma" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 id="myModalLabel" class="modal-title">Firma de Usuario</h4>
+                </div>
+                <div class="modal-body">
+
+                    <p class="text-center pv">Use una cuenta para Firmar.</p>
+                    <div class="clearfix"></div>
+                    <div class="form-group mb-boxes">
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="UserName">Usuario</label>
+                            <div class="col-md-8">
+                                <input class="form-control" data-val="true" data-val-required="The Usuario field is required." id="UserName" name="UserName" type="text" value="">
+
+                                <span class="field-validation-valid text-danger" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="col-md-4 control-label" for="Password">Contraseña</label>
+                            <div class="col-md-8">
+
+                                <input class="form-control" data-val="true" data-val-required="The Contraseña field is required." id="Password" name="Password" type="password">
+
+                                <span class="field-validation-valid text-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-md-offset-4">
+                            <input type="submit" value="Firmar" class="btn btn-primary">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

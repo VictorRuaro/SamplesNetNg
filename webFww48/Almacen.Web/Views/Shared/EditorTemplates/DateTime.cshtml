@@ -1,0 +1,38 @@
+﻿@model DateTime?
+@*<div class="input-group date datetimepicker">
+    @Html.TextBox("", (Model.HasValue ? Model.Value.ToShortDateString() : string.Empty), new { @class = "form-control datetimepicker" })
+    <span class="input-group-addon">
+        <span class="icon-calendar"></span>
+    </span>
+</div>*@
+
+<div class="input-group m-b date datetimepicker">
+    <div class="input-group-addon">
+        <span class="bg-white cursor-pointer shadow-z2">
+            <em class="fa fa-fw fa-calendar text-pink"></em>
+        </span>
+    </div>
+    @Html.TextBox("", (Model.HasValue ? Model.Value.ToShortDateString() : string.Empty), new { @class = "form-control" })
+</div>
+
+@*<script type="text/javascript">
+    $(function () {
+                $(".datetimepicker").datetimepicker();
+            });
+</script>*@ 
+<script type="text/javascript">
+    $(function () {
+
+        var locale = window.navigator.userLanguage || window.navigator.language;
+        var mo = moment.localeData(locale);
+
+                $('.datetimepicker').datetimepicker({
+                    locale: locale,
+                    format:'L'
+                });
+            });
+</script>
+
+<style>
+    .cursor-pointer{cursor: pointer;}
+</style>

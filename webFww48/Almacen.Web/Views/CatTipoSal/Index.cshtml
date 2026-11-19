@@ -1,0 +1,16 @@
+﻿@using Almacen.Web.ViewModels
+@using Almacen.Web.ViewModels.Catalogos
+
+@model BaseListaCatalogosVM<TipoSalVM>
+
+<h3>@Html.DisplayFor(model => model.Titulo)</h3>
+
+@using (Html.BeginForm())
+{
+
+    Html.RenderPartial("_buscadorCatalogos");
+
+    Html.RenderPartial("_ListaTipoSal", Model.Paginacion.Lista);
+
+    Html.RenderPartial("_paginador", Model.Paginador);
+}

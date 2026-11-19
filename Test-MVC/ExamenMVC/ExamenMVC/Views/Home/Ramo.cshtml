@@ -1,0 +1,126 @@
+﻿@model ExamenMVC.Models.ModelRamos
+@{
+    ViewBag.Title = "Ramo";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h1>@ViewBag.Title</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-7 col-xl-7 col-lg-7">
+            @using (Html.BeginForm("Ramo", "Home", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+            {
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.id, "Clave", new { @class = "control-label col-sm-1" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.id, new { @class = "form-control", @placeholder = "Clave", @style = "margin-left: 30px;", @onkeyup = "searchValue();" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Descripcion, "Descripcion", new { @class = "control-label col-sm-1" })
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control", @placeholder = "Descripcion", @style = "margin-left: 30px;", @onkeyup = "searchText();" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-10">
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+                    </div>
+                </div>
+                <div style="margin-bottom: 30px"></div>
+                <div>
+                    <table class="table" id="searchTable">
+                        <tr>
+                            <th>
+                                @Html.DisplayName("Clave")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Nombre")
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model.Lista)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.id, "SelectRamo", new { id = item.id })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+
+                if (ViewBag.Msg != null)
+                {
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong> @ViewBag.Msg
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+@section scripts {
+
+    <script type="text/javascript">
+
+        function searchValue() {
+            // variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("id");
+
+            filter = input.value.toUpperCase();
+            table = document.getElementById("searchTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function searchText() {
+            // variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("Descripcion");
+
+            if (input.value.length > 2) {
+
+                filter = input.value.toUpperCase();
+                table = document.getElementById("searchTable");
+                tr = table.getElementsByTagName("tr");
+
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[1];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        }
+
+    </script>
+
+}
+

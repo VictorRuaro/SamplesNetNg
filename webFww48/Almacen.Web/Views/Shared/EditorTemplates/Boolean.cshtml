@@ -1,0 +1,24 @@
+﻿
+@model Boolean?
+<div class="checkbox c-checkbox">
+    <label>
+        @if(Model.HasValue)
+        {
+            <input id="@Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty)"
+                   name="@Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)"
+                   type="checkbox"
+                   value="true" @(Model.Value ? "checked" : "")>
+        }
+        else
+        {
+
+
+        <input id="@Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(string.Empty)"
+               name="@Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)"
+               type="checkbox"
+               value="true">
+        }
+        <span class="fa fa-check bg-white"></span>
+        <input name="@Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)" type="hidden" value="false">
+    </label>
+</div>

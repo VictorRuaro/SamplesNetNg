@@ -1,0 +1,334 @@
+@using  Almacen.Web.Aplicacion
+
+<!-- START Sidebar (left)-->
+<div class="aside-inner">
+    <nav class="sidebar">
+        <!-- START sidebar nav-->
+        <ul class="nav">
+            <!-- END user info-->
+            <!-- Iterates over all sidebar items-->
+            <li class="nav-heading">
+                <span>Navegacion</span>
+            </li>
+            @if (User.IsInRole(EnumRol.Administrador))
+            {
+                <li class="@Html.isActive(controller: "Usuarios")">
+                    <a href="@Url.Action("Index", "Usuarios")" title="Usuarios" data-tool="link-load">
+                        <em class="icon-users"></em>
+                        <span>Usuarios</span>
+                    </a>
+                    <ul class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Usuarios</li>
+                    </ul>
+                </li>
+                <li class="@Html.isActive(controller: "Roles")">
+                    <a href="@Url.Action("Index", "Roles")" title="Roles" data-tool="link-load">
+                        <em class="icon-badge"></em>
+                        <span>Roles</span>
+                    </a>
+                    <ul class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Roles</li>
+                        </ul>
+                </li>
+            }
+            @if (User.IsInRole(EnumRol.Administrador)
+        || User.IsInRole(EnumRol.Administrador_Informacion)
+        )
+            {
+                <li class="@Html.isActive(controller: "Catalogos")">
+                    <a href="#catalogos" title="Catálogos" data-toggle="collapse">
+                        <em class="icon-grid"></em>
+                        <span>Catálogos</span>
+                    </a>
+                    <ul id="catalogos" class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Catálogos</li>
+                        @*<li class="@Html.isActive(controller: "Categoria")">
+                            <a href="@Url.Action("Index", "Categoria")" title="Sustancias">
+                                <span>Categorias</span>
+                            </a>
+                        </li>*@
+                        <li class="@Html.isActive("Catalogos", "Sustancias")">
+                            <a href="@Url.Action("Sustancias", "Catalogos")" title="Sustancias" data-tool="link-load">
+                                @*<em class="icon-chemistry"></em>*@
+                                <span>Sustancias</span>
+                            </a>
+                        </li>
+                        <li class="@Html.isActive("Catalogos", "Materiales")">
+                            <a href="@Url.Action("Materiales", "Catalogos")" title="Materiales" data-tool="link-load">
+                                @*<em class="icon-drawer"></em>*@
+                                <span>Materiales</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if (User.IsInRole(EnumRol.Administrador)
+        || User.IsInRole(EnumRol.Administrador_Almacen)
+        || User.IsInRole(EnumRol.Administrador_Informacion)
+        )
+            {
+                <li class="@Html.isActive(controller: "AdministrarAlmacen")">
+                    <a href="#almacen" title="Almacen" data-toggle="collapse">
+                        <em class="icon-layers"></em>
+                        <span>Administrar Almacen</span>
+                    </a>
+                    <ul id="almacen" class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Administrar Almacen</li>
+                        <li class="@Html.isActive(controller: "AlmacenSustancias")">
+                            <a href="@Url.Action("Index", "AlmacenSustancias")" title="Almacen de Sustancias" data-tool="link-load">
+                                @*<em class="icon-chemistry"></em>*@
+                                <span>Sustancias</span>
+                            </a>
+                        </li>
+                        <li class="@Html.isActive(controller: "AlmacenMateriales")">
+                            <a href="@Url.Action("Index", "AlmacenMateriales")" title="Almacen de Materiales" data-tool="link-load">
+                                @*<em class="icon-drawer"></em>*@
+                                <span>Materiales</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            }
+@if (User.IsInRole(EnumRol.Administrador)
+        || User.IsInRole(EnumRol.Administrador_Informacion)
+        || User.IsInRole(EnumRol.Solicitante_Material)
+        || User.IsInRole(EnumRol.Solicitante_Sustancias)
+        )
+{
+            <li class="@Html.isActive(controller: "Solicitudes")">
+                <a href="#solicitudes" title="Solicitudes" data-toggle="collapse">
+                    <em class="icon-docs"></em>
+                    <span>Solicitudes</span>
+                </a>
+
+                <ul id="solicitudes" class="nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Solicitudes</li>
+                    @if (User.IsInRole(EnumRol.Solicitante_Sustancias)
+            || User.IsInRole(EnumRol.Administrador)
+            || User.IsInRole(EnumRol.Administrador_Informacion))
+                    {
+                    <li class="@Html.isActive(controller: "SolicitudSustancias")">
+                        <a href="@Url.Action("Index", "SolicitudSustancias")" title="Solicitud de Sustancias" data-tool="link-load">
+                            @*<em class="icon-chemistry"></em>*@
+                            <span>Sustancias</span>
+                        </a>
+                    </li>
+                    }
+                    @if (User.IsInRole(EnumRol.Solicitante_Material)
+            || User.IsInRole(EnumRol.Administrador)
+            || User.IsInRole(EnumRol.Administrador_Informacion))
+                    {
+                    <li class="@Html.isActive(controller: "SolicitudMateriales")">
+                        <a href="@Url.Action("Index", "SolicitudMateriales")" title="Solicitud de Materiales" data-tool="link-load">
+                            @*<em class="icon-drawer"></em>*@
+                            <span>Materiales</span>
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </li>
+}
+
+
+        @if (User.IsInRole(EnumRol.Administrador)
+        || User.IsInRole(EnumRol.Administrador_Informacion)
+        || User.IsInRole(EnumRol.Autorizador_Material)
+        || User.IsInRole(EnumRol.Autorizador_Sustancias)
+        )
+        {
+
+            <li class="@Html.isActive(controller: "SolicitudesAutorizar")">
+                <a href="#solicitudesaut" title="Autorizar Solicitudes" data-toggle="collapse">
+                    <em class="icon-note"></em>
+                    <span>Autorizar Solicitudes</span>
+                </a>
+                <ul id="solicitudesaut" class="nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Autorizar Solicitudes</li>
+                   @if (User.IsInRole(EnumRol.Autorizador_Sustancias)
+            || User.IsInRole(EnumRol.Administrador)
+            || User.IsInRole(EnumRol.Administrador_Informacion))
+                   {
+                        <li class="@Html.isActive(controller: "SolicitudesAutorizarSus")">
+                            <a href="@Url.Action("Index", "SolicitudesAutorizarSus")" title="Autorizar Solicitud de Sustancias" data-tool="link-load">
+                                @*<em class="icon-chemistry"></em>*@
+                                <span>Sustancias</span>
+                            </a>
+                        </li>
+                   }
+                    @if (User.IsInRole(EnumRol.Autorizador_Material)
+           || User.IsInRole(EnumRol.Administrador)
+           || User.IsInRole(EnumRol.Administrador_Informacion))
+                    {
+                        <li class="@Html.isActive(controller: "SolicitudesAutorizarMat")">
+                            <a href="@Url.Action("Index", "SolicitudesAutorizarMat")" title="Autorizar Solicitud de Materiales" data-tool="link-load">
+                                @*<em class="icon-drawer"></em>*@
+                                <span>Materiales</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </li>
+
+        }
+
+
+            @if (User.IsInRole(EnumRol.Administrador)
+        || User.IsInRole(EnumRol.Administrador_Almacen)
+        || User.IsInRole(EnumRol.Administrador_Informacion)
+        )
+            {
+
+                <li class="@Html.isActive(controller: "SolicitudesPendientes")">
+                    <a href="#solicitudespend" title="Requisiciones por Surtir" data-toggle="collapse">
+                        <em class="icon-basket-loaded"></em>
+                        <span>Requisiciones por Surtir</span>
+                    </a>
+                    <ul id="solicitudespend" class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Requisiciones por Surtir</li>
+                        <li class="@Html.isActive(controller: "SolicitudesPendientesSus")">
+                            <a href="@Url.Action("Index", "SolicitudesPendientesSus")" title="Solicitud de Sustancias por Surtir" data-tool="link-load">
+                                @*<em class="icon-chemistry"></em>*@
+                                <span>Sustancias</span>
+                            </a>
+                        </li>
+                        <li class="@Html.isActive(controller: "SolicitudesPendientesMat")">
+                            <a href="@Url.Action("Index", "SolicitudesPendientesMat")" title="Solicitud de Materiales por Surtir" data-tool="link-load">
+                                @*<em class="icon-drawer"></em>*@
+                                <span>Materiales</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            }
+
+            @if (User.IsInRole(EnumRol.Administrador)
+        || User.IsInRole(EnumRol.Administrador_Almacen)
+        || User.IsInRole(EnumRol.Administrador_Informacion)
+        )
+            {
+
+                <li class="@Html.isActive(controller: "SolicitudesSurtidas")">
+                    <a href="#solicitudessurtidas" title="Requisiciones Surtidas" data-toggle="collapse">
+                        <em class="icon-feed"></em>
+                        <span>Requisiciones Surtidas</span>
+                    </a>
+                    <ul id="solicitudessurtidas" class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Requisiciones Surtidas</li>
+                        <li class="@Html.isActive(controller: "SolicitudesSurtidasSus")">
+                            <a href="@Url.Action("Index", "SolicitudesSurtidasSus")" title="Solicitud de Sustancias Surtidas" data-tool="link-load">
+                                @*<em class="icon-chemistry"></em>*@
+                                <span>Sustancias</span>
+                            </a>
+                        </li>
+                        <li class="@Html.isActive(controller: "SolicitudesSurtidasMat")">
+                            <a href="@Url.Action("Index", "SolicitudesSurtidasMat")" title="Solicitud de Materiales Surtidas" data-tool="link-load">
+                                @*<em class="icon-drawer"></em>*@
+                                <span>Materiales</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            }
+
+        @if (User.IsInRole(EnumRol.Administrador)
+                || User.IsInRole(EnumRol.Administrador_Almacen)
+                || User.IsInRole(EnumRol.Administrador_Informacion)
+                )
+        {
+            <li class="@Html.isActive(controller: "Devoluciones")">
+
+                <a href="#devoluciones" title="Devoluciones" data-toggle="collapse">
+                    @*<div class="label label-info pull-right">3</div>*@
+                    <em class="icon-refresh"></em>
+                    <span>Devoluciones</span>
+                </a>
+                <ul id="devoluciones" class="nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Devoluciones</li>
+                    <li class="@Html.isActive(controller: "DevolucionSustancias")">
+                        <a href="@Url.Action("Index", "DevolucionSustancias")" title="Devolución Sustancias" data-tool="link-load">
+                            <span>Sustancias</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive(controller: "DevolucionMateriales")">
+                        <a href="@Url.Action("Index", "DevolucionMateriales")" title="Devolución Materiales" data-tool="link-load">
+                            <span>Materiales</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+        }
+        @if (User.IsInRole(EnumRol.Administrador) || User.IsInRole(EnumRol.Administrador_Informacion))
+        {
+            <li class="@Html.isActive(controller: "Reportes")">
+                <a href="#reportes" title="Reportes" data-toggle="collapse">
+                    @*<div class="label label-info pull-right">3</div>*@
+                    <em class="icon-list"></em>
+                    <span>Reportes</span>
+                </a>
+                <ul id="reportes" class="nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Reportes</li>
+                    <li class="@Html.isActive("Reportes", "Sustancias")">
+                        <a href="@Url.Action("Sustancias", "Reportes")" title="Reportes Sustancias" data-tool="link-load">
+                            <span>Sustancias</span>
+                        </a>
+                    </li>
+                    <li class="@Html.isActive("Reportes", "Materiales")">
+                        <a href="@Url.Action("Materiales", "Reportes")" title="Reportes Materiales" data-tool="link-load">
+                            <span>Materiales</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        }
+        @if (User.IsInRole(EnumRol.Administrador))
+        {
+            <li class="@Html.isActive(controller: "Alertas")">
+                <a href="#alertas" title="Alertas" data-toggle="collapse">
+                    @*<div class="label label-info pull-right">3</div>*@
+                    <em class="icon-settings"></em>
+                    <span>Administrar Alertas</span>
+                </a>
+                <ul id="alertas" class="nav sidebar-subnav collapse">
+                    <li class="sidebar-subnav-header">Alertas</li>
+                    <li class="@Html.isActive(controller: "Alertas")">
+                        <a href="@Url.Action("Index", "Alertas")" title="Alertas" data-tool="link-load">
+                            <span>Alertas <em class="icon-bell"></em></span>
+                            
+                        </a>
+                    </li>
+                    <li class="@Html.isActive(controller: "AlertasDestinatarios")">
+                        <a href="@Url.Action("Index", "AlertasDestinatarios")" title="Destinatarios" data-tool="link-load">
+                            <span>Destinatarios <em class="icon-envelope"></em></span>
+                            
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+        }
+
+            @*<li class="@Html.isActive(controller: "SingleView")">
+                <a href="@Url.Action("Index", "SingleView")" title="SingleView">
+                    <em class="icon-speedometer"></em>
+                    <span>SingleView</span>
+                </a>
+            </li>
+            <li class="@Html.isActive(controller: "Movies")">
+                <a href="@Url.Action("Index", "Movies")" title="Movie App">
+                    <em class="icon-trophy"></em>
+                    <span >Movie App</span>
+                </a>
+            </li>*@
+
+        </ul>
+        <!-- END sidebar nav-->
+    </nav>
+</div>
+<!-- END Sidebar (left)-->

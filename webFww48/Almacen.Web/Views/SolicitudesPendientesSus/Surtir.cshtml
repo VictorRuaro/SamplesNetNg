@@ -1,0 +1,764 @@
+﻿@using Almacen.Web.ViewModels
+@using Almacen.Web.Aplicacion
+
+@model SolicitudVM
+<h3>Surtir Sustancias</h3>
+<link href="~/Content/modal.min.css" rel="stylesheet" />
+
+    <div class="form-horizontal">
+        
+        <div class="panel panel-default">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idSolicitud)
+    @Html.HiddenFor(model => model.Folio)
+    @Html.HiddenFor(model => model.UG)
+    @Html.HiddenFor(model => model.FG)
+    @Html.HiddenFor(model => model.idCategoria)
+    @Html.HiddenFor(model => model.idSolicitante)
+    @Html.HiddenFor(model => model.idAutorizador)
+    @Html.HiddenFor(model => model.idEstatusSolicitud)
+    @Html.HiddenFor(model => model.cEstatusSolicitud.idEstatusSolicitud)
+    @Html.HiddenFor(model => model.cEstatusSolicitud.NumEstatus)
+    @Html.HiddenFor(model => model.cEstatusSolicitud.EstatusSolicitud)
+
+            <div class="panel-heading">
+                <div class="media-box bb">
+                    <div class="pull-left">
+                        <span class="fa-stack">
+                            <em class="fa fa-circle fa-stack-2x text-gray"></em>
+                            <em class="fa fa-file-text fa-stack-1x fa-inverse"></em>
+                        </span>
+                    </div>
+                    <div class="media-box-body clearfix">
+
+                        <label class="pull-right ml text-purple">Estatus: <span class="label label-warning text-sm">@Model.cEstatusSolicitud.EstatusSolicitud</span></label>
+
+                        <div class="media-box-heading">
+                            <label class="text-muted">
+                                Solicitud
+
+                            </label>
+                        </div>
+                        <div class="m0">
+                            
+                            <span class="text-bold text-purple">Folio: @Model.Folio</span>
+                            <span class="pull-right text-muted">Fecha de Elaboración: @Model.FG.ToShortDateString()</span>
+                        </div>
+                        <div class="clearfix">
+                            <span class="pull-right text-bold">Fecha de Envio: @Model.FechaEnvio</span>
+                            <span class="text-bold">Solicitante: @Html.Action("DatosUsuario", "DatosAplicacion", new { IdUsuario = Model.UG })</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="bb p-sm">
+                            @Html.HiddenFor(model => model.Descripcion)
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="">
+                        @Html.LabelFor(model => model.Materiales, "Sustancias", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                        <div class="col-md-10">
+                            <div class="clearfix mb">
+                                @*<div class="btn-group">
+                                    <button type="button" class="btn btn-labeled btn-oval btn-info" data-toggle="modal" data-target="#modalPoll">
+                                        <span class="btn-label btn-circle">
+                                            <i class="fa fa-plus"></i>
+                                        </span>
+                                        Agregar material
+                                    </button>
+
+                                </div>*@
+                            </div>
+                            <div id="ListaSolicitud" class="">
+                                @if (Model.Materiales != null)
+                                {
+                                    <div class="panel panel-default">
+                                        <div class="table-responsive">
+
+                                            <table id="tablaListado" class="table table-hover table-condensed ">
+                                                <thead class="">
+                                                    <tr>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.Descripcion)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.idPresentacion)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.CantidadSolicitada)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.CantidadAutorizada)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.CantidadSurtida)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.CantidadDevolver)
+                                                        </th>
+                                                        <th>
+
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody class="h6">
+                                                    @{
+
+
+                                                        for (int i = 0; i < Model.Materiales.Count(); i++)
+                                                        {
+                                                            Model.Materiales[i].index = i;
+                                                            @Html.EditorFor(modelItem => Model.Materiales[i])
+
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                                            
+                                                        }
+                                                        else
+                                                        {
+                                    <div class="well bg-gray-lighter"><i class="fa fa-warning mr text-warning"></i><span class="text-purple">No se han agregado materiales</span></div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DescripcionUso, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="bb p-sm">
+                            @Html.HiddenFor(model => model.DescripcionUso)
+                            @Html.Raw(Model.DescripcionUso ?? "&nbsp;")
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix mb-lg"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirmaSolicitante, htmlAttributes: new { @class = "control-label col-md-2" })
+                    
+                    <div class="col-md-10">
+                        <div class="input-group m-b">
+                            <div class="input-group-btn">
+                                <button id="btnFirmarSolicitud" type="button" class="btn btn-green" data-toggle="modal" data-target="#myModalFirma">
+                                    <em class="fa fa-plus"></em>
+                                    Firma
+                                </button>
+                            </div>
+                            <div class="list-group-item">
+                                <em class="fa fa-user"></em>
+                                <span id="msgFirmaSolicitante"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-valid-hide">
+                            @Html.EditorFor(model => model.FirmaSolicitante)
+                        </div>
+                        <div id="msgErrorFirma">
+                            @Html.ValidationMessageFor(model => model.FirmaSolicitante, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+@if (Model.ValidaFlujo.visibleBtnGenerarSalida)
+{
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input name="btnAccion" class="btn btn-primary" type="submit" value="Generar salida de Almacen">
+                        
+                    </div>
+                </div>
+}
+            </div>
+}
+            
+        </div>
+    </div>
+
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+</div>
+
+@section BodyArea {
+
+
+    <!-- Modal: modalPoll -->
+    <div class="modal fade right" id="myModalLote" tabindex="-1" role="dialog" aria-labelledby="modalPollLabel" aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-lg modal-right modal-notify modal-info" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <label id="modalPollLabel" class="modal-title h4 text-white">Almacen de Existencias</label>
+
+                    <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">×</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+
+                    <div id="datosItem" class="bb">
+
+                    </div>
+                    @*<div class="col-md-offset-4 col-md-8">
+                        <button id="btnModalExistencias" class="pull-left btn btn-default shadow-z1" type="submit"
+                                data-actionurl="@Url.Action("ListadoExistenciasSelect", "SolicitudSustancias",null)">
+                            Mostrar existencias
+                            <i class="fa fa-search ml"></i>
+                        </button>
+
+                    </div>*@
+                    <div class="clearfix m"></div>
+                    <div class="table-responsive">
+                        <form id="formlotes">
+                            <div id="resultadoExistencias" class="ibox-content">
+                                <div class="sk-spinner sk-spinner-fading-circle">
+                                    <div class="sk-circle1 sk-circle"></div>
+                                    <div class="sk-circle2 sk-circle"></div>
+                                    <div class="sk-circle3 sk-circle"></div>
+                                    <div class="sk-circle4 sk-circle"></div>
+                                    <div class="sk-circle5 sk-circle"></div>
+                                    <div class="sk-circle6 sk-circle"></div>
+                                    <div class="sk-circle7 sk-circle"></div>
+                                    <div class="sk-circle8 sk-circle"></div>
+                                    <div class="sk-circle9 sk-circle"></div>
+                                    <div class="sk-circle10 sk-circle"></div>
+                                    <div class="sk-circle11 sk-circle"></div>
+                                    <div class="sk-circle12 sk-circle"></div>
+                                    <div class="sk-circle13 sk-circle"></div>
+                                </div>
+                                <div class="well bg-gray-lighter"><i class="fa fa-info mr text-info"></i><strong class="text-purple">Actualizando existencias...</strong></div>
+                                @*<div class="well bg-gray-lighter"><i class="fa fa-info mr text-info"></i><strong class="text-purple">De click en el boton 'Mostrar existencias'</strong></div>*@
+                            </div>
+                        </form>
+                    </div>
+  
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer">
+                    <div class="text-left">
+                        <button type="button" id="btnModalSelecionaExistencias" class="btn btn-labeled btn-primary shadow-z1"
+                                data-actionurl="@Url.Action("ListaSeleccionados", "SolicitudesPendientesSus",null)"
+                                data-dismiss="modal">
+                            <span class="btn-label">
+                                <i class="fa fa-check"></i>
+                            </span>Listo
+                        </button>
+                        <button class="btn btn-default shadow-z1" data-dismiss="modal">Cancelar</button>
+                        <span  class="bg-gray-light">
+                        <span id="msgModal" class="text-bold"></span>
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModalFirma" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade" style="display: none;">
+        <div class="modal-dialog modal-notify modal-green">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                        <span aria-hidden="true" class="text-white">×</span>
+                    </button>
+                    <h4 id="myModalLabel" class="modal-title text-white">Firma de Usuario</h4>
+                </div>
+                <div class="modal-body">
+
+                    <p class="text-center text-alpha-inverse pv">Use una cuenta para Firmar.</p>
+                    <div class="clearfix"></div>
+                    <div class="form-group mb-boxes">
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="UserName">Usuario</label>
+                            <div class="col-md-8">
+                                <input class="form-control" data-val="true" data-val-required="El usuario es requerido." 
+                                       id="UserName" name="UserName" type="text" value="">
+
+                                <span class="field-validation-valid text-danger" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="col-md-4 control-label" for="Password">Contraseña</label>
+                            <div class="col-md-8">
+
+                                <input class="form-control" data-val="true" data-val-required="La Contraseña es requerida." 
+                                       id="Password" name="Password" type="password">
+
+                                <span class="field-validation-valid text-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                            <input id="btnModalFirma" type="button" value="Firmar" class="btn btn-green"
+                                   data-dismiss="modal"
+                                   data-actionurl="@Url.Action("FirmaSolicitud", "SolicitudesPendientesSus", null)">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Styles {
+    @*@Styles.Render("~/bundles/datatablesCss")*@
+}
+@section Scripts {
+    @*@Scripts.Render("~/bundles/datatables")*@
+    @Scripts.Render("~/Scripts/app/requiredIfValidator.js")
+@Scripts.Render("~/Scripts/app/valuecomparisonValidator.js")
+
+
+    <script type="text/javascript">
+
+
+
+        $().ready(function () {
+
+            // code here
+
+            //Selecciona Lote
+            $(".btnSeleccionaLote").click(
+                    function () {
+                        var msg=$("#msgModal");
+                        msgModalInit(msg);
+
+                        var url = $(this).attr('data-actionurl');
+                        var id = $(this).attr('data-id');
+
+                        var urlSustancia='@Url.Action("Sustancia", "DatosAplicacion")';
+
+                        $('div[id="resultadoExistencias"]').toggleClass('sk-loading');
+                        //debugger
+                        $.get(urlSustancia, { idSustanciaMaterial: id })
+                                .success(
+                                    function (result) {
+
+                                        if (result !== null) {
+
+                                            $('div[id="datosItem"]').html(result);
+
+                                        }
+                                        else {
+
+                                            $("#lblInformacionModal").html("");
+                                        }
+
+                                    }
+                                )
+                            .error(function (jqXHR, textStatus, errorThrown) {
+                                $('div[id="resultadoExistencias"]').toggleClass('sk-loading');
+                                //debugger;
+                            }).complete( function () {
+
+                                if (url.length > 0) {
+
+                                    $.get(url, { idSustanciaMaterial: id })
+                                        .success(
+                                            function (result) {
+
+                                                if (result !== null) {
+
+                                                    $('div[id="resultadoExistencias"]').html(result);
+
+                                                }
+                                                else {
+
+                                                    $("#lblInformacionModal").html("");
+                                                }
+                                            }
+                                        )
+                                    .error(function (jqXHR, textStatus, errorThrown) {
+                                        $('div[id="resultadoExistencias"]').toggleClass('sk-loading');
+                                        //debugger;
+                                    }).complete(function (){
+                                        $('div[id="resultadoExistencias"]').toggleClass('sk-loading');
+                                    });
+
+                                }
+
+                    });
+            })
+
+            $("#btnModalSelecionaExistencias").click(
+                function () {
+
+
+                    var selected = [];
+                    $('input[name="Selecciona"').each(function () {
+                        if ($(this).is(":checked")) {
+
+                            var existencia = FindExistencia(this);
+                            selected.push(existencia);
+                        }
+                    });
+
+                    //valida que solo se seleccione un lote del almacen
+                    var msg=$("#msgModal");
+                    msgModalInit(msg);
+
+
+                    if(selected.length==0)
+                    {
+
+                        $(msg).html('Seleccione un Lote');
+                        $(msg).addClass('text-danger');
+                        return false;
+                    }
+                    var form = $('#formlotes');
+                    $(form ).validate();
+                    var result=$(form).valid()
+                    if(result!=true)
+                    {
+                        return false;
+                    }
+                    //if(selected.length>1)
+                    //{
+
+                    //    $(msg).html('Solamente se puede seleccionar un Lote');
+                    //    $(msg).addClass('text-danger');
+                    //    return false;
+                    //}
+
+
+                    var listasustancias = [];
+
+                    var tabla = $("#tablaListado");
+
+
+                    if ($(tabla).length > 0) {
+                        if (listasustancias.length == 0) {
+                            $(tabla).find("tr").each(function (key, value) {
+                                //debugger
+                                var sustanciam = FindModel(value, key)
+                                if (sustanciam != null) {
+                                    listasustancias.push(sustanciam);
+
+                                }
+                            })
+                        }
+                        else {
+                            $.each(listasustancias, function (key, value) {
+                                SetModel(value, key)
+                            });
+
+                        }
+                    }
+
+
+                    var url = $(this).attr('data-actionurl');
+
+                    if (url.length > 0) {
+
+                        $('#loading').toggleClass('sk-loading');
+
+                        $.post(url, { selecionados: selected, sustancias: listasustancias })
+                            .success(
+                                function (result) {
+
+                                    if (result !== null) {
+
+                                        $('div[id="ListaSolicitud"]').html(result);
+
+                                    }
+                                    else {
+
+                                        $("#lblInformacionModal").html("");
+                                    }
+
+                                    var form=$('div[id="ListaSolicitud"]').closest("form");
+
+                                    $(form).data('validator', null);
+                                    $.validator.unobtrusive.parse($(form));
+
+                                    $('#loading').toggleClass('sk-loading');
+
+                                }
+                            )
+                            //.fail(function () {
+                            //    debugger
+                            //    //$("#lblInformacionModal").html("Error al conectarse");
+                            //    $('.ibox-content').toggleClass('sk-loading');
+                            //});
+                        .error(function (jqXHR, textStatus, errorThrown) {
+                            $('#loading').toggleClass('sk-loading');
+                            debugger
+                        });
+
+
+                    } else {
+                        $("#lblInformacionModal").html("Complete todos los campos");
+                    }
+                })
+
+
+            $("#btnModalFirma").click(
+                    function () {
+
+                        var userName=$('input[id="UserName"]');
+
+                        var clv=$('input[id="Password"]');
+
+                        userName.closest('.form-group').removeClass('has-success').removeClass('has-error');
+                        clv.closest('.form-group').removeClass('has-success').removeClass('has-error');
+
+                        // Checa si ingresa un usuario
+                        if(!userName.val()) {
+                            // Add error
+                            userName.closest('.form-group').removeClass('has-success').addClass('has-error');
+                            return false;
+                        }
+
+                        if(!clv.val()) {
+                            // Add error
+                            clv.closest('.form-group').removeClass('has-success').addClass('has-error');
+                            return false;
+                        }
+
+                        userName.closest('.form-group').removeClass('has-success').removeClass('has-error');
+                        clv.closest('.form-group').removeClass('has-success').removeClass('has-error');
+                        $('div[id="msgErrorFirma"]').removeClass('hidden');
+
+                        var usr=$(UserName).val();
+                        var pw=$(clv).val();
+
+                        var url = $(this).attr('data-actionurl');
+
+                        var urlFirmarUsuario='@Url.Action("FirmarUsuario", "DatosAplicacion")';
+
+                        var idSolicitante=$('input[id="idSolicitante"]').val();
+
+
+                        $('#loading').toggleClass('sk-loading');
+
+                        $.post(urlFirmarUsuario, { usuario: usr, password: pw })
+                                .success(
+                                    function (result) {
+
+                                        if (result.id !=null) {
+                                            $('span[id="msgFirmaSolicitante"]').removeClass('text-danger');
+                                            if(idSolicitante===result.id)
+                                            {
+                                                $('input[id="FirmaSolicitante"]').val(result.id);
+                                                $('span[id="msgFirmaSolicitante"]').html(result.NombreCompleto);
+                                                $('div[id="msgErrorFirma"]').addClass('hidden');
+
+                                            }
+                                            else{
+                                                $('input[id="FirmaSolicitante"]').val("");
+                                                $('span[id="msgFirmaSolicitante"]').html("El usuario ingresado no corresponde con el solicitante");
+
+                                                $('span[id="msgFirmaSolicitante"]').addClass('text-danger');
+
+                                            }
+                                        }
+                                        else {
+                                            $('input[id="FirmaSolicitante"]').val("");
+                                            $('span[id="msgFirmaSolicitante"]').html("El usuario ingresado no existe");
+
+                                            $('span[id="msgFirmaSolicitante"]').addClass('text-danger');
+                                        }
+                                        $('#loading').toggleClass('sk-loading');
+                                    }
+                                )
+                            .error(function (jqXHR, textStatus, errorThrown) {
+                                $('#loading').toggleClass('sk-loading');
+                                //debugger;
+                            })
+                    })
+
+    });
+
+        function FindModel(object, row) {
+            //debugger
+            var result = null;
+
+            var material=@Html.Raw(Json.Encode(new SolicitudDetalleVM()));
+
+            var input = $('input[name="Materiales[' + row + '].idSustanciaMaterial"]');
+
+            if ($(input).length > 0) {
+
+
+                material.idSolicitudDetalle= $('input[name="Materiales[' + row + '].idSolicitudDetalle"]').val();
+                material.idSustanciaMaterial= $('input[name="Materiales[' + row + '].idSustanciaMaterial"]').val();
+                material.Descripcion= $('input[name="Materiales[' + row + '].Descripcion"]').val();
+                material.CantidadSolicitada= $('input[name="Materiales[' + row + '].CantidadSolicitada"]').val();
+                material.CantidadAutorizada= $('input[name="Materiales[' + row + '].CantidadAutorizada"]').val();
+                material.CantidadSurtida= $('input[name="Materiales[' + row + '].CantidadSurtida"]').val();
+                material.CantidadDevolver= $('input[name="Materiales[' + row + '].CantidadDevolver"]').val();
+                material.CantidadDevuelta= $('input[name="Materiales[' + row + '].CantidadDevuelta"]').val();
+                material.TotalSurtida= $('input[name="Materiales[' + row + '].TotalSurtida"]').val();//cambio
+
+                material.idSolicitudEstatus = $('input[name="Materiales[' + row + '].idSolicitudEstatus"]').val();
+                material.idSolicitudDetalleEstatus = $('input[name="Materiales[' + row + '].idSolicitudDetalleEstatus"]').val();
+                material.idTipoEnvase= $('input[name="Materiales[' + row + '].idTipoEnvase"]').val();
+                material.idPresentacion= $('input[name="Materiales[' + row + '].idPresentacion"]').val();
+                material.idUnidadMedida= $('input[name="Materiales[' + row + '].idUnidadMedida"]').val();
+                material.idAlmacen = $('input[name="Materiales[' + row + '].idAlmacen"]').val();
+                material.Existencia = $('input[name="Materiales[' + row + '].Existencia"]').val();
+                material.idCategoria= $('input[name="Materiales[' + row + '].idCategoria"]').val();
+
+                material.index= $('input[name="Materiales[' + row + '].index"]').val();
+
+                if(!$.isNumeric(material.CantidadSolicitada))material.CantidadSolicitada=0;
+                if(!$.isNumeric(material.CantidadAutorizada))material.CantidadAutorizada=0;
+                if(!$.isNumeric(material.CantidadSurtida))material.CantidadSurtida=0;
+                if(!$.isNumeric(material.CantidadDevolver))material.CantidadDevolver=0;
+                if(!$.isNumeric(material.CantidadDevuelta))material.CantidadDevuelta=0;
+
+                var listalotes = []; //cambio
+
+                var tabla = $("#tablaListado");
+
+                $(tabla).find("tr").each(function (key, value) {
+                    
+
+
+                    var input1 = $('input[name="Materiales[' + row + '].tSolicitudDetalleLote[' + key + '].idSustanciaMaterial"]');
+
+                        if ($(input1).length > 0) {
+
+                            var almacen = @Html.Raw(Json.Encode(new SolicitudDetalleLoteVM()));
+
+                            almacen.idAlmacen = $('input[name="Materiales[' + row + '].tSolicitudDetalleLote[' + key + '].idAlmacen"]').val();
+                            almacen.idSustanciaMaterial=$('input[name="Materiales[' + row + '].tSolicitudDetalleLote[' + key + '].idSustanciaMaterial"]').val();
+                            almacen.Existencia=$('input[name="Materiales[' + row + '].tSolicitudDetalleLote[' + key + '].Existencia"]').val();
+                            almacen.CantidadSurtida=$('input[name="Materiales[' + row + '].tSolicitudDetalleLote[' + key + '].CantidadSurtida"]').val();
+                            almacen.CantidadDevolver=$('input[name="Materiales[' + row + '].tSolicitudDetalleLote[' + key + '].CantidadDevolver"]').val();
+
+                            if (!$.isNumeric(almacen.Existencia)) almacen.Existencia = 0;
+                            if (!$.isNumeric(almacen.CantidadSurtida)) almacen.CantidadSurtida = 0;
+                            if (!$.isNumeric(almacen.CantidadDevolver)) almacen.CantidadDevolver = 0;
+
+                            listalotes.push(almacen);
+                        }
+
+                    
+                })
+
+
+                material.tSolicitudDetalleLote=listalotes;
+
+                result = material;
+            }
+
+
+
+            return result;
+        }
+
+        function SetModel(material, row) {
+
+            var result = null;
+
+
+
+            var input = $('input[name="Materiales[' + row + '].CantidadSolicitada"]');
+
+            if ($(input).length > 0) {
+
+
+                material.CantidadSolicitada= $('input[name="Materiales[' + row + '].CantidadSolicitada"]').val();
+                material.CantidadAutorizada= $('input[name="Materiales[' + row + '].CantidadAutorizada"]').val();
+                material.CantidadSurtida= $('input[name="Materiales[' + row + '].CantidadSurtida"]').val();
+                material.CantidadDevolver= $('input[name="Materiales[' + row + '].CantidadDevolver"]').val();
+                material.CantidadDevuelta= $('input[name="Materiales[' + row + '].CantidadDevuelta"]').val();
+
+                if(!$.isNumeric(material.CantidadSolicitada))material.CantidadSolicitada=0;
+                if(!$.isNumeric(material.CantidadAutorizada))material.CantidadAutorizada=0;
+                if(!$.isNumeric(material.CantidadSurtida))material.CantidadSurtida=0;
+                if(!$.isNumeric(material.CantidadDevolver))material.CantidadDevolver=0;
+                if(!$.isNumeric(material.CantidadDevuelta))material.CantidadDevuelta=0;
+
+
+                result = material;
+            }
+
+
+
+            return result;
+        }
+
+        function FindExistencia(object) { //cambio
+
+            var result = null;
+
+            var almacen = @Html.Raw(Json.Encode(new SolicitudDetalleLoteVM()));
+
+
+            if ($(object).length > 0) {
+
+                var indice=$(object).attr('data-indice');
+                var CantidadSurtida=$('input[name="surtir_' + indice + '"]').val();
+                var CantidadDevolver=$('input[name="devolver_' + indice + '"]').val();
+
+                almacen.idAlmacen = $(object).val();
+                almacen.idSustanciaMaterial = $(object).attr('data-idSustanciaMaterial');
+                almacen.Existencia = $(object).attr('data-Existencia');
+
+                almacen.CantidadSurtida = CantidadSurtida;
+                almacen.CantidadDevolver = CantidadDevolver;
+                //almacen.CantidadDevuelta = 0;
+
+                if (!$.isNumeric(almacen.Existencia)) almacen.Existencia = 0;
+                if (!$.isNumeric(almacen.CantidadSurtida)) almacen.CantidadSurtida = 0;
+                if (!$.isNumeric(almacen.CantidadDevolver)) almacen.CantidadDevolver = 0;
+
+                result = almacen;
+            }
+
+            return result;
+        }
+
+        function msgModalInit(msg){
+            $(msg).html('');
+            $(msg).removeClass('text-danger');
+        }
+
+        //validaciones de los lotes
+
+        $("#formlotes").validate({ //cambio
+            errorClass: "text-danger"
+        });
+
+</script>
+}
+

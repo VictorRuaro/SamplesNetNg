@@ -1,0 +1,238 @@
+﻿@using Almacen.Web.Aplicacion
+@model Almacen.Web.ViewModels.SolicitudDetalleVM
+
+<tr>
+
+    <td class="">
+        @Html.HiddenFor(modelItem => modelItem.index, new
+   {
+       @Name = string.Format("Materiales[{0}].index", Model.index),
+       @id = string.Format("Materiales_{0}__index", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idCategoria, new
+   {
+       @Name = string.Format("Materiales[{0}].idCategoria", Model.index),
+       @id = string.Format("Materiales_{0}__idCategoria", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idSolicitudDetalle, new
+   {
+       @Name = string.Format("Materiales[{0}].idSolicitudDetalle", Model.index),
+       @id = string.Format("Materiales_{0}__idSolicitudDetalle", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idSustanciaMaterial, new
+   {
+       @Name = string.Format("Materiales[{0}].idSustanciaMaterial", Model.index),
+       @id = string.Format("Materiales_{0}__idSustanciaMaterial", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.Descripcion, new
+   {
+       @Name = string.Format("Materiales[{0}].Descripcion", Model.index),
+       @id = string.Format("Materiales_{0}__Descripcion", Model.index)
+   })
+        @Html.HiddenFor(modelItem => modelItem.idEstatusSolicitud, new
+   {
+       @Name = string.Format("Materiales[{0}].idEstatusSolicitud", Model.index),
+       @id = string.Format("Materiales_{0}__idEstatusSolicitud", Model.index)
+   })
+
+        @Html.HiddenFor(modelItem => modelItem.idSolicitudDetalleEstatus, new
+   {
+       @Name = string.Format("Materiales[{0}].idSolicitudDetalleEstatus", Model.index),
+       @id = string.Format("Materiales_{0}__idSolicitudDetalleEstatus", Model.index)
+   })
+        
+        @Html.HiddenFor(modelItem => modelItem.idAlmacen, new
+   {
+       @Name = string.Format("Materiales[{0}].idAlmacen", Model.index),
+       @id = string.Format("Materiales_{0}__idAlmacen", Model.index)
+   })
+
+        @*@Html.DisplayFor(modelItem => modelItem.Descripcion)*@
+        <div class="">
+            @if(Model.idCategoria == (int)EnumCategoria.Sustancias)
+            {
+                @Html.Action("DatosSustancia", "DatosAplicacion", new { idSustanciaMaterial = Model.idSustanciaMaterial })
+            }
+            else
+            {
+                @Html.Action("DatosMaterial", "DatosAplicacion", new { idSustanciaMaterial = Model.idSustanciaMaterial })
+            }
+        </div>
+    </td>
+    <td>
+        @Html.HiddenFor(modelItem => modelItem.idPresentacion, new
+   {
+       @Name = string.Format("Materiales[{0}].idPresentacion", Model.index),
+       @id = string.Format("Materiales_{0}__idPresentacion", Model.index)
+   })
+        <div class="">
+
+            @if (Model.idCategoria == (int)EnumCategoria.Sustancias)
+            {
+                @Html.Action("DatosPresentacionSustancia", "DatosAplicacion",
+                               new
+                               {
+                                   idAlmacen = Model.idAlmacen
+                               })
+            }
+            else
+            {
+                @Html.Action("DatosPresentacionMaterial", "DatosAplicacion",
+                               new
+                               {
+                                   idAlmacen = Model.idAlmacen
+                               })
+            }
+        </div>
+    </td>
+    <td class="">
+        @Html.HiddenFor(modelItem => modelItem.CantidadSolicitada, new
+               {
+                   @Name = string.Format("Materiales[{0}].CantidadSolicitada", Model.index),
+                   @id = string.Format("Materiales_{0}__CantidadSolicitada", Model.index)
+               })
+        @Html.DisplayFor(modelItem => modelItem.CantidadSolicitada)
+    </td>
+    <td class="">
+        @Html.HiddenFor(modelItem => modelItem.CantidadAutorizada, new
+   {
+       @Name = string.Format("Materiales[{0}].CantidadAutorizada", Model.index),
+       @id = string.Format("Materiales_{0}__CantidadAutorizada", Model.index)
+   })
+                    
+        @Html.DisplayFor(modelItem => modelItem.CantidadAutorizada)
+    </td>
+
+    <td class="">
+        @Html.HiddenFor(modelItem => modelItem.CantidadSurtida, new
+   {
+       @Name = string.Format("Materiales[{0}].CantidadSurtida", Model.index),
+       @id = string.Format("Materiales_{0}__CantidadSurtida", Model.index)
+   })
+
+        @Html.DisplayFor(modelItem => modelItem.CantidadSurtida)
+    </td>
+
+    <td class="">
+        @Html.HiddenFor(modelItem => modelItem.CantidadDevolver, new
+   {
+       @Name = string.Format("Materiales[{0}].CantidadDevolver", Model.index),
+       @id = string.Format("Materiales_{0}__CantidadDevolver", Model.index)
+   })
+
+        @Html.DisplayFor(modelItem => modelItem.CantidadDevolver)
+    </td>
+    <td class="">
+        @Html.EditorFor(modelItem => modelItem.CantidadDevuelta, "", new
+   {
+       htmlAttributes = new
+       {
+           @Name = string.Format("Materiales[{0}].CantidadDevuelta", Model.index),
+           @id = string.Format("Materiales_{0}__CantidadDevuelta", Model.index),
+           @class = "form-control input-sm",
+           @readonly = "readonly"
+       }
+   })
+
+        @Html.ValidationMessageFor(modelItem => modelItem.CantidadDevuelta, "", new
+   {
+       @class = "text-danger",
+       @data_valmsg_for = string.Format("Materiales[{0}].CantidadDevuelta", Model.index)
+   })
+    </td>
+                
+
+</tr>
+
+@{
+    int nlotes = Model.tSolicitudDetalleLote.Count();
+
+    for (int i = 0; i < nlotes; i++)
+    {
+        //Model.tSolicitudDetalleLote[i] = i;
+        int idAlmacen = Model.tSolicitudDetalleLote[i].idAlmacen;
+        <tr class="bt0">
+
+            @if (i == 0)
+            {
+                <td colspan="3" rowspan="@nlotes.ToString()">
+                    <div class="text-muted text-right">Lotes a surtir</div>
+                </td>
+            }
+            <td>
+                <div class="">
+                    @if (idAlmacen > 0)
+                    {
+                        @Html.Action("DetalleLote", "DatosAplicacion", new { idCategoria = Model.idCategoria, idAlmacen = idAlmacen })
+                    }
+                </div>
+            </td>
+            <td>
+                <div class="">
+                    @Html.DisplayFor(modelItem => Model.tSolicitudDetalleLote[i].CantidadSurtida)
+                </div>
+            </td>
+            <td>
+                <div class="">
+                    @Html.DisplayFor(modelItem => Model.tSolicitudDetalleLote[i].CantidadDevolver)
+                </div>
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => modelItem.tSolicitudDetalleLote[i].CantidadDevuelta, "", new
+           {
+               htmlAttributes = new
+               {
+                   @Name = string.Format("Materiales[{0}].tSolicitudDetalleLote[{1}].CantidadDevuelta", Model.index,i),
+                   @id = string.Format("Materiales_{0}__tSolicitudDetalleLote_{1}__CantidadDevuelta", Model.index,i),
+                   @class = "form-control input-sm cantidaddevuelta " + string.Format("cantidadvalor{0}", Model.index),
+                   data_parent = string.Format("{0}", Model.index)
+
+               }
+           })
+
+                        @Html.ValidationMessageFor(modelItem => modelItem.CantidadDevuelta, "", new
+               {
+                   @class = "text-danger",
+                   @data_valmsg_for = string.Format("Materiales[{0}].tSolicitudDetalleLote[{1}].CantidadDevuelta", Model.index,i)
+               })
+            </td>
+
+            <td>
+                @Html.HiddenFor(model => model.tSolicitudDetalleLote[i].idSolicitudDetalleLote, new
+           {
+               @Name = string.Format("Materiales[{0}].tSolicitudDetalleLote[{1}].idSolicitudDetalleLote", Model.index, i),
+               @id = string.Format("Materiales_{0}__tSolicitudDetalleLote_{1}__idSolicitudDetalleLote", Model.index, i)
+           })
+                @Html.HiddenFor(model => model.tSolicitudDetalleLote[i].idSolicitudDetalle, new
+           {
+               @Name = string.Format("Materiales[{0}].tSolicitudDetalleLote[{1}].idSolicitudDetalle", Model.index, i),
+               @id = string.Format("Materiales_{0}__tSolicitudDetalleLote_{1}__idSolicitudDetalle", Model.index, i)
+           })
+
+                @Html.HiddenFor(model => model.tSolicitudDetalleLote[i].idAlmacen, new
+           {
+               @Name = string.Format("Materiales[{0}].tSolicitudDetalleLote[{1}].idAlmacen", Model.index, i),
+               @id = string.Format("Materiales_{0}__tSolicitudDetalleLote_{1}__idAlmacen", Model.index, i)
+           })
+                @Html.HiddenFor(model => model.tSolicitudDetalleLote[i].idSustanciaMaterial, new
+           {
+               @Name = string.Format("Materiales[{0}].tSolicitudDetalleLote[{1}].idSustanciaMaterial", Model.index, i),
+               @id = string.Format("Materiales_{0}__tSolicitudDetalleLote_{1}__idSustanciaMaterial", Model.index, i)
+           })
+                @Html.HiddenFor(model => model.tSolicitudDetalleLote[i].CantidadSurtida, new
+           {
+               @Name = string.Format("Materiales[{0}].tSolicitudDetalleLote[{1}].CantidadSurtida", Model.index, i),
+               @id = string.Format("Materiales_{0}__tSolicitudDetalleLote_{1}__CantidadSurtida", Model.index, i)
+           })
+                
+                @Html.HiddenFor(model => model.tSolicitudDetalleLote[i].Existencia, new
+           {
+               @Name = string.Format("Materiales[{0}].tSolicitudDetalleLote[{1}].Existencia", Model.index, i),
+               @id = string.Format("Materiales_{0}__tSolicitudDetalleLote_{1}__Existencia", Model.index, i)
+           })
+            </td>
+            
+        </tr>
+
+    }
+}

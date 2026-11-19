@@ -1,0 +1,66 @@
+﻿
+<h3>Firma Solicitante</h3>
+
+@using (Html.BeginForm())
+{
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.Label("Folio de Solicitud", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-sm-10 col-md-8 col-lg-6">
+                @Html.Editor("Folio", new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.ValidationMessageFor(model => model.Alerta, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Firma del solicitante</label>
+            <div class="col-sm-10 col-md-8 col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading bb">
+                        <h4 class="modal-title text-center">Firma de Usuario</h4>
+                    </div>
+                    <div class="panel-body">
+
+                        <p class="text-center pv">Use una cuenta para Firmar.</p>
+                        <div class="clearfix"></div>
+                        <div class="">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="UserName">Usuario</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" data-val="true" data-val-required="The Usuario field is required." id="UserName" name="UserName" type="text" value="">
+
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="col-md-4 control-label" for="Password">Contraseña</label>
+                                <div class="col-md-8">
+
+                                    <input class="form-control" data-val="true" data-val-required="The Contraseña field is required." id="Password" name="Password" type="password">
+
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-md-offset-4">
+                                <input type="submit" value="Firmar" class="btn btn-primary">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

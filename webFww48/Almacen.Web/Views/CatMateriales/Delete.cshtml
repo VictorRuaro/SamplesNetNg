@@ -1,0 +1,52 @@
+﻿@model Almacen.Web.ViewModels.Catalogos.MaterialVM
+<h3>Detalle</h3>
+<div>
+
+    <dl class="dl-horizontal p-xl">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cGrado.Grado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cGrado.Grado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+                <i class="fa fa-arrow-left"></i> Regresar
+            </a> 
+            @if (ViewBag.visiblebtnEliminar != null)
+            {
+                <span>|</span>
+            <button type="submit" class="btn btn-danger eliminaregistro">
+                <i class="fa fa-remove"></i> Eliminar
+            </button>
+            }
+            else
+            {
+                <span class="well bg-gray-lighter"><i class="fa fa-warning mr text-warning"></i><strong class="text-purple">No se puede eliminar ya que cuenta con existencias en el almacen</strong></span>
+            }
+        </div>
+    }
+</div>
+

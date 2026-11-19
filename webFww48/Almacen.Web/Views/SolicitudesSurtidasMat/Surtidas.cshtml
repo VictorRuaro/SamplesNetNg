@@ -1,0 +1,384 @@
+﻿@using Almacen.Web.ViewModels
+@using Almacen.Web.Aplicacion
+
+@model SolicitudVM
+<h3>Solicitud de Materiales Surtidos</h3>
+<link href="~/Content/modal.min.css" rel="stylesheet" />
+
+    <div class="form-horizontal">
+        
+        <div class="panel panel-default">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idSolicitud)
+    @Html.HiddenFor(model => model.Folio)
+    @Html.HiddenFor(model => model.UG)
+    @Html.HiddenFor(model => model.FG)
+    @Html.HiddenFor(model => model.idCategoria)
+    @Html.HiddenFor(model => model.idSolicitante)
+    @Html.HiddenFor(model => model.idAutorizador)
+    @Html.HiddenFor(model => model.idEstatusSolicitud)
+    @Html.HiddenFor(model => model.FirmaSolicitante)
+    @Html.HiddenFor(model => model.cEstatusSolicitud.idEstatusSolicitud)
+    @Html.HiddenFor(model => model.cEstatusSolicitud.NumEstatus)
+    @Html.HiddenFor(model => model.cEstatusSolicitud.EstatusSolicitud)
+
+            <div class="panel-heading">
+                <div class="media-box bb">
+                    <div class="pull-left">
+                        <span class="fa-stack">
+                            <em class="fa fa-circle fa-stack-2x text-gray"></em>
+                            <em class="fa fa-file-text fa-stack-1x fa-inverse"></em>
+                        </span>
+                    </div>
+                    <div class="media-box-body clearfix">
+
+                        <label class="pull-right ml text-purple">Estatus: <span class="label label-warning text-sm">@Model.cEstatusSolicitud.EstatusSolicitud</span></label>
+
+                        <div class="media-box-heading">
+                            <label class="text-muted">
+                                Solicitud
+
+                            </label>
+                        </div>
+                        <div class="m0">
+                            
+                            <span class="text-bold text-purple">Folio: @Model.Folio</span>
+                            <span class="pull-right text-muted">Fecha de Elaboración: @Model.FG.ToShortDateString()</span>
+                        </div>
+                        <div class="clearfix">
+                            <span class="pull-right text-bold">Fecha de Envio: @Model.FechaEnvio</span>
+                            <span class="text-bold">Solicitante: @Html.Action("DatosUsuario", "DatosAplicacion", new { IdUsuario = Model.UG })</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="bb p-sm">
+                            @Html.HiddenFor(model => model.Descripcion)
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="">
+                        @Html.LabelFor(model => model.Materiales, "Materiales", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                        <div class="col-md-10">
+                            <div class="clearfix mb">
+                                @*<div class="btn-group">
+                                    <button type="button" class="btn btn-labeled btn-oval btn-info" data-toggle="modal" data-target="#modalPoll">
+                                        <span class="btn-label btn-circle">
+                                            <i class="fa fa-plus"></i>
+                                        </span>
+                                        Agregar material
+                                    </button>
+
+                                </div>*@
+                            </div>
+                            <div id="ListaSolicitud" class="">
+                                @if (Model.Materiales != null)
+                                {
+                                    <div class="panel panel-default">
+                                        <div class="table-responsive">
+
+                                            <table id="tablaListado" class="table table-hover table-condensed ">
+                                                <thead class="">
+                                                    <tr>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.Descripcion)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.idPresentacion)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.CantidadSolicitada)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.CantidadAutorizada)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.CantidadSurtida)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.CantidadDevolver)
+                                                        </th>
+                                                        <th>
+                                                            @Html.DisplayNameFor(model => Model.Model.CantidadDevuelta)
+                                                        </th>
+                                                        <th>
+
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody class="h6">
+                                                    @{
+
+
+                                                        for (int i = 0; i < Model.Materiales.Count(); i++)
+                                                        {
+                                                            Model.Materiales[i].index = i;
+                                                            @Html.EditorFor(modelItem => Model.Materiales[i])
+
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                                            
+                                                        }
+                                                        else
+                                                        {
+                                    <div class="well bg-gray-lighter"><i class="fa fa-warning mr text-warning"></i><span class="text-purple">No se han agregado materiales</span></div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DescripcionUso, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="bb p-sm">
+                            @Html.HiddenFor(model => model.DescripcionUso)
+                            @Html.Raw(Model.DescripcionUso ?? "&nbsp;")
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix mb-lg"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AccionCorrectiva, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AccionCorrectiva, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="clearfix mb-lg"></div>
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.FirmaSolicitante, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-10">
+                        <div class="input-group m-b">
+                            <div class="input-group-btn">
+                                <button id="btnFirmarSolicitud" type="button" class="btn btn-green" data-toggle="modal" data-target="#myModalFirma">
+                                    <em class="fa fa-plus"></em>
+                                    Firma
+                                </button>
+                            </div>
+                            <div class="m">
+                                <em class="fa fa-user"></em>
+                                <span id="msgFirmaSolicitante">@Html.Action("DatosUsuario", "DatosAplicacion", new { IdUsuario = Model.idSolicitante })</span>
+                            </div>
+                        </div>
+
+                        <div class="input-valid-hide">
+                            @Html.EditorFor(model => model.FirmaSolicitante)
+                        </div>
+                        <div id="msgErrorFirma">
+                            @Html.ValidationMessageFor(model => model.FirmaSolicitante, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+
+            <div class="panel-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input name="btnAccion" class="btn btn-primary" type="submit" value="Actualizar Almacen">
+                        
+                    </div>
+                </div>
+                
+            </div>
+}
+            
+        </div>
+    </div>
+
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+</div>
+
+@section BodyArea {
+
+
+    <!-- Modal: modalPoll -->
+    <div class="modal fade right" id="myModalLote" tabindex="-1" role="dialog" aria-labelledby="modalPollLabel" aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-lg modal-right modal-notify modal-info" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <label id="modalPollLabel" class="modal-title h4 text-white">Materiales</label>
+
+                    <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">×</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+
+                    <div id="datosItem" class="bb">
+
+                    </div>
+                    @*<div class="col-md-offset-4 col-md-8">
+                        <button id="btnModalExistencias" class="pull-left btn btn-default shadow-z1" type="submit"
+                                data-actionurl="@Url.Action("ListadoExistenciasSelect", "SolicitudSustancias",null)">
+                            Mostrar existencias
+                            <i class="fa fa-search ml"></i>
+                        </button>
+
+                    </div>*@
+                    <div class="clearfix m"></div>
+                    <div class="table-responsive">
+                        <div id="resultadoExistencias" class="ibox-content">
+                            <div class="sk-spinner sk-spinner-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                                <div class="sk-circle13 sk-circle"></div>
+                            </div>
+                            <div class="well bg-gray-lighter"><i class="fa fa-info mr text-info"></i><strong class="text-purple">Actualizando existencias...</strong></div>
+                            @*<div class="well bg-gray-lighter"><i class="fa fa-info mr text-info"></i><strong class="text-purple">De click en el boton 'Mostrar existencias'</strong></div>*@
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer">
+                    <div class="text-left">
+                        <button type="button" id="btnModalSelecionaExistencias" class="btn btn-labeled btn-primary shadow-z1"
+                                data-actionurl="@Url.Action("ListaSeleccionados", "SolicitudesPendientesMat",null)"
+                                data-dismiss="modal">
+                            <span class="btn-label">
+                                <i class="fa fa-check"></i>
+                            </span>Listo
+                        </button>
+                        <button class="btn btn-default shadow-z1" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="myModalFirma" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade" style="display: none;">
+    <div class="modal-dialog modal-notify modal-green">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                    <span aria-hidden="true" class="text-white">×</span>
+                </button>
+                <h4 id="myModalLabel" class="modal-title text-white">Firma de Usuario</h4>
+            </div>
+            <div class="modal-body">
+
+                <p class="text-center text-alpha-inverse pv">Use una cuenta para Firmar.</p>
+                <div class="clearfix"></div>
+                <div class="form-group mb-boxes">
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="UserName">Usuario</label>
+                        <div class="col-md-8">
+                            <input class="form-control" data-val="true" data-val-required="El usuario es requerido."
+                                   id="UserName" name="UserName" type="text" value="">
+
+                            <span class="field-validation-valid text-danger" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-md-4 control-label" for="Password">Contraseña</label>
+                        <div class="col-md-8">
+
+                            <input class="form-control" data-val="true" data-val-required="La Contraseña es requerida."
+                                   id="Password" name="Password" type="password">
+
+                            <span class="field-validation-valid text-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-4">
+                        <input id="btnModalFirma" type="button" value="Firmar" class="btn btn-green"
+                               data-dismiss="modal"
+                               data-actionurl="@Url.Action("FirmaSolicitud", "SolicitudesPendientesMat", null)">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-default">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+}
+
+
+@section Styles {
+    @*@Styles.Render("~/bundles/datatablesCss")*@
+}
+@section Scripts {
+    @*@Scripts.Render("~/bundles/datatables")*@
+@Scripts.Render("~/Scripts/app/requiredIfValidator.js")
+@Scripts.Render("~/Scripts/app/valuecomparisonValidator.js")
+
+<script>
+        $('.cantidaddevuelta').change(function () {
+
+            var data_parent = $(this).attr('data-parent');
+
+            var nombrecolecion = '.cantidadvalor' + data_parent;
+
+            var total = 0;
+
+            //console.log(nombrecolecion);
+            $(nombrecolecion).each(function (key , object) {
+
+                var CantidadDevolver = $(object).val();
+                //console.log(CantidadDevolver);
+
+                if( $.isNumeric(CantidadDevolver))
+                {
+                    total = total+ parseInt(CantidadDevolver);
+                }
+
+            })
+            //console.log(total);
+
+            objCantidadDevolver = $('input[name="Materiales[' + data_parent + '].CantidadDevuelta"]');
+            $(objCantidadDevolver).val(total)
+
+        });
+
+</script>
+
+}
+

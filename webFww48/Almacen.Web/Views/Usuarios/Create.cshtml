@@ -1,0 +1,90 @@
+﻿@model Almacen.Web.Models.UsuarioViewModel
+<h3>Agregar</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NombreCompleto, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NombreCompleto, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NombreCompleto, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group form-md-line-input">
+                    <label class="col-md-2 control-label">
+                        Seleccione Rol
+                    </label>
+                    <div class="col-md-10">
+                        
+                        @*@Html.DropDownListFor(model => model.Rol, Model.RolesList,  new { @class = "form-control" } ) habilitar para solo un rol*@ 
+                        
+                        @{ 
+                            List<string> listar = ViewBag.userRoles;
+                            int i = 0;
+                            foreach (var item in Model.RolesList)
+                            {
+
+                                bool sel = listar.Contains(item.Value);
+
+                                <div class="radio radio-primary bg-white pl">
+                                    <input type="checkbox" id="checkbox_@i" name="selectedRoles" value="@item.Value" checked="@sel" data-checkbox="icheckbox_square-blue" />
+                                    <label for="checkbox_@i">@item.Value</label>
+
+                                </div>
+                                i++;
+                            }
+                        }
+                        
+                        @Html.ValidationMessageFor(model => model.Rol, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" class="btn btn-primary btn-shadow-hover" />
+                    </div>
+                </div>
+
+
+            </div><!-- /.card-content -->
+
+    }
+    
+    <div>
+        <a href="@Url.Action("Index")" class="btn btn-default" title="Regresar">
+            <i class="fa fa-arrow-left"></i> Regresar
+        </a>
+    </div>
+

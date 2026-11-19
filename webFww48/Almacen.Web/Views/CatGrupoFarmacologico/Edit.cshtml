@@ -1,0 +1,70 @@
+﻿@model Almacen.Web.ViewModels.Catalogos.GrupoFarmacologicoVM
+<link href="~/Content/minicolors/css/jquery.minicolors.css" rel="stylesheet" />
+<script src="~/Content/minicolors/js/jquery.minicolors.min.js"></script>
+
+<h3>Editar</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idGrupoFarmacologico)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GrupoFarmacologico, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GrupoFarmacologico, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GrupoFarmacologico, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.color, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.color, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.color, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.colorHtml, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.colorHtml)
+                @Html.ValidationMessageFor(model => model.colorHtml, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+</div>
+<script type="text/javascript">
+    $('.colorpicker').minicolors({
+        control: $(this).attr('data-control') || 'hue',
+        inline: $(this).attr('data-inline') === 'true',
+        letterCase: 'lowercase',
+        opacity: false,
+        change: function (hex, opacity) {
+            if (!hex) return;
+            if (opacity) hex += ', ' + opacity;
+            try {
+                console.log(hex);
+            } catch (e) { }
+            $(this).select();
+        },
+        theme: 'bootstrap'
+    });
+
+</script>

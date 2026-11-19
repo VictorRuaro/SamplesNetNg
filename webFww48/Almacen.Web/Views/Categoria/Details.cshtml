@@ -1,0 +1,24 @@
+﻿@model Almacen.Web.ViewModels.Catalogos.CategoriaVM
+<h3>Detalle</h3>
+<div>
+
+    <dl class="dl-horizontal p-xl">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </dt>
+
+        <dd class="">
+            @Html.DisplayFor(model => model.Categoria)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+    <a href="@Url.Action("Edit",new { id = Model.idCategoria})" class="btn btn-warning" title="Editar">
+        <i class="fa fa-edit"></i> Editar
+    </a>
+</div>

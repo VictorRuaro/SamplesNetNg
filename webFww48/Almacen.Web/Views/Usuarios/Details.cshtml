@@ -1,0 +1,40 @@
+﻿@model Almacen.Web.Models.UsuarioViewModel
+<h3>Detalle</h3>
+
+
+            <div class="form-horizontal">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.UserName)
+                    </dd>
+                    
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd> 
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NombreCompleto)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NombreCompleto)
+                    </dd>
+
+                </dl>
+            </div><!-- /.card-content -->
+
+    <p>
+        <a href="@Url.Action("Index")" class="btn btn-green-frame btn-shadow-hover" title="Regresar">
+            <i class="fa fa-arrow-left"></i> Regresar
+        </a>
+        <a href="@Url.Action("Edit",new { id = Model.Id })" class="btn btn-warning btn-shadow-hover" title="Editar">
+            <i class="fa fa-edit"></i> Editar
+        </a>
+    </p>
+

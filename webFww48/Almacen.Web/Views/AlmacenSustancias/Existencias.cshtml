@@ -1,0 +1,71 @@
+﻿@using Almacen.Web.ViewModels.Catalogos;
+@using Almacen.Web.ViewModels;
+@model BaseListaAlmacenVM<SustanciaVM, AlmacenSustanciaVM>
+<h3>Almacen de Sustancias - Existencias</h3>
+@using (Html.BeginForm())
+{
+    @*<div class="form-group mb-xl">
+        <input class="form-control mb" type="text" placeholder="Ingrese el texto a buscar">
+        <div class="clearfix">
+            <button class="pull-left btn btn-default" type="button">Buscar</button>
+
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Material.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Material.Descripcion)
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Material.Codigo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Material.Codigo)
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Material.cGrupoFarmacologico.GrupoFarmacologico, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Material.cGrupoFarmacologico.GrupoFarmacologico)
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group mt0 mb0">
+        @Html.LabelFor(model => model.Material.cGrupoFarmacologico.color, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Material.cGrupoFarmacologico.colorHtml)
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group mt0">
+        @Html.LabelFor(model => model.Material.EsSustanciaControlada, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="bb">
+                @Html.DisplayFor(model => model.Material.EsSustanciaControlada)
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="form-group mb-lg">
+        <a title="Agregar" class="btn  btn-primary" href="@Url.Action("Create", new { idSustanciaMaterial = Model.Material.idSustanciaMaterial })">
+            <i class="fa fa-plus"></i> Agregar
+        </a>
+    </div>
+    Html.RenderPartial("_ListaExistencias", Model.Lista);
+}
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+        <i class="fa fa-arrow-left"></i> Regresar
+    </a>
+</div>

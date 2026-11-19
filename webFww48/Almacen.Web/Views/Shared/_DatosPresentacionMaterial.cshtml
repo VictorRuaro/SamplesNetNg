@@ -1,0 +1,78 @@
+﻿@model Almacen.Web.ViewModels.AlmacenMaterialVM
+<div>
+    <div class="popover__wrapper">
+        <div class="popover__title btn-link">
+            @Html.DisplayFor(model => model.cPresentacion.Presentacion)
+        </div>
+        <dl class="dl-horizontal p push popover__content shadow-z4">
+            <dt>
+                @Html.DisplayNameFor(model => model.cMarca.Marca)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cMarca.Marca)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.cProveedor.Proveedor)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cProveedor.Proveedor)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.cCondicionesAlmacenaje.CondicionesAlmacenaje)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.cCondicionesAlmacenaje.CondicionesAlmacenaje)
+            </dd>
+
+        </dl>
+    </div>
+    
+</div>
+<style type="text/css">
+/* Popover styling */
+
+a {
+  text-decoration: none;
+}
+
+.popover__title {
+
+}
+
+.popover__wrapper {
+    display: inline-block;
+}
+
+.popover__content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    transform: translate(0,10px);
+    width: auto;
+    background-color:white;
+}
+
+.popover__content:before {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    right: calc(50% - 10px);
+    top: -8px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #BFBFBF transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+
+}
+.popover__wrapper:hover .popover__content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0,2px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+.popover__message {
+  text-align: center;
+}
+</style>

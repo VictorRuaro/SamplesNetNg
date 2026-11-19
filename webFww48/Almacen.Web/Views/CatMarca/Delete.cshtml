@@ -1,0 +1,30 @@
+﻿@model Almacen.Web.ViewModels.Catalogos.MarcaVM
+<h3>Detalle</h3>
+<div>
+
+    <dl class="dl-horizontal p-xl">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <a href="@Url.Action("Index")" class="btn btn-default text-primary" title="Regresar">
+                <i class="fa fa-arrow-left"></i> Regresar
+            </a> |
+            <button type="submit" class="btn btn-danger eliminaregistro">
+                <i class="fa fa-remove"></i> Eliminar
+            </button>
+        </div>
+    }
+</div>
+
