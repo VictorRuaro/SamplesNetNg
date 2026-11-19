@@ -1,0 +1,61 @@
+h2 {
+  margin: 15px;
+}
+
+.card-content {
+  margin-bottom: 10px;
+}
+/*
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+*/
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 15px;
+  background-color: #f4f5f7;
+}
+
+/* Base table styling */
+.mat-mdc-table {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+/* Header style modifications */
+.mat-mdc-header-row {
+  background-color: #f4f5f7;
+}
+
+.mat-mdc-header-cell {
+  color: #212529;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Row configurations */
+.mat-mdc-row {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  outline-color: #d7dbe1,
+}
+
+/* Row cell configurations */
+.mat-mdc-cell {
+  font-size: 14px;
+  color: #495057;
+}
+
+/* 2
+.mat-mdc-cell, 
+.mat-mdc-header-cell {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+*/
